@@ -362,6 +362,30 @@
       display: grid;
       justify-items: center;
       gap: 10px;
+      padding: 16px 12px;
+      border-radius: 18px;
+      border: 1px solid #e5e7eb;
+      background: #ffffff;
+    }
+    .customer-area {
+      background: #eff6ff;
+      border-color: #bfdbfe;
+    }
+    .poomgo-area {
+      background: #f3f4f6;
+      border-color: #d1d5db;
+    }
+    .process-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .02em;
+      background: rgba(255,255,255,.85);
+      color: #1f2937;
     }
     .process-node {
       width: 42px;
@@ -374,6 +398,12 @@
       font-size: 15px;
       font-weight: 800;
       box-shadow: 0 8px 18px rgba(17,24,39,.14);
+    }
+    .customer-area .process-node {
+      background: #2563eb;
+    }
+    .poomgo-area .process-node {
+      background: #374151;
     }
     .process-label {
       font-size: 14px;
@@ -389,6 +419,12 @@
       align-self: 20px;
       margin-top: 20px;
       border-radius: 999px;
+    }
+    .customer-line {
+      background: linear-gradient(90deg, #93c5fd, #60a5fa);
+    }
+    .poomgo-line {
+      background: linear-gradient(90deg, #9ca3af, #6b7280);
     }
 
     @keyframes fadeIn {
@@ -447,7 +483,9 @@
     <aside class="sidebar">
       <div class="brand">
         <div style="display:flex; align-items:center; gap:12px;">
-          <div style="width:44px; height:44px; border-radius:12px; background:#111827; color:#fff; display:grid; place-items:center; font-size:18px; font-weight:800; flex:0 0 auto;">P</div>
+          <div style="width:44px; height:44px; border-radius:12px; background:#111827; color:#fff; display:grid; place-items:center; font-size:18px; font-weight:800; flex:0 0 auto; overflow:hidden;">
+            <img src="./Primary Logo.png" alt="품고 로고" style="width:100%; height:100%; object-fit:contain; background:#fff; padding:6px;" onerror="this.style.display='none'; this.parentNode.textContent='P';" />
+          </div>
           <div>
             <h1>품고 입고 가이드</h1>
             <p>입고 전 꼭 확인이 필요한 기준을 메뉴별로 정리했습니다.</p>
@@ -491,53 +529,49 @@
         <p class="section-desc">입고 전 준비부터 실제 센터 입고까지의 흐름을 단계별로 확인해주세요.</p>
 
         <div class="card">
-          <h3>프로세스 바</h3>
           <div class="process-bar mt-20">
-            <div class="process-step">
+            <div class="process-step customer-area">
+              <div class="process-badge">고객사 영역</div>
               <div class="process-node">1</div>
-              <div class="process-label">입고 정보 확인</div>
-            </div>
-            <div class="process-line"></div>
-            <div class="process-step">
-              <div class="process-node">2</div>
               <div class="process-label">입고 예약</div>
             </div>
+            <div class="process-line customer-line"></div>
+            <div class="process-step customer-area">
+              <div class="process-badge">고객사 영역</div>
+              <div class="process-node">2</div>
+              <div class="process-label">상품 발송</div>
+            </div>
             <div class="process-line"></div>
-            <div class="process-step">
+            <div class="process-step poomgo-area">
+              <div class="process-badge">품고 영역</div>
               <div class="process-node">3</div>
-              <div class="process-label">포장 / 바코드 확인</div>
+              <div class="process-label">상품 검수</div>
             </div>
-            <div class="process-line"></div>
-            <div class="process-step">
+            <div class="process-line poomgo-line"></div>
+            <div class="process-step poomgo-area">
+              <div class="process-badge">품고 영역</div>
               <div class="process-node">4</div>
-              <div class="process-label">택배 / 차량 기준 확인</div>
+              <div class="process-label">입고 완료</div>
             </div>
-            <div class="process-line"></div>
-            <div class="process-step">
+            <div class="process-line poomgo-line"></div>
+            <div class="process-step poomgo-area">
+              <div class="process-badge">품고 영역</div>
               <div class="process-node">5</div>
-              <div class="process-label">예약 일정에 맞춰 입고</div>
+              <div class="process-label">로케이션 적치</div>
             </div>
           </div>
         </div>
 
-        <div class="two-col mt-16">
-          <div class="card">
-            <h3>운영 포인트</h3>
-            <ul class="list">
-              <li>예약 정보와 실제 입고 정보가 다르면 현장 확인 시간이 늘어날 수 있습니다.</li>
-              <li>포장 기준이 맞지 않으면 입고 지연 또는 추가 작업이 발생할 수 있습니다.</li>
-              <li>차량 입고는 적재 상태와 식별 기준이 특히 중요합니다.</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>사전 확인 항목</h3>
-            <div class="checklist">
-              <div class="check-item">입고 예정 SKU 및 수량 확인</div>
-              <div class="check-item">입고 예약 진행</div>
-              <div class="check-item">상품 포장 및 바코드 기준 확인</div>
-              <div class="check-item">입고 방식별 기준 확인</div>
-            </div>
-          </div>
+        <div class="card mt-16">
+          <h3>유의 사항</h3>
+          <ul class="list">
+            <li>➊ 초도 입고 예약은 품고에서 진행하며, 이후 입고 예약은 네이버 판매자센터에서 진행해주세요.</li>
+            <li>➋ 예약되지 않은 입고건이 센터에 도착할 경우 회송 처리 될 수 있습니다.</li>
+            <li>➌ 입고 방법은 택배 또는 차량으로 가능합니다.</li>
+            <li>➍ 상품 검수는 외관 검수에 한하여 진행합니다.</li>
+            <li>➎ 입고 완료 반영 시간은 하차 순으로 진행되며, 입고 당일 내 재고 반영이 이루어지나 정확한 시간 안내는 어렵습니다.</li>
+            <li>➏ 입고 정책을 준수하지 않을 경우 입고 지연이 발생될 수 있습니다.</li>
+          </ul>
         </div>
       </section>
 

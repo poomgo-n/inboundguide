@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>품고 입고가이드</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>품고 입고가이드</h1>
+        <p>입고 전 꼭 확인해주세요</p>
+      </div>
+
+      <nav class="nav">
+        <button class="nav-item active" data-target="intro">입고가이드 소개</button>
+        <button class="nav-item" data-target="process">입고 프로세스</button>
+        <button class="nav-item" data-target="center">센터 정보</button>
+        <button class="nav-item" data-target="reservation">입고 예약 방법</button>
+        <button class="nav-item" data-target="packing">상품 포장 기준</button>
+        <button class="nav-item" data-target="barcode">바코드 부착 기준</button>
+        <button class="nav-item" data-target="parcel">택배 입고 기준</button>
+        <button class="nav-item" data-target="vehicle">차량 입고 기준</button>
+        <button class="nav-item" data-target="cost">비용 발생 가능 항목</button>
+        <button class="nav-item" data-target="faq">자주 묻는 질문</button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="https://seller.poomgo.com/" target="_blank" class="btn btn-primary">품고 나우 바로가기</a>
+      </div>
+    </aside>
+
+    <main class="content">
+      <section id="intro" class="panel active">
+        <div class="hero-card">
+          <div>
+            <span class="eyebrow">Inbound Guide</span>
+            <h2>품고 입고가이드</h2>
+            <p>
+              원활한 입고 진행을 위해 반드시 사전 확인이 필요한 기준을 안내드립니다.
+              아래 항목을 순서대로 확인해주세요.
+            </p>
+          </div>
+        </div>
+
+        <div class="summary-grid">
+          <div class="summary-card">
+            <h3>입고 전 필수 확인</h3>
+            <p>입고 예약, 상품 포장, 바코드, 입고 방식별 기준을 먼저 확인해주세요.</p>
+          </div>
+          <div class="summary-card">
+            <h3>주의사항</h3>
+            <p>기준 미준수 시 입고 지연, 반려 또는 추가 비용이 발생할 수 있습니다.</p>
+          </div>
+          <div class="summary-card">
+            <h3>빠른 이동</h3>
+            <p>좌측 메뉴에서 필요한 항목으로 바로 이동할 수 있습니다.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="process" class="panel">
+        <h2>입고 프로세스</h2>
+        <p class="section-desc">입고 진행 전반의 흐름을 단계별로 확인해주세요.</p>
+
+        <div class="card">
+          <img src="./assets/images/process.png" alt="입고 프로세스 이미지" class="content-image" />
+        </div>
+
+        <div class="checklist">
+          <div class="check-item">입고 예약 진행</div>
+          <div class="check-item">상품 포장 및 바코드 확인</div>
+          <div class="check-item">입고 방식별 기준 확인</div>
+          <div class="check-item">예약 시간에 맞춰 입고 진행</div>
+        </div>
+      </section>
+
+      <section id="center" class="panel">
+        <h2>센터 정보</h2>
+        <p class="section-desc">입고지 주소 및 운영 정보를 확인해주세요.</p>
+
+        <div class="card">
+          <h3>센터 기본 정보</h3>
+          <ul class="info-list">
+            <li><strong>센터명</strong> : 감곡 네이버센터</li>
+            <li><strong>입고 가능 시간</strong> : 평일 운영 기준</li>
+            <li><strong>주소</strong> : 실제 운영 주소 기재</li>
+            <li><strong>유의사항</strong> : 예약 없이 방문 불가</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="reservation" class="panel">
+        <h2>입고 예약 방법</h2>
+        <p class="section-desc">예약 전 준비사항과 예약 시 주의사항을 확인해주세요.</p>
+
+        <div class="card">
+          <h3>예약 전 확인사항</h3>
+          <ul>
+            <li>입고 예정 SKU 및 수량 확인</li>
+            <li>택배 / 차량 입고 방식 확인</li>
+            <li>도착 예정 시간 확인</li>
+            <li>예약 정보와 실제 입고 정보 일치 여부 확인</li>
+          </ul>
+        </div>
+
+        <div class="card warning">
+          <h3>주의</h3>
+          <p>예약 내용과 실제 입고 수량 또는 방식이 다를 경우 입고 지연 또는 추가 확인이 발생할 수 있습니다.</p>
+        </div>
+      </section>
+
+      <section id="packing" class="panel">
+        <h2>상품 포장 기준</h2>
+        <p class="section-desc">상품 식별 및 검수가 가능하도록 기준에 맞게 포장해주세요.</p>
+
+        <div class="card">
+          <h3>기본 기준</h3>
+          <ul>
+            <li>박스 외부에서 SKU 식별이 가능해야 합니다.</li>
+            <li>서로 다른 SKU 혼적은 지양 또는 불가 기준에 따라 처리됩니다.</li>
+            <li>수량 확인이 어려운 벌크 형태는 별도 기준에 따릅니다.</li>
+            <li>세트/번들 상품은 실제 운영 기준과 일치해야 합니다.</li>
+          </ul>
+        </div>
+
+        <div class="image-grid">
+          <img src="./assets/images/packing-01.png" alt="포장 기준 예시 1" class="content-image" />
+          <img src="./assets/images/packing-02.png" alt="포장 기준 예시 2" class="content-image" />
+        </div>
+      </section>
+
+      <section id="barcode" class="panel">
+        <h2>바코드 부착 기준</h2>
+        <p class="section-desc">스캔 가능하고 중복 인식되지 않도록 부착해주세요.</p>
+
+        <div class="card">
+          <ul>
+            <li>상품 식별 가능한 바코드가 명확히 부착되어야 합니다.</li>
+            <li>중복 바코드 노출은 오인식 위험이 있으므로 제거 또는 가림 처리해야 합니다.</li>
+            <li>바코드 손상, 번짐, 가림 상태는 불가합니다.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <img src="./assets/images/barcode-01.png" alt="바코드 기준 예시" class="content-image" />
+        </div>
+      </section>
+
+      <section id="parcel" class="panel">
+        <h2>택배 입고 기준</h2>
+        <p class="section-desc">택배 입고 시 필요한 기본 기준을 확인해주세요.</p>
+
+        <div class="card">
+          <ul>
+            <li>송장 정보와 예약 정보가 일치해야 합니다.</li>
+            <li>입고 ID 기준으로 구분 가능한 상태여야 합니다.</li>
+            <li>파손 방지를 위한 포장이 되어 있어야 합니다.</li>
+            <li>혼선이 없도록 박스 단위 식별이 가능해야 합니다.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="vehicle" class="panel">
+        <h2>차량 입고 기준</h2>
+        <p class="section-desc">팔레트 적재 및 현장 입고 기준을 확인해주세요.</p>
+
+        <div class="card">
+          <ul>
+            <li>팔레트 단위 적재 기준을 준수해야 합니다.</li>
+            <li>입고증 또는 식별표 부착이 필요할 수 있습니다.</li>
+            <li>잔량 박스는 별도 식별이 가능해야 합니다.</li>
+            <li>기준 미준수 차량은 현장 확인으로 입고가 지연될 수 있습니다.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="cost" class="panel">
+        <h2>비용 발생 가능 항목</h2>
+        <p class="section-desc">아래 항목은 상황에 따라 추가 비용 또는 운영 이슈가 발생할 수 있습니다.</p>
+
+        <div class="card danger">
+          <ul>
+            <li>바코드 재부착</li>
+            <li>실셈 필요 상품</li>
+            <li>기준 외 번들/수량 포장 해체</li>
+            <li>예약 정보와 상이한 입고</li>
+            <li>기준 외 포장 또는 팔레트 적재</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="faq" class="panel">
+        <h2>자주 묻는 질문</h2>
+        <p class="section-desc">입고 진행 시 자주 문의되는 내용을 정리했습니다.</p>
+
+        <div class="faq-list">
+          <details>
+            <summary>예약한 시간보다 늦게 도착하면 어떻게 되나요?</summary>
+            <p>센터 운영 상황에 따라 당일 입고가 어려울 수 있으며 별도 확인이 필요할 수 있습니다.</p>
+          </details>
+          <details>
+            <summary>예약 후 입고 수량이 변경되면 어떻게 하나요?</summary>
+            <p>가능한 빠르게 수정 또는 사전 공유가 필요합니다.</p>
+          </details>
+          <details>
+            <summary>혼적 박스로 보내도 되나요?</summary>
+            <p>상품 식별 및 검수 기준에 따라 제한될 수 있으므로 가이드 기준을 우선 확인해주세요.</p>
+          </details>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

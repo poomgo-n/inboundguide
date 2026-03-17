@@ -40,7 +40,8 @@
     .brand-row {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
+      min-width: 0;
     }
 
     .logo-box {
@@ -70,10 +71,11 @@
 
     .brand h1 {
       margin: 0;
-      font-size: 28px;
-      line-height: 1.3;
+      font-size: 24px;
+      line-height: 1.2;
       font-weight: 800;
       color: #111827;
+      white-space: nowrap;
     }
 
     .nav {
@@ -124,7 +126,6 @@
 
     .card,
     .notice-card,
-    .summary-card,
     .faq-item {
       background: #ffffff;
       border: 1px solid #e5e7eb;
@@ -162,16 +163,6 @@
       color: #6b7280;
     }
 
-    .stack {
-      display: grid;
-      gap: 16px;
-    }
-
-    .stack-lg {
-      display: grid;
-      gap: 20px;
-    }
-
     .two-col {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -179,7 +170,6 @@
     }
 
     .mt-16 { margin-top: 16px; }
-    .mt-20 { margin-top: 20px; }
 
     .notice-card {
       border-color: #bfdbfe;
@@ -252,14 +242,19 @@
     }
 
     /* 프로세스 */
-    .process-wrapper {
-      display: grid;
-      gap: 20px;
+    .process-all {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      overflow-x: auto;
+      padding-bottom: 4px;
     }
 
     .process-group {
       border-radius: 20px;
-      padding: 18px 18px 20px;
+      padding: 16px 18px 18px;
+      flex: 1 1 0;
+      min-width: 0;
     }
 
     .process-group.customer {
@@ -275,7 +270,7 @@
     .process-group-title {
       font-size: 13px;
       font-weight: 800;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .process-group.customer .process-group-title {
@@ -288,12 +283,14 @@
 
     .process-row {
       display: flex;
-      align-items: center; /* 선 가운데 정렬 핵심 */
+      align-items: center;
       gap: 12px;
+      min-width: 0;
     }
 
     .process-step {
-      min-width: 110px;
+      min-width: 90px;
+      flex: 1 1 0;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -311,6 +308,7 @@
       font-weight: 800;
       color: #ffffff;
       box-shadow: 0 8px 18px rgba(17,24,39,.14);
+      flex: 0 0 auto;
     }
 
     .process-group.customer .process-node {
@@ -323,14 +321,16 @@
 
     .process-label {
       font-size: 14px;
-      line-height: 1.5;
+      line-height: 1.45;
       font-weight: 700;
       color: #374151;
       word-break: keep-all;
+      white-space: nowrap;
     }
 
     .process-line {
-      flex: 1;
+      flex: 1 1 24px;
+      min-width: 24px;
       height: 2px;
       border-radius: 999px;
       align-self: center;
@@ -342,39 +342,6 @@
 
     .process-group.poomgo .process-line {
       background: linear-gradient(90deg, #9ca3af, #6b7280);
-    }
-
-    .table-wrap {
-      overflow-x: auto;
-      border-radius: 18px;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      background: #ffffff;
-    }
-
-    th, td {
-      padding: 14px 16px;
-      border-bottom: 1px solid #e5e7eb;
-      text-align: left;
-      vertical-align: top;
-      line-height: 1.7;
-      font-size: 14px;
-      color: #374151;
-    }
-
-    th {
-      background: #f9fafb;
-      font-size: 13px;
-      font-weight: 800;
-      color: #111827;
-    }
-
-    tr:last-child td,
-    tr:last-child th {
-      border-bottom: none;
     }
 
     @keyframes fadeIn {
@@ -411,23 +378,6 @@
       }
     }
 
-    @media (max-width: 768px) {
-      .process-row {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .process-step {
-        width: 100%;
-      }
-
-      .process-line {
-        width: 2px;
-        height: 20px;
-        margin: 0 auto;
-      }
-    }
-
     @media (max-width: 640px) {
       .content {
         padding: 18px;
@@ -447,12 +397,16 @@
       }
 
       .brand h1 {
-        font-size: 24px;
+        font-size: 21px;
       }
 
       .logo-box {
         width: 56px;
         height: 56px;
+      }
+
+      .process-group {
+        min-width: 420px;
       }
     }
   </style>
@@ -508,7 +462,7 @@
         <p class="section-desc">입고 프로세스를 단계별로 확인해주세요.</p>
 
         <div class="card">
-          <div class="process-wrapper">
+          <div class="process-all">
             <div class="process-group customer">
               <div class="process-group-title">고객사 영역</div>
               <div class="process-row">

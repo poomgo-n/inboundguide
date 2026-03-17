@@ -243,35 +243,97 @@
 
     /* 프로세스 */
     .process-all {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      overflow-x: auto;
-      padding-bottom: 4px;
-    }
+  display: flex;
+  align-items: stretch;
+  gap: 14px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
 
-    .process-group {
-      border-radius: 20px;
-      padding: 16px 18px 18px;
-      flex: 1 1 0;
-      min-width: 0;
-    }
+.process-group {
+  border-radius: 20px;
+  padding: 18px 18px 16px;
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
-    .process-group.customer {
-      background: #eff6ff;
-      border: 1px solid #bfdbfe;
-    }
+.process-group.customer {
+  background: #eef4ff;
+  border: 1px solid #c9d8ff;
+}
 
-    .process-group.poomgo {
-      background: #f3f4f6;
-      border: 1px solid #d1d5db;
-    }
+.process-group.poomgo {
+  background: #f5f8ff;
+  border: 1px solid #d6e1ff;
+}
 
-    .process-group-title {
-      font-size: 13px;
-      font-weight: 800;
-      margin-bottom: 12px;
-    }
+.process-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.process-step {
+  min-width: 90px;
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.process-node {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-size: 15px;
+  font-weight: 800;
+  color: #ffffff;
+  background: #0040D1;
+  box-shadow: 0 8px 18px rgba(0, 64, 209, 0.18);
+  flex: 0 0 auto;
+}
+
+.process-label {
+  font-size: 14px;
+  line-height: 1.45;
+  font-weight: 700;
+  color: #374151;
+  word-break: keep-all;
+  white-space: nowrap;
+}
+
+.process-line {
+  flex: 1 1 24px;
+  min-width: 24px;
+  height: 2px;
+  border-radius: 999px;
+  align-self: center;
+  background: linear-gradient(90deg, #7ea4ff, #0040D1);
+}
+
+.process-group-title {
+  margin-top: 14px;
+  align-self: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 110px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #0040D1;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 800;
+  text-align: center;
+}
 
     .process-group.customer .process-group-title {
       color: #2563eb;

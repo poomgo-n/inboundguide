@@ -483,15 +483,14 @@
     <aside class="sidebar">
       <div class="brand">
         <div style="display:flex; align-items:center; gap:12px;">
-          <div style="width:44px; height:44px; border-radius:12px; background:#111827; color:#fff; display:grid; place-items:center; font-size:18px; font-weight:800; flex:0 0 auto; overflow:hidden;">
-            <img src="./Primary Logo.png" alt="품고 로고" style="width:100%; height:100%; object-fit:contain; background:#fff; padding:6px;" onerror="this.style.display='none'; this.parentNode.textContent='P';" />
-          </div>
-          <div>
-            <h1>품고 입고 가이드</h1>
-            <p>입고 전 꼭 확인이 필요한 기준을 메뉴별로 정리했습니다.</p>
-          </div>
-        </div>
-      </div>
+          <div style="width:64px; height:64px; border-radius:14px; background:#111827; display:grid; place-items:center; overflow:hidden;">
+  <img src="./Primary Logo.png"
+       alt="품고 로고"
+       style="width:100%; height:100%; object-fit:contain; background:#fff; padding:8px;"
+       onerror="this.style.display='none'; this.parentNode.textContent='P';" />
+</div>
+
+<h1 style="margin:0; font-size:28px;">품고 입고 가이드</h1>
 
       <nav class="nav" aria-label="입고가이드 메뉴">
         <button class="nav-item" data-target="process">입고 프로세스</button>
@@ -528,49 +527,52 @@
         <h2>입고 프로세스</h2>
         <p class="section-desc">입고 전 준비부터 실제 센터 입고까지의 흐름을 단계별로 확인해주세요.</p>
 
-        <div class="card">
-          <div class="process-bar mt-20">
-            <div class="process-step customer-area">
-              <div class="process-badge">고객사 영역</div>
-              <div class="process-node">1</div>
-              <div class="process-label">입고 예약</div>
-            </div>
-            <div class="process-line customer-line"></div>
-            <div class="process-step customer-area">
-              <div class="process-badge">고객사 영역</div>
-              <div class="process-node">2</div>
-              <div class="process-label">상품 발송</div>
-            </div>
-            <div class="process-line"></div>
-            <div class="process-step poomgo-area">
-              <div class="process-badge">품고 영역</div>
-              <div class="process-node">3</div>
-              <div class="process-label">상품 검수</div>
-            </div>
-            <div class="process-line poomgo-line"></div>
-            <div class="process-step poomgo-area">
-              <div class="process-badge">품고 영역</div>
-              <div class="process-node">4</div>
-              <div class="process-label">입고 완료</div>
-            </div>
-            <div class="process-line poomgo-line"></div>
-            <div class="process-step poomgo-area">
-              <div class="process-badge">품고 영역</div>
-              <div class="process-node">5</div>
-              <div class="process-label">로케이션 적치</div>
-            </div>
-          </div>
-        </div>
+       <div class="process-wrapper">
+
+  <div class="process-group-title customer">고객사 영역</div>
+
+  <div class="process-row">
+    <div class="process-step">
+      <div class="process-node">1</div>
+      <div class="process-label">입고 예약</div>
+    </div>
+    <div class="process-line"></div>
+    <div class="process-step">
+      <div class="process-node">2</div>
+      <div class="process-label">상품 발송</div>
+    </div>
+  </div>
+
+  <div class="process-group-title poomgo">품고 영역</div>
+
+  <div class="process-row">
+    <div class="process-step">
+      <div class="process-node">3</div>
+      <div class="process-label">상품 검수</div>
+    </div>
+    <div class="process-line"></div>
+    <div class="process-step">
+      <div class="process-node">4</div>
+      <div class="process-label">입고 완료</div>
+    </div>
+    <div class="process-line"></div>
+    <div class="process-step">
+      <div class="process-node">5</div>
+      <div class="process-label">로케이션 적치</div>
+    </div>
+  </div>
+
+</div>
 
         <div class="card mt-16">
           <h3>유의 사항</h3>
           <ul class="list">
-            <li>➊ 초도 입고 예약은 품고에서 진행하며, 이후 입고 예약은 네이버 판매자센터에서 진행해주세요.</li>
-            <li>➋ 예약되지 않은 입고건이 센터에 도착할 경우 회송 처리 될 수 있습니다.</li>
-            <li>➌ 입고 방법은 택배 또는 차량으로 가능합니다.</li>
-            <li>➍ 상품 검수는 외관 검수에 한하여 진행합니다.</li>
-            <li>➎ 입고 완료 반영 시간은 하차 순으로 진행되며, 입고 당일 내 재고 반영이 이루어지나 정확한 시간 안내는 어렵습니다.</li>
-            <li>➏ 입고 정책을 준수하지 않을 경우 입고 지연이 발생될 수 있습니다.</li>
+            <li> 초도 입고 예약은 품고에서 진행하며, 이후 입고 예약은 네이버 판매자센터에서 진행해주세요.</li>
+            <li>예약되지 않은 입고건이 센터에 도착할 경우 회송 처리 될 수 있습니다.</li>
+            <li>입고 방법은 택배 또는 차량으로 가능합니다.</li>
+            <li>상품 검수는 외관 검수에 한하여 진행합니다.</li>
+            <li>입고 완료 반영 시간은 하차 순으로 진행되며, 입고 당일 내 재고 반영이 이루어지나 정확한 시간 안내는 어렵습니다.</li>
+            <li>입고 정책을 준수하지 않을 경우 입고 지연이 발생될 수 있습니다.</li>
           </ul>
         </div>
       </section>

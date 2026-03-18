@@ -586,277 +586,237 @@
     }
 
     /* 상세 모달 */
-    .detail-modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(15, 23, 42, 0.72);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      z-index: 9999;
-    }
+.detail-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.72);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 72px;
+  z-index: 9999;
+}
 
-    .detail-modal.active {
-      display: flex;
-    }
+.detail-modal.active {
+  display: flex;
+}
 
-    .detail-dialog {
-      width: min(1040px, 100%);
-      max-height: 90vh;
-      background: #ffffff;
-      border-radius: 24px;
-      overflow: hidden;
-      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
-      display: flex;
-      flex-direction: column;
-    }
+.detail-dialog {
+  width: min(960px, 100%);
+  max-height: 90vh;
+  background: #ffffff;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
+  display: flex;
+  flex-direction: column;
+}
 
-    .detail-header {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 18px 20px;
-      border-bottom: 1px solid #e5e7eb;
-      background: #ffffff;
-    }
+.detail-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 20px;
+  border-bottom: 1px solid #e5e7eb;
+  background: #ffffff;
+}
 
-    .detail-title-wrap {
-      min-width: 0;
-    }
+.detail-title-wrap {
+  min-width: 0;
+}
 
-    .detail-eyebrow {
-      font-size: 12px;
-      font-weight: 800;
-      color: #0040D1;
-      letter-spacing: 0.02em;
-      margin-bottom: 4px;
-    }
+.detail-eyebrow {
+  font-size: 12px;
+  font-weight: 800;
+  color: #0040D1;
+  letter-spacing: 0.02em;
+  margin-bottom: 4px;
+}
 
-    .detail-title {
-      font-size: 20px;
-      font-weight: 900;
-      color: #111827;
-      line-height: 1.5;
-      word-break: keep-all;
-    }
+.detail-title {
+  font-size: 20px;
+  font-weight: 900;
+  color: #111827;
+  line-height: 1.5;
+  word-break: keep-all;
+}
 
-    .detail-close {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-      border: 1px solid #e5e7eb;
-      background: #ffffff;
-      color: #111827;
-      font-size: 22px;
-      line-height: 1;
-      cursor: pointer;
-      flex: 0 0 auto;
-    }
+.detail-close {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  color: #111827;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  flex: 0 0 auto;
+}
 
-    .detail-body {
-      padding: 20px;
-      background: #f8fafc;
-      overflow-y: auto;
-      max-height: calc(90vh - 84px);
-    }
+.detail-body {
+  padding: 20px;
+  background: #f8fafc;
+  overflow-y: auto;
+  max-height: calc(90vh - 84px);
+}
 
-    .detail-layout {
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 20px;
-    }
+.detail-stack {
+  display: grid;
+  gap: 16px;
+}
 
-    .detail-copy,
-    .detail-visual {
-      background: #ffffff;
-      border: 1px solid #e5e7eb;
-      border-radius: 20px;
-      padding: 18px;
-    }
+.detail-copy,
+.detail-visual {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 18px;
+}
 
-    .detail-copy p {
-      margin: 0;
-      font-size: 14px;
-      line-height: 1.9;
-      color: #374151;
-    }
+.detail-copy p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.9;
+  color: #374151;
+}
 
-    .detail-copy p + p {
-      margin-top: 10px;
-    }
+.detail-copy p + p {
+  margin-top: 10px;
+}
 
-    .detail-note {
-      margin-top: 14px;
-      padding: 14px 16px;
-      border-radius: 14px;
-      background: #eff6ff;
-      border: 1px solid #bfdbfe;
-      color: #1d4ed8;
-      font-size: 13px;
-      line-height: 1.8;
-      font-weight: 700;
-    }
+.detail-note {
+  margin-top: 14px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1d4ed8;
+  font-size: 13px;
+  line-height: 1.8;
+  font-weight: 700;
+}
 
-    .detail-visual img {
-      width: 100%;
-      height: auto;
-      border-radius: 14px;
-      background: #ffffff;
-    }
+.detail-visual img {
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  background: #ffffff;
+}
 
-    .detail-table-wrap {
-      margin-top: 16px;
-      border: 1px solid #d7dee9;
-      border-radius: 14px;
-      overflow: hidden;
-      background: #ffffff;
-    }
+.detail-table-wrap {
+  margin-top: 16px;
+  border: 1px solid #d7dee9;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #ffffff;
+}
 
-    .detail-table {
-      width: 100%;
-      border-collapse: collapse;
-    }
+.detail-table {
+  width: 100%;
+  border-collapse: collapse;
+}
 
-    .detail-table th,
-    .detail-table td {
-      padding: 12px 14px;
-      border-bottom: 1px solid #d7dee9;
-      text-align: left;
-      font-size: 14px;
-      line-height: 1.75;
-      color: #334155;
-      vertical-align: top;
-    }
+.detail-table th,
+.detail-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid #d7dee9;
+  text-align: left;
+  font-size: 14px;
+  line-height: 1.75;
+  color: #334155;
+  vertical-align: top;
+}
 
-    .detail-table th {
-      background: #f3f4f6;
-      font-size: 13px;
-      font-weight: 800;
-      color: #111827;
-    }
+.detail-table th {
+  background: #f3f4f6;
+  font-size: 13px;
+  font-weight: 800;
+  color: #111827;
+}
 
-    .detail-table tr:last-child td,
-    .detail-table tr:last-child th {
-      border-bottom: none;
-    }
+.detail-table tr:last-child td,
+.detail-table tr:last-child th {
+  border-bottom: none;
+}
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+.detail-nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(255, 255, 255, 0.96);
+  color: #111827;
+  font-size: 34px;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 10000;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+  display: grid;
+  place-items: center;
+}
 
-    @media (max-width: 1180px) {
-      .download-grid {
-        grid-template-columns: 1fr;
-      }
-    }
+.detail-prev {
+  left: 18px;
+}
 
-    @media (max-width: 1024px) {
-      .app {
-        grid-template-columns: 1fr;
-      }
+.detail-next {
+  right: 18px;
+}
 
-      .sidebar {
-        position: relative;
-        height: auto;
-        border-right: none;
-        border-bottom: 1px solid #e5e7eb;
-      }
+.detail-nav:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
 
-      .nav,
-      .sidebar-note {
-        display: none;
-      }
+@media (max-width: 640px) {
+  .detail-modal {
+    padding: 12px;
+  }
 
-      .mobile-select-wrap {
-        display: block;
-      }
+  .detail-dialog {
+    width: 100%;
+    max-height: 92vh;
+    border-radius: 18px;
+  }
 
-      .content {
-        padding: 24px;
-      }
+  .detail-header {
+    padding: 14px 14px 12px;
+  }
 
-      .two-col {
-        grid-template-columns: 1fr;
-      }
-    }
+  .detail-title {
+    font-size: 18px;
+  }
 
-    @media (max-width: 900px) {
-      .detail-layout {
-        grid-template-columns: 1fr;
-      }
-    }
+  .detail-body {
+    padding: 12px;
+    max-height: calc(92vh - 72px);
+  }
 
-    @media (max-width: 640px) {
-      .content {
-        padding: 18px;
-      }
+  .detail-copy,
+  .detail-visual {
+    padding: 14px;
+    border-radius: 16px;
+  }
 
-      .card,
-      .notice-card {
-        padding: 18px;
-      }
+  .detail-nav {
+    width: 44px;
+    height: 44px;
+    font-size: 28px;
+  }
 
-      h2 {
-        font-size: 24px;
-      }
+  .detail-prev {
+    left: 8px;
+  }
 
-      h3 {
-        font-size: 18px;
-      }
-
-      .brand h1 {
-        font-size: 24px;
-      }
-
-      .logo-box {
-        width: 68px;
-        height: 68px;
-      }
-
-      .process-group {
-        min-width: 420px;
-      }
-
-      .check-card {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .image-btn {
-        width: 100%;
-      }
-
-      .detail-modal {
-        padding: 12px;
-      }
-
-      .detail-dialog {
-        max-height: 92vh;
-        border-radius: 18px;
-      }
-
-      .detail-header {
-        padding: 14px 14px 12px;
-      }
-
-      .detail-title {
-        font-size: 18px;
-      }
-
-      .detail-body {
-        padding: 12px;
-        max-height: calc(92vh - 72px);
-      }
-
-      .detail-copy,
-      .detail-visual {
-        padding: 14px;
-        border-radius: 16px;
-      }
-    }
+  .detail-next {
+    right: 8px;
+  }
+}
   </style>
 </head>
 <body>
@@ -1301,19 +1261,23 @@
     </main>
   </div>
 
-  <div class="detail-modal" id="detailModal" aria-hidden="true">
-    <div class="detail-dialog" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
-      <div class="detail-header">
-        <div class="detail-title-wrap">
-          <div class="detail-eyebrow">상품(SKU) 포장 기준</div>
-          <div id="detailTitle" class="detail-title">상세보기</div>
-        </div>
-        <button id="detailClose" class="detail-close" aria-label="닫기">×</button>
-      </div>
+<div class="detail-modal" id="detailModal" aria-hidden="true">
+  <button class="detail-nav detail-prev" id="detailPrev" aria-label="이전">‹</button>
 
-      <div id="detailBody" class="detail-body"></div>
+  <div class="detail-dialog" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+    <div class="detail-header">
+      <div class="detail-title-wrap">
+        <div class="detail-eyebrow">상품(SKU) 포장 기준</div>
+        <div id="detailTitle" class="detail-title">상세보기</div>
+      </div>
+      <button id="detailClose" class="detail-close" aria-label="닫기">×</button>
     </div>
+
+    <div id="detailBody" class="detail-body"></div>
   </div>
+
+  <button class="detail-nav detail-next" id="detailNext" aria-label="다음">›</button>
+</div>
 
   <script>
     (function () {

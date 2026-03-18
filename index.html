@@ -242,22 +242,18 @@
     }
 
     /* 프로세스 */
-    .process-all {
+  .process-all {
   display: flex;
-  align-items: stretch;
   gap: 14px;
   overflow-x: auto;
-  padding-bottom: 4px;
 }
 
 .process-group {
+  position: relative;
   border-radius: 20px;
-  padding: 18px 18px 16px;
-  flex: 1 1 0;
+  padding: 20px 18px 40px; /* 👈 아래 공간 확보 (라벨 자리) */
+  flex: 1;
   min-width: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 }
 
 .process-group.customer {
@@ -274,16 +270,10 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  min-width: 0;
 }
 
 .process-step {
-  min-width: 90px;
-  flex: 1 1 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
+  flex: 1;
   text-align: center;
 }
 
@@ -293,46 +283,32 @@
   border-radius: 999px;
   display: grid;
   place-items: center;
-  font-size: 15px;
   font-weight: 800;
-  color: #ffffff;
+  color: #fff;
   background: #0040D1;
-  box-shadow: 0 8px 18px rgba(0, 64, 209, 0.18);
-  flex: 0 0 auto;
-}
-
-.process-label {
-  font-size: 14px;
-  line-height: 1.45;
-  font-weight: 700;
-  color: #374151;
-  word-break: keep-all;
-  white-space: nowrap;
 }
 
 .process-line {
-  flex: 1 1 24px;
-  min-width: 24px;
+  flex: 1;
   height: 2px;
-  border-radius: 999px;
-  align-self: center;
   background: linear-gradient(90deg, #7ea4ff, #0040D1);
 }
 
+/* 🔥 핵심 */
 .process-group-title {
-  margin-top: 14px;
-  align-self: center;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 110px;
-  padding: 8px 14px;
-  border-radius: 999px;
+  position: absolute;
+  bottom: 6px;              /* 👈 선 아래 위치 */
+  left: 50%;
+  transform: translateX(-50%);
+  
   background: #0040D1;
-  color: #ffffff;
-  font-size: 13px;
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 999px;
+
+  font-size: 12px;
   font-weight: 800;
-  text-align: center;
+  white-space: nowrap;
 }
 
     .process-group.customer .process-group-title {
@@ -525,6 +501,7 @@
 
         <div class="card">
 <div class="process-all">
+
   <div class="process-group customer">
     <div class="process-row">
       <div class="process-step">
@@ -559,19 +536,20 @@
     </div>
     <div class="process-group-title">품고 영역</div>
   </div>
+
 </div>
 
-        <div class="card mt-16">
-          <h3>유의 사항</h3>
-          <ul class="list">
-            <li>초도 입고 예약은 품고에서 진행하며, 이후 입고 예약은 네이버 판매자센터에서 진행해주세요.</li>
-            <li>예약되지 않은 입고건이 센터에 도착할 경우 회송 처리 될 수 있습니다.</li>
-            <li>입고 방법은 택배 또는 차량으로 가능합니다.</li>
-            <li>상품 검수는 외관 검수에 한하여 진행합니다.</li>
-            <li>입고 완료 반영 시간은 하차 순으로 진행되며, 입고 당일 내 재고 반영이 이루어지나 정확한 시간 안내는 어렵습니다.</li>
-            <li>입고 정책을 준수하지 않을 경우 입고 지연이 발생될 수 있습니다.</li>
-          </ul>
-        </div>
+<div class="notice-card warning mt-16">
+  <h3>유의 사항</h3>
+  <ul class="list">
+    <li>초도 입고 예약은 품고에서 진행하며, 이후 입고 예약은 네이버 판매자센터에서 진행해주세요.</li>
+    <li>예약되지 않은 입고건이 센터에 도착할 경우 회송 처리 될 수 있습니다.</li>
+    <li>입고 방법은 택배 또는 차량으로 가능합니다.</li>
+    <li>상품 검수는 외관 검수에 한하여 진행합니다.</li>
+    <li>입고 완료 반영 시간은 하차 순으로 진행되며, 입고 당일 내 재고 반영이 이루어지나 정확한 시간 안내는 어렵습니다.</li>
+    <li>입고 정책을 준수하지 않을 경우 입고 지연이 발생될 수 있습니다.</li>
+  </ul>
+</div>
       </section>
 
       <section id="center" class="panel">

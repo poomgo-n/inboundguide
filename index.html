@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>품고 입고가이드</title>
+  <title>품고 입고 가이드</title>
   <style>
     * { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; }
@@ -12,13 +12,25 @@
       background: #f5f7fb;
       color: #111827;
     }
-    a { color: inherit; }
-    img { display: block; max-width: 100%; }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    button {
+      font-family: inherit;
+    }
 
     .app {
       min-height: 100vh;
       display: grid;
-      grid-template-columns: 300px 1fr;
+      grid-template-columns: 320px 1fr;
     }
 
     .sidebar {
@@ -31,23 +43,52 @@
       display: flex;
       flex-direction: column;
       gap: 20px;
+      overflow: hidden;
     }
 
     .brand {
-      padding: 6px 4px 0;
+      padding: 6px 4px 8px;
     }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .logo-box {
+      width: 84px;
+      height: 84px;
+      border-radius: 18px;
+      background: #111827;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      flex: 0 0 auto;
+    }
+
+    .logo-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #ffffff;
+      padding: 10px;
+    }
+
+    .logo-fallback {
+      color: #ffffff;
+      font-size: 28px;
+      font-weight: 800;
+    }
+
     .brand h1 {
       margin: 0;
-      font-size: 24px;
-      line-height: 1.3;
+      font-size: 28px;
+      line-height: 1.25;
       font-weight: 800;
       color: #111827;
-    }
-    .brand p {
-      margin: 8px 0 0;
-      font-size: 14px;
-      line-height: 1.6;
-      color: #6b7280;
+      word-break: keep-all;
     }
 
     .nav {
@@ -57,6 +98,7 @@
       overflow-y: auto;
       padding-right: 4px;
     }
+
     .nav-item {
       appearance: none;
       border: none;
@@ -69,277 +111,38 @@
       font-size: 15px;
       line-height: 1.5;
       color: #374151;
-      transition: background .2s ease, color .2s ease, transform .2s ease;
+      transition: background .2s ease, color .2s ease;
     }
+
     .nav-item:hover {
       background: #f3f4f6;
     }
+
     .nav-item.active {
       background: #111827;
       color: #ffffff;
       font-weight: 700;
     }
 
-    .sidebar-footer {
+    .sidebar-note {
       margin-top: auto;
-      display: grid;
-      gap: 10px;
-    }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      text-decoration: none;
-      border-radius: 14px;
-      padding: 14px 16px;
-      font-size: 15px;
-      font-weight: 700;
-      transition: transform .2s ease, opacity .2s ease;
-    }
-    .btn:hover { transform: translateY(-1px); }
-    .btn-primary {
-      background: #2563eb;
-      color: #ffffff;
-    }
-    .btn-secondary {
-      background: #eef2ff;
-      color: #1d4ed8;
-    }
-
-    .content {
-      padding: 40px;
-    }
-
-    .panel {
-      display: none;
-      animation: fadeIn .2s ease;
-    }
-    .panel.active { display: block; }
-
-    .hero-card,
-    .card,
-    .notice-card,
-    .summary-card,
-    .check-item,
-    .faq-item {
-      background: #ffffff;
-      border: 1px solid #e5e7eb;
-      border-radius: 22px;
-      box-shadow: 0 10px 30px rgba(17,24,39,.05);
-    }
-
-    .hero-card,
-    .card,
-    .notice-card {
-      padding: 24px;
-    }
-
-    .eyebrow {
-      display: inline-block;
-      margin-bottom: 10px;
+      padding: 14px 12px 0;
+      border-top: 1px solid #e5e7eb;
       font-size: 12px;
-      font-weight: 800;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: #2563eb;
-    }
-
-    h2 {
-      margin: 0 0 10px;
-      font-size: 32px;
-      line-height: 1.3;
-      font-weight: 800;
-    }
-    h3 {
-      margin: 0 0 10px;
-      font-size: 20px;
-      line-height: 1.4;
-      font-weight: 800;
-    }
-    h4 {
-      margin: 0 0 8px;
-      font-size: 16px;
-      line-height: 1.4;
-      font-weight: 800;
-    }
-    p {
-      margin: 0;
-      line-height: 1.75;
-      color: #374151;
-    }
-
-    .section-desc {
-      margin: 0 0 20px;
+      line-height: 1.8;
       color: #6b7280;
     }
 
-    .hero-actions {
-      display: flex;
-      gap: 12px;
-      margin-top: 20px;
-      flex-wrap: wrap;
-    }
-
-    .summary-grid,
-    .two-col,
-    .image-grid,
-    .quick-grid {
-      display: grid;
-      gap: 16px;
-      margin-top: 16px;
-    }
-    .summary-grid { grid-template-columns: repeat(3, 1fr); }
-    .two-col { grid-template-columns: repeat(2, 1fr); }
-    .image-grid { grid-template-columns: repeat(2, 1fr); }
-    .quick-grid { grid-template-columns: repeat(4, 1fr); }
-
-    .summary-card {
-      padding: 20px;
-    }
-    .summary-card p,
-    .notice-card p {
-      color: #4b5563;
-    }
-
-    .list,
-    .info-list,
-    .policy-list {
-      margin: 0;
-      padding-left: 18px;
-      line-height: 1.8;
-      color: #374151;
-    }
-    .list li + li,
-    .info-list li + li,
-    .policy-list li + li {
-      margin-top: 4px;
-    }
-
-    .stack {
-      display: grid;
-      gap: 16px;
-    }
-    .stack-lg {
-      display: grid;
-      gap: 20px;
-    }
-    .mt-16 { margin-top: 16px; }
-    .mt-20 { margin-top: 20px; }
-
-    .notice-card {
-      border-color: #bfdbfe;
-      background: #eff6ff;
-    }
-    .warning {
-      border-color: #f59e0b;
-      background: #fffbeb;
-    }
-    .danger {
-      border-color: #ef4444;
-      background: #fef2f2;
-    }
-    .success {
-      border-color: #86efac;
-      background: #f0fdf4;
-    }
-
-    .tag-row {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    .tag {
-      display: inline-flex;
-      align-items: center;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: #f3f4f6;
-      color: #374151;
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .checklist {
-      display: grid;
-      gap: 12px;
-      margin-top: 16px;
-    }
-    .check-item {
-      padding: 16px 18px;
-      font-weight: 700;
-    }
-
-    .table-wrap {
-      overflow-x: auto;
-      border: 1px solid #e5e7eb;
-      border-radius: 18px;
-      background: #ffffff;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 680px;
-      background: #ffffff;
-    }
-    th, td {
-      padding: 14px 16px;
-      border-bottom: 1px solid #e5e7eb;
-      text-align: left;
-      vertical-align: top;
-      line-height: 1.7;
-      font-size: 14px;
-      color: #374151;
-    }
-    th {
-      background: #f9fafb;
-      font-size: 13px;
-      font-weight: 800;
-      color: #111827;
-    }
-    tr:last-child td { border-bottom: none; }
-
-    .content-image {
-      width: 100%;
-      border: 1px solid #e5e7eb;
-      border-radius: 18px;
-      background: #f9fafb;
-      aspect-ratio: 16 / 10;
-      object-fit: cover;
-    }
-
-    .placeholder {
-      display: grid;
-      place-items: center;
-      color: #9ca3af;
-      font-size: 14px;
-      font-weight: 700;
-      background: linear-gradient(135deg, #f8fafc, #eef2f7);
-    }
-
-    .faq-list {
-      display: grid;
-      gap: 12px;
-      margin-top: 16px;
-    }
-    .faq-item {
-      padding: 18px 20px;
-    }
-    .faq-item summary {
-      cursor: pointer;
-      list-style: none;
-      font-weight: 800;
-      color: #111827;
-    }
-    .faq-item summary::-webkit-details-marker { display: none; }
-    .faq-item p {
-      margin-top: 12px;
+    .content {
+      padding: 32px;
+      min-width: 0;
     }
 
     .mobile-select-wrap {
       display: none;
       margin-bottom: 16px;
     }
+
     .mobile-select {
       width: 100%;
       appearance: none;
@@ -352,79 +155,496 @@
       color: #111827;
     }
 
-    .process-bar {
-      display: grid;
-      grid-template-columns: auto 1fr auto 1fr auto 1fr auto 1fr auto;
-      align-items: start;
-      gap: 12px;
+    .panel {
+      display: none;
+      animation: fadeIn .18s ease;
     }
-    .process-step {
+
+    .panel.active {
+      display: block;
+    }
+
+    .section-shell {
       display: grid;
-      justify-items: center;
-      gap: 10px;
-      padding: 16px 12px;
-      border-radius: 18px;
+      gap: 16px;
+    }
+
+    .card,
+    .notice-card,
+    .faq-item {
+      background: #ffffff;
       border: 1px solid #e5e7eb;
+      border-radius: 22px;
+      box-shadow: 0 10px 30px rgba(17, 24, 39, .05);
+    }
+
+    .card,
+    .notice-card {
+      padding: 24px;
+    }
+
+    .notice-card {
+      border-color: #bfdbfe;
+      background: #eff6ff;
+    }
+
+    .warning {
+      border-color: #f59e0b;
+      background: #fffbeb;
+    }
+
+    .danger {
+      border-color: #ef4444;
+      background: #fef2f2;
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      font-size: 32px;
+      line-height: 1.3;
+      font-weight: 800;
+      color: #111827;
+    }
+
+    h3 {
+      margin: 0 0 12px;
+      font-size: 20px;
+      line-height: 1.4;
+      font-weight: 800;
+      color: #111827;
+    }
+
+    p {
+      margin: 0;
+      line-height: 1.8;
+      color: #374151;
+    }
+
+    .section-desc {
+      margin: 0 0 20px;
+      color: #6b7280;
+      line-height: 1.8;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .mt-16 { margin-top: 16px; }
+
+    .list,
+    .info-list {
+      margin: 0;
+      padding-left: 18px;
+      line-height: 1.9;
+      color: #374151;
+    }
+
+    .list li + li,
+    .info-list li + li {
+      margin-top: 4px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid #e5e7eb;
+      border-radius: 18px;
       background: #ffffff;
     }
-    .customer-area {
-      background: #eff6ff;
-      border-color: #bfdbfe;
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #ffffff;
+      min-width: 720px;
     }
-    .poomgo-area {
-      background: #f3f4f6;
-      border-color: #d1d5db;
+
+    th, td {
+      padding: 14px 16px;
+      border-bottom: 1px solid #e5e7eb;
+      text-align: left;
+      vertical-align: top;
+      line-height: 1.75;
+      font-size: 14px;
+      color: #374151;
     }
-    .process-badge {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 6px 10px;
-      border-radius: 999px;
-      font-size: 11px;
+
+    th {
+      background: #f9fafb;
+      font-size: 13px;
       font-weight: 800;
-      letter-spacing: .02em;
-      background: rgba(255,255,255,.85);
-      color: #1f2937;
+      color: #111827;
     }
+
+    tr:last-child td,
+    tr:last-child th {
+      border-bottom: none;
+    }
+
+    .check-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .check-card {
+      background: #ffffff;
+      border: 1px solid #d8e0ea;
+      border-radius: 22px;
+      padding: 18px 20px;
+      box-shadow: 0 1px 1px rgba(15, 23, 42, 0.02);
+    }
+
+    .check-title {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.5;
+      font-weight: 900;
+      color: #0f172a;
+      word-break: keep-all;
+    }
+
+    .check-divider {
+      margin: 12px 0 14px;
+      border: 0;
+      border-top: 1px solid #d6dde8;
+    }
+
+    .check-text {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.9;
+      color: #334155;
+      word-break: keep-all;
+    }
+
+    .inner-table-wrap {
+      margin-top: 14px;
+      border: 1px solid #d7dee9;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #ffffff;
+    }
+
+    .inner-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 0;
+    }
+
+    .inner-table th,
+    .inner-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid #d7dee9;
+      text-align: left;
+      font-size: 14px;
+      line-height: 1.7;
+      color: #334155;
+      vertical-align: top;
+    }
+
+    .inner-table th {
+      background: #f3f4f6;
+      font-weight: 800;
+      color: #111827;
+      font-size: 13px;
+    }
+
+    .inner-table tr:last-child td,
+    .inner-table tr:last-child th {
+      border-bottom: none;
+    }
+
+    /* 프로세스 */
+    .process-all {
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .process-group {
+      border-radius: 20px;
+      padding: 20px 18px 18px;
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .process-group.customer {
+      background: #f3f4f6;
+      border: 1px solid #d1d5db;
+    }
+
+    .process-group.poomgo {
+      background: #eef4ff;
+      border: 1px solid #c9d8ff;
+    }
+
+    .process-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .process-step {
+      min-width: 90px;
+      flex: 1 1 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      text-align: center;
+    }
+
     .process-node {
-      width: 42px;
-      height: 42px;
+      width: 44px;
+      height: 44px;
       border-radius: 999px;
-      background: #111827;
-      color: #ffffff;
       display: grid;
       place-items: center;
       font-size: 15px;
       font-weight: 800;
+      color: #fff;
       box-shadow: 0 8px 18px rgba(17,24,39,.14);
+      flex: 0 0 auto;
     }
-    .customer-area .process-node {
-      background: #2563eb;
+
+    .process-group.customer .process-node {
+      background: #111111;
     }
-    .poomgo-area .process-node {
-      background: #374151;
+
+    .process-group.poomgo .process-node {
+      background: #0040D1;
+      box-shadow: 0 8px 18px rgba(0,64,209,.18);
     }
+
     .process-label {
       font-size: 14px;
-      line-height: 1.5;
+      line-height: 1.45;
       font-weight: 700;
       color: #374151;
-      text-align: center;
       word-break: keep-all;
+      white-space: nowrap;
     }
+
     .process-line {
+      flex: 1 1 24px;
+      min-width: 24px;
       height: 2px;
-      background: linear-gradient(90deg, #cbd5e1, #94a3b8);
-      align-self: 20px;
-      margin-top: 20px;
       border-radius: 999px;
+      align-self: center;
     }
-    .customer-line {
-      background: linear-gradient(90deg, #93c5fd, #60a5fa);
+
+    .process-group.customer .process-line {
+      background: linear-gradient(90deg, #111111, #4b5563);
     }
-    .poomgo-line {
-      background: linear-gradient(90deg, #9ca3af, #6b7280);
+
+    .process-group.poomgo .process-line {
+      background: linear-gradient(90deg, #7ea4ff, #0040D1);
+    }
+
+    .process-group-title {
+      align-self: center;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7px 14px;
+      border-radius: 999px;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+      margin-top: -2px;
+    }
+
+    .process-group.customer .process-group-title {
+      background: #111111;
+    }
+
+    .process-group.poomgo .process-group-title {
+      background: #0040D1;
+    }
+
+    .process-caption {
+      border-radius: 16px;
+      padding: 14px 16px;
+      font-size: 14px;
+      line-height: 1.7;
+      font-weight: 700;
+      background: #ffffff;
+    }
+
+    .customer-caption {
+      border: 1px solid #d1d5db;
+      color: #111111;
+    }
+
+    .poomgo-caption {
+      border: 1px solid #c9d8ff;
+      color: #0040D1;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .faq-item {
+      padding: 18px 20px;
+    }
+
+    .faq-item summary {
+      cursor: pointer;
+      list-style: none;
+      font-weight: 800;
+      color: #111827;
+      font-size: 16px;
+    }
+
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-item p {
+      margin-top: 12px;
+      line-height: 1.8;
+    }
+
+    .download-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .download-card {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 20px;
+      padding: 20px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .download-title {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 800;
+      color: #111827;
+    }
+
+    .download-desc {
+      font-size: 14px;
+      line-height: 1.8;
+      color: #6b7280;
+    }
+
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      background: #111827;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 800;
+      border: none;
+      cursor: pointer;
+    }
+
+    .download-btn.primary {
+      background: #0040D1;
+    }
+
+    .image-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: #0040D1;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 800;
+      border: none;
+      cursor: pointer;
+      margin-top: 14px;
+    }
+
+    /* 이미지 모달 */
+    .image-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.72);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      z-index: 9999;
+    }
+
+    .image-modal.active {
+      display: flex;
+    }
+
+    .image-modal-dialog {
+      position: relative;
+      width: min(1000px, 100%);
+      max-height: 90vh;
+      background: #ffffff;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
+    }
+
+    .image-modal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 18px;
+      border-bottom: 1px solid #e5e7eb;
+      background: #ffffff;
+    }
+
+    .image-modal-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #111827;
+    }
+
+    .image-close {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      border: 1px solid #e5e7eb;
+      background: #ffffff;
+      color: #111827;
+      font-size: 20px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .image-modal-body {
+      padding: 18px;
+      background: #f8fafc;
+      max-height: calc(90vh - 73px);
+      overflow: auto;
+    }
+
+    .image-modal-body img {
+      width: 100%;
+      height: auto;
+      border-radius: 14px;
+      background: #ffffff;
     }
 
     @keyframes fadeIn {
@@ -433,47 +653,78 @@
     }
 
     @media (max-width: 1180px) {
-      .summary-grid { grid-template-columns: 1fr; }
-      .quick-grid { grid-template-columns: repeat(2, 1fr); }
+      .download-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (max-width: 1024px) {
-      .app { grid-template-columns: 1fr; }
+      .app {
+        grid-template-columns: 1fr;
+      }
+
       .sidebar {
         position: relative;
         height: auto;
         border-right: none;
         border-bottom: 1px solid #e5e7eb;
       }
-      .nav { display: none; }
-      .mobile-select-wrap { display: block; }
-      .content { padding: 24px; }
-      .two-col,
-      .image-grid,
-      .quick-grid { grid-template-columns: 1fr; }
-      h2 { font-size: 28px; }
+
+      .nav,
+      .sidebar-note {
+        display: none;
+      }
+
+      .mobile-select-wrap {
+        display: block;
+      }
+
+      .content {
+        padding: 24px;
+      }
+
+      .two-col {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (max-width: 640px) {
-      .content { padding: 18px; }
-      .hero-card,
+      .content {
+        padding: 18px;
+      }
+
       .card,
-      .notice-card { padding: 18px; }
-      .btn { width: 100%; }
-      h2 { font-size: 24px; }
-      h3 { font-size: 18px; }
-      .process-bar {
-        grid-template-columns: 1fr;
-        gap: 10px;
+      .notice-card {
+        padding: 18px;
       }
-      .process-line {
-        display: none;
+
+      h2 {
+        font-size: 24px;
       }
-      .process-step {
-        justify-items: start;
+
+      h3 {
+        font-size: 18px;
       }
-      .process-label {
-        text-align: left;
+
+      .brand h1 {
+        font-size: 24px;
+      }
+
+      .logo-box {
+        width: 68px;
+        height: 68px;
+      }
+
+      .process-group {
+        min-width: 420px;
+      }
+
+      .image-modal {
+        padding: 12px;
+      }
+
+      .image-modal-body {
+        padding: 12px;
       }
     }
   </style>
@@ -482,23 +733,24 @@
   <div class="app">
     <aside class="sidebar">
       <div class="brand">
-        <div style="display:flex; align-items:center; gap:12px;">
-          <div style="width:44px; height:44px; border-radius:12px; background:#111827; color:#fff; display:grid; place-items:center; font-size:18px; font-weight:800; flex:0 0 auto; overflow:hidden;">
-            <img src="./Primary Logo.png" alt="품고 로고" style="width:100%; height:100%; object-fit:contain; background:#fff; padding:6px;" onerror="this.style.display='none'; this.parentNode.textContent='P';" />
+        <div class="brand-row">
+          <div class="logo-box">
+            <img
+              src="./Primary Logo.png"
+              alt="품고 로고"
+              onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;logo-fallback&quot;>P</div>';"
+            />
           </div>
-          <div>
-            <h1>품고 입고 가이드</h1>
-            <p>입고 전 꼭 확인이 필요한 기준을 메뉴별로 정리했습니다.</p>
-          </div>
+          <h1>품고 입고 가이드</h1>
         </div>
       </div>
 
       <nav class="nav" aria-label="입고가이드 메뉴">
-        <button class="nav-item" data-target="process">입고 프로세스</button>
-        <button class="nav-item" data-target="center">센터 정보</button>
-        <button class="nav-item" data-target="reservation">입고 예약 방법</button>
-        <button class="nav-item" data-target="packing">상품 포장 기준</button>
-        <button class="nav-item" data-target="barcode">바코드 부착 기준</button>
+        <button class="nav-item active" data-target="center">센터 정보</button>
+        <button class="nav-item" data-target="precheck">입고 전 필수 확인 사항</button>
+        <button class="nav-item" data-target="process">입고 과정</button>
+        <button class="nav-item" data-target="packing">상품(SKU) 포장 기준</button>
+        <button class="nav-item" data-target="barcode">바코드 기준</button>
         <button class="nav-item" data-target="parcel">택배 입고 기준</button>
         <button class="nav-item" data-target="vehicle">차량 입고 기준</button>
         <button class="nav-item" data-target="cost">비용 발생 가능 항목</button>
@@ -506,16 +758,19 @@
         <button class="nav-item" data-target="downloads">다운로드</button>
       </nav>
 
-      </aside>
+      <div class="sidebar-note">
+        ※ 본 가이드는 운영 기준에 따라 변경될 수 있습니다.
+      </div>
+    </aside>
 
     <main class="content">
       <div class="mobile-select-wrap">
         <select class="mobile-select" id="mobileNav" aria-label="모바일 메뉴 선택">
-          <option value="process" selected>입고 프로세스</option>
-          <option value="center">센터 정보</option>
-          <option value="reservation">입고 예약 방법</option>
-          <option value="packing">상품 포장 기준</option>
-          <option value="barcode">바코드 부착 기준</option>
+          <option value="center" selected>센터 정보</option>
+          <option value="precheck">입고 전 필수 확인 사항</option>
+          <option value="process">입고 과정</option>
+          <option value="packing">상품(SKU) 포장 기준</option>
+          <option value="barcode">바코드 기준</option>
           <option value="parcel">택배 입고 기준</option>
           <option value="vehicle">차량 입고 기준</option>
           <option value="cost">비용 발생 가능 항목</option>
@@ -524,414 +779,437 @@
         </select>
       </div>
 
-      <section id="process" class="panel active">
-        <h2>입고 프로세스</h2>
-        <p class="section-desc">입고 전 준비부터 실제 센터 입고까지의 흐름을 단계별로 확인해주세요.</p>
-
-        <div class="card">
-          <div class="process-bar mt-20">
-            <div class="process-step customer-area">
-              <div class="process-badge">고객사 영역</div>
-              <div class="process-node">1</div>
-              <div class="process-label">입고 예약</div>
-            </div>
-            <div class="process-line customer-line"></div>
-            <div class="process-step customer-area">
-              <div class="process-badge">고객사 영역</div>
-              <div class="process-node">2</div>
-              <div class="process-label">상품 발송</div>
-            </div>
-            <div class="process-line"></div>
-            <div class="process-step poomgo-area">
-              <div class="process-badge">품고 영역</div>
-              <div class="process-node">3</div>
-              <div class="process-label">상품 검수</div>
-            </div>
-            <div class="process-line poomgo-line"></div>
-            <div class="process-step poomgo-area">
-              <div class="process-badge">품고 영역</div>
-              <div class="process-node">4</div>
-              <div class="process-label">입고 완료</div>
-            </div>
-            <div class="process-line poomgo-line"></div>
-            <div class="process-step poomgo-area">
-              <div class="process-badge">품고 영역</div>
-              <div class="process-node">5</div>
-              <div class="process-label">로케이션 적치</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card mt-16">
-          <h3>유의 사항</h3>
-          <ul class="list">
-            <li>➊ 초도 입고 예약은 품고에서 진행하며, 이후 입고 예약은 네이버 판매자센터에서 진행해주세요.</li>
-            <li>➋ 예약되지 않은 입고건이 센터에 도착할 경우 회송 처리 될 수 있습니다.</li>
-            <li>➌ 입고 방법은 택배 또는 차량으로 가능합니다.</li>
-            <li>➍ 상품 검수는 외관 검수에 한하여 진행합니다.</li>
-            <li>➎ 입고 완료 반영 시간은 하차 순으로 진행되며, 입고 당일 내 재고 반영이 이루어지나 정확한 시간 안내는 어렵습니다.</li>
-            <li>➏ 입고 정책을 준수하지 않을 경우 입고 지연이 발생될 수 있습니다.</li>
-          </ul>
-        </div>
-      </section>
-
-      
-
-      <section id="center" class="panel">
-        <h2>센터 정보</h2>
-        <p class="section-desc">센터 주소, 팔레트 코드, 담당자 정보 및 입고 가능 시간을 확인해주세요.</p>
-
-        <div class="card">
-          <div style="padding:0 0 16px 0;">
-            <div style="font-size:22px;font-weight:800;color:#111111;margin-bottom:12px;">
-              🏢 센터 정보
-            </div>
-          </div>
-
-          <div style="border:1px solid #E8EBF0; border-radius:18px; overflow:hidden; background:#ffffff;">
-            <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse; font-size:14px; line-height:1.6; color:#111111; min-width:0;">
-              <tbody>
-                <tr>
-                  <th rowspan="2" style="width:110px; padding:16px 12px; background:#F8F9FA; border-bottom:1px solid #E8EBF0; border-right:1px solid #E8EBF0; text-align:center; font-weight:800; word-break:keep-all;">주소</th>
-                  <td style="padding:16px 14px; border-bottom:1px solid #E8EBF0;"><strong>도로명</strong><br>충청북도 음성군 감곡면 가곡로 194-13 3층</td>
-                </tr>
-                <tr>
-                  <td style="padding:16px 14px; border-bottom:1px solid #E8EBF0;"><strong>지번</strong><br>충청북도 음성군 감곡면 오궁리 396-1 3층 XFC</td>
-                </tr>
-
-                <tr>
-                  <th rowspan="2" style="padding:16px 12px; background:#F8F9FA; border-right:1px solid #E8EBF0; border-bottom:1px solid #E8EBF0; text-align:center; font-weight:800; word-break:keep-all;">팔레트 코드</th>
-                  <td style="padding:16px 14px; border-bottom:1px solid #E8EBF0;"><strong>KPP</strong> 259013</td>
-                </tr>
-                <tr>
-                  <td style="padding:16px 14px; border-bottom:1px solid #E8EBF0;"><strong>AJ</strong> P262612-5</td>
-                </tr>
-
-                <tr>
-                  <th style="padding:16px 12px; background:#F8F9FA; border-right:1px solid #E8EBF0; border-bottom:1px solid #E8EBF0; text-align:center; font-weight:800; word-break:keep-all;">담당자 정보</th>
-                  <td style="padding:16px 14px; border-bottom:1px solid #E8EBF0;"><strong>담당자명 :</strong> 품고 네이버 센터 입고팀<br><strong>연락처 :</strong> 010-3844-8064</td>
-                </tr>
-
-                <tr>
-                  <th style="padding:16px 12px; background:#F8F9FA; border-right:1px solid #E8EBF0; text-align:center; font-weight:800; word-break:keep-all;">입고 가능 시간</th>
-                  <td style="padding:16px 14px;"><strong>운영 시간 :</strong> 오전 10시 ~ 오후 18시<br><strong>점심시간 :</strong> 12시 30분 ~ 13시 30분 하차 및 입고 불가</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <div class="notice-card warning mt-16">
-          <h3>유의 사항</h3>
-          <p>입고 운영시간 외 도착 시 운영시간까지 대기가 필요하며, 이로 인해 추가 과금이 발생되는 경우 품고에서 지불하지 않습니다.</p>
-        </div>
-      </section>
-
-      <section id="reservation" class="panel">
-        <h2>입고 예약 방법</h2>
-        <p class="section-desc">예약 시 필요한 정보와 변경/취소 시 유의사항을 정리하세요.</p>
-
-        <div class="two-col">
+      <section id="center" class="panel active">
+        <div class="section-shell">
           <div class="card">
-            <h3>예약 전 준비사항</h3>
-            <ul class="list">
-              <li>입고 예정 SKU와 수량 확인</li>
-              <li>택배 / 차량 입고 방식 확정</li>
-              <li>도착 예정 일시 확인</li>
-              <li>입고 ID 또는 예약 단위 확인</li>
-              <li>포장 및 바코드 기준 준수 여부 확인</li>
-            </ul>
+            <h2>센터 정보</h2>
+            <p class="section-desc">센터 주소, 팔레트 코드, 담당자 정보 및 입고 가능 시간을 확인해주세요.</p>
+
+            <div style="border:1px solid #E8EBF0; border-radius:18px; overflow:hidden; background:#ffffff;">
+              <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse; font-size:14px; line-height:1.6; color:#111111; min-width:0;">
+                <tbody>
+                  <tr>
+                    <th rowspan="2" style="width:110px; padding:16px 12px; background:#F8F9FA; border-bottom:1px solid #E8EBF0; border-right:1px solid #E8EBF0; text-align:center; font-weight:800; word-break:keep-all;">주소</th>
+                    <td style="padding:16px 14px; border-bottom:1px solid #E8EBF0;">
+                      <strong>도로명</strong><br>
+                      충청북도 음성군 감곡면 가곡로 194-13 3층
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding:16px 14px; border-bottom:1px solid #E8EBF0;">
+                      <strong>지번</strong><br>
+                      충청북도 음성군 감곡면 오궁리 396-1 3층 XFC
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <th rowspan="2" style="padding:16px 12px; background:#F8F9FA; border-right:1px solid #E8EBF0; border-bottom:1px solid #E8EBF0; text-align:center; font-weight:800; word-break:keep-all;">팔레트 코드</th>
+                    <td style="padding:16px 14px; border-bottom:1px solid #E8EBF0;">
+                      <strong>KPP</strong> 259013
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding:16px 14px; border-bottom:1px solid #E8EBF0;">
+                      <strong>AJ</strong> P262612-5
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <th style="padding:16px 12px; background:#F8F9FA; border-right:1px solid #E8EBF0; border-bottom:1px solid #E8EBF0; text-align:center; font-weight:800; word-break:keep-all;">담당자 정보</th>
+                    <td style="padding:16px 14px; border-bottom:1px solid #E8EBF0;">
+                      <strong>담당자명 :</strong> 품고 네이버 센터 입고팀<br>
+                      <strong>연락처 :</strong> 010-3844-8064
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <th style="padding:16px 12px; background:#F8F9FA; border-right:1px solid #E8EBF0; text-align:center; font-weight:800; word-break:keep-all;">입고 가능 시간</th>
+                    <td style="padding:16px 14px;">
+                      <strong>운영 시간 :</strong> 오전 10시 ~ 오후 18시<br>
+                      <strong>점심시간 :</strong> 12시 30분 ~ 13시 30분 하차 및 입고 불가
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-          <div class="card warning">
-            <h3>주의사항</h3>
-            <ul class="list">
-              <li>예약 정보와 실제 입고 정보가 다르면 현장 확인이 추가될 수 있습니다.</li>
-              <li>사전 공유 없이 수량이 크게 변경되면 일정 조정이 필요할 수 있습니다.</li>
-              <li>차량 정보 수정은 마감 시간 이전 반영 기준을 두는 것이 좋습니다.</li>
-            </ul>
+
+          <div class="notice-card warning">
+            <h3>유의 사항</h3>
+            <p>입고 운영시간 외 도착 시 운영시간까지 대기가 필요하며, 이로 인해 추가 과금이 발생되는 경우 품고에서 지불하지 않습니다.</p>
           </div>
         </div>
+      </section>
 
-        <div class="table-wrap mt-16">
-          <table>
-            <thead>
-              <tr>
-                <th>항목</th>
-                <th>안내 문구 예시</th>
-                <th>추가 반영 포인트</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>예약 마감</td>
-                <td>입고 예정일 기준 사전 예약이 필요합니다.</td>
-                <td>정확한 시간/일 기준 숫자화</td>
-              </tr>
-              <tr>
-                <td>변경 / 취소</td>
-                <td>예약 변경 또는 취소 시 가능한 빠른 공유 부탁드립니다.</td>
-                <td>당일 변경 허용 범위 명시</td>
-              </tr>
-              <tr>
-                <td>긴급 입고</td>
-                <td>센터 상황에 따라 별도 확인 후 진행될 수 있습니다.</td>
-                <td>긴급 입고 정의와 승인 경로 정리</td>
-              </tr>
-            </tbody>
-          </table>
+      <section id="precheck" class="panel">
+        <div class="section-shell">
+          <div class="card">
+            <h2>입고 전 필수 확인 사항</h2>
+            <p class="section-desc">입고 진행 전 반드시 아래 기준을 먼저 확인해주세요.</p>
+
+            <div class="check-list">
+              <article class="check-card">
+                <h3 class="check-title">1. 등록되지 않은 상품(SKU)은 입고가 불가합니다.</h3>
+                <hr class="check-divider" />
+                <p class="check-text">미등록 상품은 스마트스토어에서 상품 등록을 완료한 이후에만 입고가 가능합니다.</p>
+              </article>
+
+              <article class="check-card">
+                <h3 class="check-title">2. 입고 예약 없이 입고하실 경우 하차가 어려울 수 있으며, 회송 처리될 수 있습니다.</h3>
+                <hr class="check-divider" />
+                <p class="check-text">이로 인해 발생하는 비용은 판매자 부담으로 처리됩니다.</p>
+              </article>
+
+              <article class="check-card">
+                <h3 class="check-title">3. 초도 입고 예약은 품고에서 진행합니다.</h3>
+                <hr class="check-divider" />
+                <p class="check-text">이후 입고 예약은 스마트스토어를 통해 판매자분께서 직접 진행해주시면 됩니다.</p>
+              </article>
+
+              <article class="check-card">
+                <h3 class="check-title">4. 입고 재고 반영은 하차 순서 기준으로 순차 처리됩니다.</h3>
+                <hr class="check-divider" />
+                <p class="check-text">정책 기준이 준수되지 않은 경우 재고 반영이 지연될 수 있습니다.</p>
+              </article>
+
+              <article class="check-card">
+                <h3 class="check-title">5. 상품(SKU) 검수 기준</h3>
+                <hr class="check-divider" />
+                <p class="check-text">
+                  검수는 샘플링 외관 확인 범위로 진행되며, 전수 및 정밀 검수는 제공하지 않습니다.<br>
+                  수량 확인은 등록된 입고 예약 수량을 기준으로 진행됩니다.
+                </p>
+
+                <div class="inner-table-wrap">
+                  <table class="inner-table">
+                    <thead>
+                      <tr>
+                        <th style="width:140px;">기준</th>
+                        <th>입고 방법</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>과다 입고</td>
+                        <td>초과 수량에 대해 개당 100원의 추가 비용이 발생합니다.</td>
+                      </tr>
+                      <tr>
+                        <td>과소 입고</td>
+                        <td>실제 과소 여부 확인을 위해 별도 연락을 드릴 수 있으며, 회신이 지연될 경우 입고 처리도 함께 지연될 수 있습니다.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </article>
+
+              <article class="check-card">
+                <h3 class="check-title">6. 재고 반영 안내</h3>
+                <hr class="check-divider" />
+                <p class="check-text">
+                  입고 기준이 준수된 경우 당일 내 재고 반영을 원칙으로 하고 있습니다.<br>
+                  입고 당일 재고 반영 시간은 입고 컨디션에 따라 달라질 수 있습니다.<br>
+                  다만, 입고 컨디션 미준수로 인해 확인이 필요한 경우에는 재고 반영이 지연될 수 있으며, 해당 내용은 별도로 안내드립니다.
+                </p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="process" class="panel">
+        <div class="section-shell">
+          <div class="card">
+            <h2>입고 과정</h2>
+            <p class="section-desc">입고 예약부터 로케이션 적치까지의 흐름입니다.</p>
+
+            <div class="process-all">
+              <div class="process-group customer">
+                <div class="process-row">
+                  <div class="process-step">
+                    <div class="process-node">1</div>
+                    <div class="process-label">입고 예약</div>
+                  </div>
+                  <div class="process-line"></div>
+                  <div class="process-step">
+                    <div class="process-node">2</div>
+                    <div class="process-label">상품 발송</div>
+                  </div>
+                </div>
+                <div class="process-group-title">고객사 영역</div>
+                <div class="process-caption customer-caption">
+                  입고 예약과 상품(SKU) 포장은 판매자가 진행합니다.
+                </div>
+              </div>
+
+              <div class="process-group poomgo">
+                <div class="process-row">
+                  <div class="process-step">
+                    <div class="process-node">3</div>
+                    <div class="process-label">상품 검수</div>
+                  </div>
+                  <div class="process-line"></div>
+                  <div class="process-step">
+                    <div class="process-node">4</div>
+                    <div class="process-label">입고 완료</div>
+                  </div>
+                  <div class="process-line"></div>
+                  <div class="process-step">
+                    <div class="process-node">5</div>
+                    <div class="process-label">로케이션 적치</div>
+                  </div>
+                </div>
+                <div class="process-group-title">품고 영역</div>
+                <div class="process-caption poomgo-caption">
+                  상품(SKU) 도착 후 검수, 입고 완료 처리 및 로케이션 적치는 품고에서 진행합니다.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="notice-card">
+            <h3>재고 반영 안내</h3>
+            <p>
+              입고 기준이 준수된 경우 당일 내 재고 반영을 원칙으로 하고 있습니다.<br>
+              입고 당일 재고 반영 시간은 입고 컨디션에 따라 달라질 수 있습니다.<br>
+              다만, 입고 컨디션 미준수로 인해 확인이 필요한 경우에는 재고 반영이 지연될 수 있으며, 해당 내용은 별도로 안내드립니다.
+            </p>
+          </div>
         </div>
       </section>
 
       <section id="packing" class="panel">
-  <div class="section-shell">
-    <div class="card">
-      <h2>상품(SKU) 포장 기준</h2>
-      <p class="section-desc">각 기준을 확인하고, 필요 시 예시 이미지를 버튼으로 확인할 수 있습니다.</p>
-
-      <div class="check-list">
-
-        <!-- 1 -->
-        <article class="check-card">
-          <h3 class="check-title">1. 1박스에는 1개의 SKU만 구성해주세요</h3>
-          <hr class="check-divider" />
-          <p class="check-text">하나의 박스에는 동일한 상품(SKU)만 담아 입고해야 하며, 단일 상품(SKU) 미준수 시 입고가 제한됩니다.</p>
-          <button class="download-btn mt-16" onclick="toggleImg('img1')">예시 이미지 보기</button>
-          <img id="img1" src="./assets/images/packaging-1.png" style="display:none;margin-top:12px;border-radius:12px;" />
-        </article>
-
-        <!-- 2 -->
-        <article class="check-card">
-          <h3 class="check-title">2. 박스 내부는 수량 확인이 가능하도록 정형화하여 포장해주세요</h3>
-          <hr class="check-divider" />
-          <p class="check-text">박스 내에는 육안으로 수량 확인이 가능해야 합니다.<br>육안으로 수량 확인이 불가한 경우 벌크 입고로 간주됩니다.<br>벌크 입고는 실셈 여부에 따라 재고 관리 방식이 달라집니다.</p>
-          <button class="download-btn mt-16" onclick="toggleImg('img2')">예시 이미지 보기</button>
-          <img id="img2" src="./assets/images/packaging-2.png" style="display:none;margin-top:12px;border-radius:12px;" />
-        </article>
-
-        <!-- 3 -->
-        <article class="check-card">
-          <h3 class="check-title">3. 동일 상품(SKU)이라도 박스 단위로 구분하여 포장해주세요</h3>
-          <hr class="check-divider" />
-          <p class="check-text">동일 상품(SKU)이라도 소비기한 또는 제조LOT가 다를 경우 분리 포장이 필요합니다.</p>
-
-          <div class="inner-table-wrap">
-            <table class="inner-table">
-              <thead>
-                <tr><th>구성</th><th>입고 가능 여부</th><th>입고 방법</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>동일 SKU 소비기한/LOT 동일</td>
-                  <td>가능</td>
-                  <td>단일 박스 입고</td>
-                </tr>
-                <tr>
-                  <td>동일 SKU 소비기한/LOT 상이</td>
-                  <td>혼합 구성 불가</td>
-                  <td>소비기한/LOT별 박스 분리 포장 후 입고</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <button class="download-btn mt-16" onclick="toggleImg('img3')">예시 이미지 보기</button>
-          <img id="img3" src="./assets/images/packaging-3.png" style="display:none;margin-top:12px;border-radius:12px;" />
-        </article>
-
-        <!-- 4 -->
-        <article class="check-card">
-          <h3 class="check-title">4. 완카톤 수량이 아닌 잔량 박스 입고의 경우, 실셈 비용이 발생합니다</h3>
-          <hr class="check-divider" />
-          <p class="check-text">📦 잔량 박스란? 품고 전산 내 등록된 박스 입수량 대비 실제 수량이 부족한 경우를 의미합니다.</p>
-          <button class="download-btn mt-16" onclick="toggleImg('img4')">예시 이미지 보기</button>
-          <img id="img4" src="./assets/images/packaging-4.png" style="display:none;margin-top:12px;border-radius:12px;" />
-        </article>
-
-        <!-- 5 -->
-        <article class="check-card">
-          <h3 class="check-title">5. 출고 단위에 맞는 포장 기준을 준수해주세요</h3>
-          <hr class="check-divider" />
-
-          <div class="inner-table-wrap">
-            <table class="inner-table">
-              <thead>
-                <tr><th>단위</th><th>입고 방법</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>낱개 단위</td>
-                  <td>낱개 단위로 입고 (번들 시 해체 비용 발생)</td>
-                </tr>
-                <tr>
-                  <td>세트 단위</td>
-                  <td>세트 구성 유지하여 입고</td>
-                </tr>
-                <tr>
-                  <td>송장 단위</td>
-                  <td>1박스 1개 단위 입고</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <button class="download-btn mt-16" onclick="toggleImg('img5')">예시 이미지 보기</button>
-          <img id="img5" src="./assets/images/packaging-5.png" style="display:none;margin-top:12px;border-radius:12px;" />
-        </article>
-
-        <!-- 6 -->
-        <article class="check-card">
-          <h3 class="check-title">6. 아웃박스에는 필수 정보를 기재해주세요</h3>
-          <hr class="check-divider" />
-
-          <div class="inner-table-wrap">
-            <table class="inner-table">
-              <thead>
-                <tr><th>단위</th><th>SKU명</th><th>입수량</th><th>바코드</th><th>LOT</th><th>소비기한</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>낱개</td><td>●</td><td>●</td><td>숫자</td><td>●</td><td>●</td>
-                </tr>
-                <tr>
-                  <td>세트</td><td>●</td><td>●</td><td>숫자</td><td>●</td><td>●</td>
-                </tr>
-                <tr>
-                  <td>송장</td><td>●</td><td></td><td>바코드</td><td>●</td><td>●</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <button class="download-btn mt-16" onclick="toggleImg('img6')">예시 이미지 보기</button>
-          <img id="img6" src="./assets/images/packaging-6.png" style="display:none;margin-top:12px;border-radius:12px;" />
-        </article>
-
-      </div>
-    </div>
-  </div>
-</section>
-
-<script>
-function toggleImg(id){
-  const el = document.getElementById(id);
-  el.style.display = (el.style.display === 'none') ? 'block' : 'none';
-}
-</script>
-
-      <section id="barcode" class="panel">
-        <h2>바코드 부착 기준</h2>
-        <p class="section-desc">실제 스캔 가능 여부와 중복 인식 방지를 중심으로 기준을 구체화하면 좋습니다.</p>
-
-        <div class="two-col">
+        <div class="section-shell">
           <div class="card">
-            <h3>필수 기준</h3>
-            <ul class="list">
-              <li>상품 식별 가능한 바코드가 명확히 노출되어야 합니다.</li>
-              <li>손상, 번짐, 가림 상태의 바코드는 불가 기준으로 둘 수 있습니다.</li>
-              <li>중복 바코드가 외부에 함께 노출되면 오인식이 발생할 수 있습니다.</li>
-              <li>재포장 상품은 실제 운영 바코드 기준을 반드시 맞춰야 합니다.</li>
-            </ul>
-          </div>
-          <div class="card danger">
-            <h3>불가 사례 예시</h3>
-            <ul class="list">
-              <li>기존 바코드와 신규 바코드가 함께 노출된 상태</li>
-              <li>바코드 위에 테이프 반사로 스캔이 어려운 상태</li>
-              <li>바코드 인쇄 품질 저하로 숫자 식별이 어려운 상태</li>
-            </ul>
+            <h2>상품(SKU) 포장 기준</h2>
+            <p class="section-desc">각 기준을 확인하고, 필요 시 버튼을 눌러 예시 이미지를 팝업으로 확인해주세요.</p>
+
+            <div class="check-list">
+              <article class="check-card">
+                <h3 class="check-title">1. 1박스에는 1개의 SKU만 구성해주세요</h3>
+                <hr class="check-divider" />
+                <p class="check-text">하나의 박스에는 동일한 상품(SKU)만 담아 입고해야 하며, 단일 상품(SKU) 미준수 시 입고가 제한됩니다.</p>
+                <button class="image-btn" data-image="./assets/images/packaging-1.png" data-title="포장 기준 예시 1">이미지 보기</button>
+              </article>
+
+              <article class="check-card">
+                <h3 class="check-title">2. 박스 내부는 수량 확인이 가능하도록 정형화하여 포장해주세요</h3>
+                <hr class="check-divider" />
+                <p class="check-text">
+                  박스 내에는 육안으로 수량 확인이 가능해야 합니다.<br>
+                  육안으로 수량 확인이 불가한 경우 벌크 입고로 간주됩니다.<br>
+                  벌크 입고는 실셈 여부에 따라 재고 관리 방식이 달라집니다.
+                </p>
+                <button class="image-btn" data-image="./assets/images/packaging-2.png" data-title="포장 기준 예시 2">이미지 보기</button>
+              </article>
+
+              <article class="check-card">
+                <h3 class="check-title">3. 동일 상품(SKU)이라도 박스 단위로 구분하여 포장해주세요</h3>
+                <hr class="check-divider" />
+                <p class="check-text">동일 상품(SKU)이라도 소비기한 또는 제조LOT가 다를 경우 분리 포장이 필요합니다.</p>
+
+                <div class="inner-table-wrap">
+                  <table class="inner-table">
+                    <thead>
+                      <tr>
+                        <th>구성</th>
+                        <th>입고 가능 여부</th>
+                        <th>입고 방법</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>동일 SKU 소비기한/LOT 동일</td>
+                        <td>가능</td>
+                        <td>단일 박스 입고</td>
+                      </tr>
+                      <tr>
+                        <td>동일 SKU 소비기한/LOT 상이</td>
+                        <td>혼합 구성 불가</td>
+                        <td>소비기한/LOT별 박스 분리 포장 후 입고</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <button class="image-btn" data-image="./assets/images/packaging-3.png" data-title="포장 기준 예시 3">이미지 보기</button>
+              </article>
+
+              <article class="check-card">
+                <h3 class="check-title">4. 완카톤 수량이 아닌 잔량 박스 입고의 경우, 실셈 비용이 발생합니다</h3>
+                <hr class="check-divider" />
+                <p class="check-text">잔량 박스란 품고 전산 내 등록된 박스 입수량보다 실제 입고된 박스 내 수량이 적은 경우를 의미합니다.</p>
+                <button class="image-btn" data-image="./assets/images/packaging-4.png" data-title="포장 기준 예시 4">이미지 보기</button>
+              </article>
+
+              <article class="check-card">
+                <h3 class="check-title">5. 출고 단위에 맞는 포장 기준을 준수해주세요</h3>
+                <hr class="check-divider" />
+
+                <div class="inner-table-wrap">
+                  <table class="inner-table">
+                    <thead>
+                      <tr>
+                        <th>단위</th>
+                        <th>입고 방법</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>낱개 단위 출고</td>
+                        <td>낱개 출고 상품(SKU)은 개별 단위로 입고 되어야 합니다. 번들 또는 묶음 단위로 입고될 경우 해체 후 입고 가능하며, 해체 비용이 발생합니다.</td>
+                      </tr>
+                      <tr>
+                        <td>세트 단위 출고</td>
+                        <td>세트로 구성된 상품(SKU)은 세트로 포장된 상태로 입고되어야 합니다.</td>
+                      </tr>
+                      <tr>
+                        <td>송장 단위 출고</td>
+                        <td>상품(SKU)에 송장을 바로 부착하여 출고하는 경우 박스 입수량 1개 단위로 입고되어야 합니다.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <button class="image-btn" data-image="./assets/images/packaging-5.png" data-title="포장 기준 예시 5">이미지 보기</button>
+              </article>
+
+              <article class="check-card">
+                <h3 class="check-title">6. 아웃박스에는 필수 정보를 기재해주세요</h3>
+                <hr class="check-divider" />
+
+                <div class="inner-table-wrap">
+                  <table class="inner-table">
+                    <thead>
+                      <tr>
+                        <th>단위</th>
+                        <th>SKU명</th>
+                        <th>박스 입수량</th>
+                        <th>바코드 표기</th>
+                        <th>제조 LOT</th>
+                        <th>소비기한</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>낱개 단위 출고</td>
+                        <td>●</td>
+                        <td>●</td>
+                        <td>숫자 표기</td>
+                        <td>●</td>
+                        <td>●</td>
+                      </tr>
+                      <tr>
+                        <td>세트 단위 출고</td>
+                        <td>●</td>
+                        <td>●</td>
+                        <td>숫자 표기</td>
+                        <td>●</td>
+                        <td>●</td>
+                      </tr>
+                      <tr>
+                        <td>송장 단위 출고</td>
+                        <td>●</td>
+                        <td></td>
+                        <td>스캔 가능한 바코드(라벨/인쇄)</td>
+                        <td>●</td>
+                        <td>●</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <button class="image-btn" data-image="./assets/images/packaging-6.png" data-title="포장 기준 예시 6">이미지 보기</button>
+              </article>
+            </div>
           </div>
         </div>
+      </section>
 
-        <div class="image-grid mt-16">
-          <div class="content-image placeholder">바코드 정상 예시</div>
-          <div class="content-image placeholder">바코드 불가 예시</div>
+      <section id="barcode" class="panel">
+        <div class="section-shell">
+          <div class="card">
+            <h2>바코드 기준</h2>
+            <p class="section-desc">스캔 가능 여부와 중복 인식 방지를 중심으로 기준을 정리합니다.</p>
+
+            <div class="two-col">
+              <div class="card" style="padding:20px;">
+                <h3>필수 기준</h3>
+                <ul class="list">
+                  <li>상품 식별 가능한 바코드가 명확히 노출되어야 합니다.</li>
+                  <li>손상, 번짐, 가림 상태의 바코드는 불가 기준으로 둘 수 있습니다.</li>
+                  <li>중복 바코드가 외부에 함께 노출되면 오인식이 발생할 수 있습니다.</li>
+                </ul>
+              </div>
+
+              <div class="card danger" style="padding:20px;">
+                <h3>불가 사례 예시</h3>
+                <ul class="list">
+                  <li>기존 바코드와 신규 바코드가 함께 노출된 상태</li>
+                  <li>바코드 위에 테이프 반사로 스캔이 어려운 상태</li>
+                  <li>바코드 인쇄 품질 저하로 숫자 식별이 어려운 상태</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       <section id="parcel" class="panel">
-        <h2>택배 입고 기준</h2>
-        <p class="section-desc">택배 입고는 송장, 박스 식별, 파손 방지, 예약 정보 일치 여부가 핵심입니다.</p>
-
-        <div class="stack-lg">
+        <div class="section-shell">
           <div class="card">
-            <h3>택배 입고 체크포인트</h3>
-            <div class="checklist">
-              <div class="check-item">송장 정보와 예약 정보가 일치해야 합니다.</div>
-              <div class="check-item">입고 단위 구분이 가능해야 합니다.</div>
-              <div class="check-item">박스 외부 식별이 가능해야 합니다.</div>
-              <div class="check-item">파손 방지 포장이 되어 있어야 합니다.</div>
-            </div>
-          </div>
+            <h2>택배 입고 기준</h2>
+            <p class="section-desc">택배 입고는 송장, 박스 식별, 파손 방지, 예약 정보 일치 여부가 핵심입니다.</p>
 
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>구분</th>
-                  <th>넣으면 좋은 세부 문구</th>
-                  <th>운영상 이유</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>송장</td>
-                  <td>송장번호와 예약 정보가 상이할 경우 확인이 필요합니다.</td>
-                  <td>입고 매칭 오류 방지</td>
-                </tr>
-                <tr>
-                  <td>박스 식별</td>
-                  <td>박스 외부에서 SKU 또는 입고 단위를 식별 가능해야 합니다.</td>
-                  <td>검수 시간 단축</td>
-                </tr>
-                <tr>
-                  <td>파손 방지</td>
-                  <td>운송 중 파손 위험이 높은 상품은 보강 포장이 필요합니다.</td>
-                  <td>파손 및 재작업 방지</td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="card" style="padding:20px;">
+              <h3>택배 입고 체크포인트</h3>
+              <ul class="list">
+                <li>송장 정보와 예약 정보가 일치해야 합니다.</li>
+                <li>입고 단위 구분이 가능해야 합니다.</li>
+                <li>박스 외부 식별이 가능해야 합니다.</li>
+                <li>파손 방지 포장이 되어 있어야 합니다.</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
 
       <section id="vehicle" class="panel">
-        <h2>차량 입고 기준</h2>
-        <p class="section-desc">차량 입고는 PLT 단위 기준, 적재 방식, 식별표 부착 여부를 더 상세하게 적으면 좋습니다.</p>
-
-        <div class="two-col">
+        <div class="section-shell">
           <div class="card">
-            <h3>기본 기준</h3>
-            <ul class="list">
-              <li>팔레트 단위 적재 기준을 준수해야 합니다.</li>
-              <li>1PLT 1SKU 원칙 여부를 명확히 정해두면 좋습니다.</li>
-              <li>잔량 박스는 별도 식별이 가능해야 합니다.</li>
-              <li>입고증 또는 식별표 부착 기준을 두는 것이 좋습니다.</li>
-            </ul>
-          </div>
-          <div class="card warning">
-            <h3>불가 또는 제한 기준 예시</h3>
-            <ul class="list">
-              <li>기준 높이를 초과한 적재</li>
-              <li>식별표 없이 혼재된 적재</li>
-              <li>나무 PLT / 특정 적재 방식 제한</li>
-              <li>현장 하차가 어려운 비정상 적재 상태</li>
-            </ul>
-          </div>
-        </div>
+            <h2>차량 입고 기준</h2>
+            <p class="section-desc">차량 입고는 PLT 단위 기준, 적재 방식, 식별표 부착 여부를 확인하는 영역입니다.</p>
 
-        <div class="image-grid mt-16">
-          <div class="content-image placeholder">차량 입고 올바른 예시</div>
-          <div class="content-image placeholder">차량 입고 불가 예시</div>
+            <div class="two-col">
+              <div class="card" style="padding:20px;">
+                <h3>기본 기준</h3>
+                <ul class="list">
+                  <li>팔레트 단위 적재 기준을 준수해야 합니다.</li>
+                  <li>1PLT 1SKU 원칙 여부를 명확히 정해두면 좋습니다.</li>
+                  <li>잔량 박스는 별도 식별이 가능해야 합니다.</li>
+                  <li>입고증 또는 식별표 부착 기준을 둘 수 있습니다.</li>
+                </ul>
+              </div>
+
+              <div class="card warning" style="padding:20px;">
+                <h3>불가 또는 제한 기준 예시</h3>
+                <ul class="list">
+                  <li>기준 높이를 초과한 적재</li>
+                  <li>식별표 없이 혼재된 적재</li>
+                  <li>나무 PLT 또는 특정 적재 방식 제한</li>
+                  <li>현장 하차가 어려운 비정상 적재 상태</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       <section id="cost" class="panel">
-        <h2>비용 발생 가능 항목</h2>
-        <p class="section-desc">여러 페이지에 흩어진 비용 기준은 이 메뉴에서 한 번에 모아 보여주는 것이 좋습니다.</p>
-
-        <div class="stack-lg">
+        <div class="section-shell">
           <div class="card danger">
-            <h3>대표 항목 예시</h3>
+            <h2>비용 발생 가능 항목</h2>
+            <p class="section-desc">여러 페이지에 흩어진 비용 기준은 이 메뉴에서 한 번에 모아 보여주는 방식이 좋습니다.</p>
+
             <ul class="list">
               <li>바코드 재부착</li>
               <li>실셈 필요 상품</li>
@@ -940,116 +1218,154 @@ function toggleImg(id){
               <li>예약 정보와 상이한 입고로 인한 추가 확인</li>
             </ul>
           </div>
-
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>항목</th>
-                  <th>발생 조건</th>
-                  <th>표현 방식 추천</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>바코드 작업</td>
-                  <td>스캔 불가 또는 기준 미충족 시</td>
-                  <td>건당 / pcs당 등 실제 정책 수치 기재</td>
-                </tr>
-                <tr>
-                  <td>실셈</td>
-                  <td>수량 식별 불가 또는 벌크 입고 시</td>
-                  <td>과금 기준과 예외 기준 구분</td>
-                </tr>
-                <tr>
-                  <td>재작업</td>
-                  <td>포장 또는 적재 기준 미준수 시</td>
-                  <td>추가 작업이 필요한 경우 발생 가능 문구</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
         </div>
       </section>
 
       <section id="faq" class="panel">
-        <h2>자주 묻는 질문</h2>
-        <p class="section-desc">PDF FAQ를 그대로 옮기기보다 상황형 질문으로 재정리하면 훨씬 보기 좋습니다.</p>
+        <div class="section-shell">
+          <div class="card">
+            <h2>자주 묻는 질문</h2>
+            <p class="section-desc">입고 진행 시 자주 문의되는 내용을 정리하는 영역입니다.</p>
 
-        <div class="faq-list">
-          <details class="faq-item">
-            <summary>예약한 시간보다 늦게 도착하면 어떻게 되나요?</summary>
-            <p>센터 운영 상황에 따라 당일 입고가 어려울 수 있으며, 별도 확인 후 진행이 필요할 수 있습니다.</p>
-          </details>
+            <div class="faq-list">
+              <details class="faq-item">
+                <summary>예약한 시간보다 늦게 도착하면 어떻게 되나요?</summary>
+                <p>센터 운영 상황에 따라 당일 입고가 어려울 수 있으며, 별도 확인 후 진행이 필요할 수 있습니다.</p>
+              </details>
 
-          <details class="faq-item">
-            <summary>예약 후 실제 입고 수량이 바뀌면 어떻게 해야 하나요?</summary>
-            <p>가능한 빠르게 수정 또는 사전 공유가 필요하며, 변경 폭이 큰 경우 일정 조정이 필요할 수 있습니다.</p>
-          </details>
+              <details class="faq-item">
+                <summary>예약 후 실제 입고 수량이 바뀌면 어떻게 해야 하나요?</summary>
+                <p>가능한 빠르게 수정 또는 사전 공유가 필요하며, 변경 폭이 큰 경우 일정 조정이 필요할 수 있습니다.</p>
+              </details>
 
-          <details class="faq-item">
-            <summary>혼적 박스로 보내도 되나요?</summary>
-            <p>상품 식별과 검수 기준에 따라 제한될 수 있으므로, 혼적 허용 여부와 식별 기준을 별도로 명시하는 것이 좋습니다.</p>
-          </details>
-
-          <details class="faq-item">
-            <summary>택배가 예약보다 먼저 도착하면 어떻게 되나요?</summary>
-            <p>입고 처리 시점은 센터 운영 기준에 따라 달라질 수 있으며, 사전 공유가 없으면 확인이 지연될 수 있습니다.</p>
-          </details>
-
-          <details class="faq-item">
-            <summary>차량 정보 수정은 어디까지 가능한가요?</summary>
-            <p>운영상 혼선을 줄이기 위해 수정 가능 마감 시간을 두는 것이 좋고, 이후 변경은 별도 확인 후 반영하도록 설계하면 됩니다.</p>
-          </details>
+              <details class="faq-item">
+                <summary>혼적 박스로 보내도 되나요?</summary>
+                <p>상품 식별과 검수 기준에 따라 제한될 수 있으므로, 혼적 허용 여부와 식별 기준을 별도로 명시하는 것이 좋습니다.</p>
+              </details>
+            </div>
+          </div>
         </div>
       </section>
-          <section id="downloads" class="panel">
-        <h2>다운로드</h2>
-        <p class="section-desc">가이드 PDF 저장하기와 라벨 출력 기능은 마지막 단계에서 추가할 예정입니다.</p>
 
-        <div class="two-col">
+      <section id="downloads" class="panel">
+        <div class="section-shell">
           <div class="card">
-            <h3>추가 예정 항목</h3>
-            <ul class="list">
-              <li>가이드 PDF 저장하기</li>
-              <li>팔레트 라벨 출력하기</li>
-              <li>아웃박스 라벨 출력하기</li>
-            </ul>
-          </div>
-          <div class="notice-card">
-            <h3>반영 방향</h3>
-            <p>해당 기능은 현재 본문 구성과 정책 정리가 끝난 뒤, 마지막 섹션에 버튼 형태로 추가하면 됩니다.</p>
+            <h2>다운로드</h2>
+            <p class="section-desc">가이드 PDF 저장, 팔레트 라벨 출력, 아웃박스 라벨 출력 기능을 배치하는 영역입니다.</p>
+
+            <div class="download-grid">
+              <div class="download-card">
+                <h3 class="download-title">가이드 PDF 저장하기</h3>
+                <p class="download-desc">현재 화면 기준으로 PDF 저장 또는 별도 PDF 파일 다운로드 버튼을 연결할 수 있습니다.</p>
+                <button class="download-btn">추가 예정</button>
+              </div>
+
+              <div class="download-card">
+                <h3 class="download-title">팔레트 라벨 출력하기</h3>
+                <p class="download-desc">팔레트 코드 및 입고 정보 기준으로 출력 기능을 연결할 수 있습니다.</p>
+                <button class="download-btn primary">추가 예정</button>
+              </div>
+
+              <div class="download-card">
+                <h3 class="download-title">아웃박스 라벨 출력하기</h3>
+                <p class="download-desc">아웃박스 단위 라벨 출력 기능을 연결할 수 있습니다.</p>
+                <button class="download-btn">추가 예정</button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
     </main>
   </div>
 
+  <div class="image-modal" id="imageModal" aria-hidden="true">
+    <div class="image-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="imageModalTitle">
+      <div class="image-modal-head">
+        <div class="image-modal-title" id="imageModalTitle">예시 이미지</div>
+        <button class="image-close" id="imageClose" aria-label="닫기">×</button>
+      </div>
+      <div class="image-modal-body">
+        <img id="imageModalImg" src="" alt="예시 이미지" />
+      </div>
+    </div>
+  </div>
+
   <script>
-    const navItems = document.querySelectorAll('.nav-item');
-    const panels = document.querySelectorAll('.panel');
-    const mobileNav = document.getElementById('mobileNav');
-    
+    (function () {
+      const navItems = document.querySelectorAll('.nav-item');
+      const panels = document.querySelectorAll('.panel');
+      const mobileNav = document.getElementById('mobileNav');
 
-    function activatePanel(targetId) {
-      navItems.forEach(item => {
-        item.classList.toggle('active', item.dataset.target === targetId);
+      function activatePanel(targetId) {
+        panels.forEach(panel => panel.classList.remove('active'));
+        navItems.forEach(item => item.classList.remove('active'));
+
+        const targetPanel = document.getElementById(targetId);
+        const targetButton = document.querySelector('.nav-item[data-target="' + targetId + '"]');
+
+        if (targetPanel) targetPanel.classList.add('active');
+        if (targetButton) targetButton.classList.add('active');
+        if (mobileNav) mobileNav.value = targetId;
+
+        window.scrollTo({ top: 0, behavior: 'auto' });
+      }
+
+      navItems.forEach(button => {
+        button.addEventListener('click', function () {
+          activatePanel(this.dataset.target);
+        });
       });
-      panels.forEach(panel => {
-        panel.classList.toggle('active', panel.id === targetId);
+
+      if (mobileNav) {
+        mobileNav.addEventListener('change', function (e) {
+          activatePanel(e.target.value);
+        });
+      }
+
+      activatePanel('center');
+
+      const imageModal = document.getElementById('imageModal');
+      const imageModalImg = document.getElementById('imageModalImg');
+      const imageModalTitle = document.getElementById('imageModalTitle');
+      const imageClose = document.getElementById('imageClose');
+      const imageButtons = document.querySelectorAll('.image-btn');
+
+      function openImageModal(src, title) {
+        imageModalImg.src = src;
+        imageModalImg.alt = title || '예시 이미지';
+        imageModalTitle.textContent = title || '예시 이미지';
+        imageModal.classList.add('active');
+        imageModal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeImageModal() {
+        imageModal.classList.remove('active');
+        imageModal.setAttribute('aria-hidden', 'true');
+        imageModalImg.src = '';
+        document.body.style.overflow = '';
+      }
+
+      imageButtons.forEach(btn => {
+        btn.addEventListener('click', function () {
+          openImageModal(this.dataset.image, this.dataset.title);
+        });
       });
-      if (mobileNav) mobileNav.value = targetId;
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
 
-    navItems.forEach(button => {
-      button.addEventListener('click', () => activatePanel(button.dataset.target));
-    });
+      imageClose.addEventListener('click', closeImageModal);
 
-    if (mobileNav) {
-      mobileNav.addEventListener('change', (e) => activatePanel(e.target.value));
-    }
-    });
+      imageModal.addEventListener('click', function (e) {
+        if (e.target === imageModal) {
+          closeImageModal();
+        }
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && imageModal.classList.contains('active')) {
+          closeImageModal();
+        }
+      });
+    })();
   </script>
 </body>
 </html>

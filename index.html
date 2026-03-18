@@ -13,19 +13,9 @@
       color: #111827;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      display: block;
-      max-width: 100%;
-    }
-
-    button {
-      font-family: inherit;
-    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    button { font-family: inherit; }
 
     .app {
       min-height: 100vh;
@@ -214,6 +204,14 @@
       color: #111827;
     }
 
+    h4 {
+      margin: 0 0 10px;
+      font-size: 15px;
+      line-height: 1.5;
+      font-weight: 900;
+      color: #111827;
+    }
+
     p {
       margin: 0;
       line-height: 1.8;
@@ -294,6 +292,14 @@
       border-radius: 22px;
       padding: 18px 20px;
       box-shadow: 0 1px 1px rgba(15, 23, 42, 0.02);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .check-card.column {
+      display: block;
     }
 
     .check-title {
@@ -567,8 +573,8 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 42px;
-      padding: 10px 14px;
+      min-height: 44px;
+      padding: 10px 16px;
       border-radius: 12px;
       background: #0040D1;
       color: #ffffff;
@@ -576,11 +582,11 @@
       font-weight: 800;
       border: none;
       cursor: pointer;
-      margin-top: 14px;
+      flex: 0 0 auto;
     }
 
-    /* 이미지 모달 */
-    .image-modal {
+    /* 상세 모달 */
+    .detail-modal {
       position: fixed;
       inset: 0;
       background: rgba(15, 23, 42, 0.72);
@@ -591,60 +597,149 @@
       z-index: 9999;
     }
 
-    .image-modal.active {
+    .detail-modal.active {
       display: flex;
     }
 
-    .image-modal-dialog {
-      position: relative;
-      width: min(1000px, 100%);
+    .detail-dialog {
+      width: min(1040px, 100%);
       max-height: 90vh;
       background: #ffffff;
-      border-radius: 20px;
+      border-radius: 24px;
       overflow: hidden;
       box-shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
+      display: flex;
+      flex-direction: column;
     }
 
-    .image-modal-head {
+    .detail-header {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
-      gap: 12px;
-      padding: 16px 18px;
+      gap: 16px;
+      padding: 18px 20px;
       border-bottom: 1px solid #e5e7eb;
       background: #ffffff;
     }
 
-    .image-modal-title {
-      font-size: 16px;
-      font-weight: 800;
-      color: #111827;
+    .detail-title-wrap {
+      min-width: 0;
     }
 
-    .image-close {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
+    .detail-eyebrow {
+      font-size: 12px;
+      font-weight: 800;
+      color: #0040D1;
+      letter-spacing: 0.02em;
+      margin-bottom: 4px;
+    }
+
+    .detail-title {
+      font-size: 20px;
+      font-weight: 900;
+      color: #111827;
+      line-height: 1.5;
+      word-break: keep-all;
+    }
+
+    .detail-close {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
       border: 1px solid #e5e7eb;
       background: #ffffff;
       color: #111827;
-      font-size: 20px;
+      font-size: 22px;
       line-height: 1;
       cursor: pointer;
+      flex: 0 0 auto;
     }
 
-    .image-modal-body {
-      padding: 18px;
+    .detail-body {
+      padding: 20px;
       background: #f8fafc;
-      max-height: calc(90vh - 73px);
-      overflow: auto;
+      overflow-y: auto;
+      max-height: calc(90vh - 84px);
     }
 
-    .image-modal-body img {
+    .detail-layout {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 20px;
+    }
+
+    .detail-copy,
+    .detail-visual {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 20px;
+      padding: 18px;
+    }
+
+    .detail-copy p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.9;
+      color: #374151;
+    }
+
+    .detail-copy p + p {
+      margin-top: 10px;
+    }
+
+    .detail-note {
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: #1d4ed8;
+      font-size: 13px;
+      line-height: 1.8;
+      font-weight: 700;
+    }
+
+    .detail-visual img {
       width: 100%;
       height: auto;
       border-radius: 14px;
       background: #ffffff;
+    }
+
+    .detail-table-wrap {
+      margin-top: 16px;
+      border: 1px solid #d7dee9;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #ffffff;
+    }
+
+    .detail-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .detail-table th,
+    .detail-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid #d7dee9;
+      text-align: left;
+      font-size: 14px;
+      line-height: 1.75;
+      color: #334155;
+      vertical-align: top;
+    }
+
+    .detail-table th {
+      background: #f3f4f6;
+      font-size: 13px;
+      font-weight: 800;
+      color: #111827;
+    }
+
+    .detail-table tr:last-child td,
+    .detail-table tr:last-child th {
+      border-bottom: none;
     }
 
     @keyframes fadeIn {
@@ -688,6 +783,12 @@
       }
     }
 
+    @media (max-width: 900px) {
+      .detail-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
     @media (max-width: 640px) {
       .content {
         padding: 18px;
@@ -719,12 +820,41 @@
         min-width: 420px;
       }
 
-      .image-modal {
+      .check-card {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .image-btn {
+        width: 100%;
+      }
+
+      .detail-modal {
         padding: 12px;
       }
 
-      .image-modal-body {
+      .detail-dialog {
+        max-height: 92vh;
+        border-radius: 18px;
+      }
+
+      .detail-header {
+        padding: 14px 14px 12px;
+      }
+
+      .detail-title {
+        font-size: 18px;
+      }
+
+      .detail-body {
         padding: 12px;
+        max-height: calc(92vh - 72px);
+      }
+
+      .detail-copy,
+      .detail-visual {
+        padding: 14px;
+        border-radius: 16px;
       }
     }
   </style>
@@ -848,31 +978,31 @@
             <p class="section-desc">입고 진행 전 반드시 아래 기준을 먼저 확인해주세요.</p>
 
             <div class="check-list">
-              <article class="check-card">
+              <article class="check-card column">
                 <h3 class="check-title">1. 등록되지 않은 상품(SKU)은 입고가 불가합니다.</h3>
                 <hr class="check-divider" />
                 <p class="check-text">미등록 상품은 스마트스토어에서 상품 등록을 완료한 이후에만 입고가 가능합니다.</p>
               </article>
 
-              <article class="check-card">
+              <article class="check-card column">
                 <h3 class="check-title">2. 입고 예약 없이 입고하실 경우 하차가 어려울 수 있으며, 회송 처리될 수 있습니다.</h3>
                 <hr class="check-divider" />
                 <p class="check-text">이로 인해 발생하는 비용은 판매자 부담으로 처리됩니다.</p>
               </article>
 
-              <article class="check-card">
+              <article class="check-card column">
                 <h3 class="check-title">3. 초도 입고 예약은 품고에서 진행합니다.</h3>
                 <hr class="check-divider" />
                 <p class="check-text">이후 입고 예약은 스마트스토어를 통해 판매자분께서 직접 진행해주시면 됩니다.</p>
               </article>
 
-              <article class="check-card">
+              <article class="check-card column">
                 <h3 class="check-title">4. 입고 재고 반영은 하차 순서 기준으로 순차 처리됩니다.</h3>
                 <hr class="check-divider" />
                 <p class="check-text">정책 기준이 준수되지 않은 경우 재고 반영이 지연될 수 있습니다.</p>
               </article>
 
-              <article class="check-card">
+              <article class="check-card column">
                 <h3 class="check-title">5. 상품(SKU) 검수 기준</h3>
                 <hr class="check-divider" />
                 <p class="check-text">
@@ -902,7 +1032,7 @@
                 </div>
               </article>
 
-              <article class="check-card">
+              <article class="check-card column">
                 <h3 class="check-title">6. 재고 반영 안내</h3>
                 <hr class="check-divider" />
                 <p class="check-text">
@@ -981,144 +1111,37 @@
         <div class="section-shell">
           <div class="card">
             <h2>상품(SKU) 포장 기준</h2>
-            <p class="section-desc">각 기준을 확인하고, 필요 시 버튼을 눌러 예시 이미지를 팝업으로 확인해주세요.</p>
+            <p class="section-desc">각 기준의 상세 설명, 표, 예시 이미지는 상세보기에서 확인해주세요.</p>
 
             <div class="check-list">
               <article class="check-card">
                 <h3 class="check-title">1. 1박스에는 1개의 SKU만 구성해주세요</h3>
-                <hr class="check-divider" />
-                <p class="check-text">하나의 박스에는 동일한 상품(SKU)만 담아 입고해야 하며, 단일 상품(SKU) 미준수 시 입고가 제한됩니다.</p>
-                <button class="image-btn" data-image="./assets/images/packaging-1.png" data-title="포장 기준 예시 1">이미지 보기</button>
+                <button class="image-btn detail-btn" data-detail="packing1">상세보기</button>
               </article>
 
               <article class="check-card">
                 <h3 class="check-title">2. 박스 내부는 수량 확인이 가능하도록 정형화하여 포장해주세요</h3>
-                <hr class="check-divider" />
-                <p class="check-text">
-                  박스 내에는 육안으로 수량 확인이 가능해야 합니다.<br>
-                  육안으로 수량 확인이 불가한 경우 벌크 입고로 간주됩니다.<br>
-                  벌크 입고는 실셈 여부에 따라 재고 관리 방식이 달라집니다.
-                </p>
-                <button class="image-btn" data-image="./assets/images/packaging-2.png" data-title="포장 기준 예시 2">이미지 보기</button>
+                <button class="image-btn detail-btn" data-detail="packing2">상세보기</button>
               </article>
 
               <article class="check-card">
                 <h3 class="check-title">3. 동일 상품(SKU)이라도 박스 단위로 구분하여 포장해주세요</h3>
-                <hr class="check-divider" />
-                <p class="check-text">동일 상품(SKU)이라도 소비기한 또는 제조LOT가 다를 경우 분리 포장이 필요합니다.</p>
-
-                <div class="inner-table-wrap">
-                  <table class="inner-table">
-                    <thead>
-                      <tr>
-                        <th>구성</th>
-                        <th>입고 가능 여부</th>
-                        <th>입고 방법</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>동일 SKU 소비기한/LOT 동일</td>
-                        <td>가능</td>
-                        <td>단일 박스 입고</td>
-                      </tr>
-                      <tr>
-                        <td>동일 SKU 소비기한/LOT 상이</td>
-                        <td>혼합 구성 불가</td>
-                        <td>소비기한/LOT별 박스 분리 포장 후 입고</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-
-                <button class="image-btn" data-image="./assets/images/packaging-3.png" data-title="포장 기준 예시 3">이미지 보기</button>
+                <button class="image-btn detail-btn" data-detail="packing3">상세보기</button>
               </article>
 
               <article class="check-card">
                 <h3 class="check-title">4. 완카톤 수량이 아닌 잔량 박스 입고의 경우, 실셈 비용이 발생합니다</h3>
-                <hr class="check-divider" />
-                <p class="check-text">잔량 박스란 품고 전산 내 등록된 박스 입수량보다 실제 입고된 박스 내 수량이 적은 경우를 의미합니다.</p>
-                <button class="image-btn" data-image="./assets/images/packaging-4.png" data-title="포장 기준 예시 4">이미지 보기</button>
+                <button class="image-btn detail-btn" data-detail="packing4">상세보기</button>
               </article>
 
               <article class="check-card">
                 <h3 class="check-title">5. 출고 단위에 맞는 포장 기준을 준수해주세요</h3>
-                <hr class="check-divider" />
-
-                <div class="inner-table-wrap">
-                  <table class="inner-table">
-                    <thead>
-                      <tr>
-                        <th>단위</th>
-                        <th>입고 방법</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>낱개 단위 출고</td>
-                        <td>낱개 출고 상품(SKU)은 개별 단위로 입고 되어야 합니다. 번들 또는 묶음 단위로 입고될 경우 해체 후 입고 가능하며, 해체 비용이 발생합니다.</td>
-                      </tr>
-                      <tr>
-                        <td>세트 단위 출고</td>
-                        <td>세트로 구성된 상품(SKU)은 세트로 포장된 상태로 입고되어야 합니다.</td>
-                      </tr>
-                      <tr>
-                        <td>송장 단위 출고</td>
-                        <td>상품(SKU)에 송장을 바로 부착하여 출고하는 경우 박스 입수량 1개 단위로 입고되어야 합니다.</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-
-                <button class="image-btn" data-image="./assets/images/packaging-5.png" data-title="포장 기준 예시 5">이미지 보기</button>
+                <button class="image-btn detail-btn" data-detail="packing5">상세보기</button>
               </article>
 
               <article class="check-card">
                 <h3 class="check-title">6. 아웃박스에는 필수 정보를 기재해주세요</h3>
-                <hr class="check-divider" />
-
-                <div class="inner-table-wrap">
-                  <table class="inner-table">
-                    <thead>
-                      <tr>
-                        <th>단위</th>
-                        <th>SKU명</th>
-                        <th>박스 입수량</th>
-                        <th>바코드 표기</th>
-                        <th>제조 LOT</th>
-                        <th>소비기한</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>낱개 단위 출고</td>
-                        <td>●</td>
-                        <td>●</td>
-                        <td>숫자 표기</td>
-                        <td>●</td>
-                        <td>●</td>
-                      </tr>
-                      <tr>
-                        <td>세트 단위 출고</td>
-                        <td>●</td>
-                        <td>●</td>
-                        <td>숫자 표기</td>
-                        <td>●</td>
-                        <td>●</td>
-                      </tr>
-                      <tr>
-                        <td>송장 단위 출고</td>
-                        <td>●</td>
-                        <td></td>
-                        <td>스캔 가능한 바코드(라벨/인쇄)</td>
-                        <td>●</td>
-                        <td>●</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-
-                <button class="image-btn" data-image="./assets/images/packaging-6.png" data-title="포장 기준 예시 6">이미지 보기</button>
+                <button class="image-btn detail-btn" data-detail="packing6">상세보기</button>
               </article>
             </div>
           </div>
@@ -1278,15 +1301,17 @@
     </main>
   </div>
 
-  <div class="image-modal" id="imageModal" aria-hidden="true">
-    <div class="image-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="imageModalTitle">
-      <div class="image-modal-head">
-        <div class="image-modal-title" id="imageModalTitle">예시 이미지</div>
-        <button class="image-close" id="imageClose" aria-label="닫기">×</button>
+  <div class="detail-modal" id="detailModal" aria-hidden="true">
+    <div class="detail-dialog" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+      <div class="detail-header">
+        <div class="detail-title-wrap">
+          <div class="detail-eyebrow">상품(SKU) 포장 기준</div>
+          <div id="detailTitle" class="detail-title">상세보기</div>
+        </div>
+        <button id="detailClose" class="detail-close" aria-label="닫기">×</button>
       </div>
-      <div class="image-modal-body">
-        <img id="imageModalImg" src="" alt="예시 이미지" />
-      </div>
+
+      <div id="detailBody" class="detail-body"></div>
     </div>
   </div>
 
@@ -1324,45 +1349,232 @@
 
       activatePanel('center');
 
-      const imageModal = document.getElementById('imageModal');
-      const imageModalImg = document.getElementById('imageModalImg');
-      const imageModalTitle = document.getElementById('imageModalTitle');
-      const imageClose = document.getElementById('imageClose');
-      const imageButtons = document.querySelectorAll('.image-btn');
+      const detailData = {
+        packing1: {
+          title: "1. 1박스에는 1개의 SKU만 구성해주세요",
+          body: `
+            <div class="detail-layout">
+              <div class="detail-copy">
+                <h4>상세 설명</h4>
+                <p>하나의 박스에는 동일한 상품(SKU)만 담아 입고해야 하며, 단일 상품(SKU) 미준수 시 입고가 제한됩니다.</p>
+                <div class="detail-note">혼합 SKU 입고 시 검수 지연 또는 입고 제한이 발생할 수 있습니다.</div>
+              </div>
+              <div class="detail-visual">
+                <h4>예시 이미지</h4>
+                <img src="./assets/images/packaging-1.png" alt="포장 기준 예시 1">
+              </div>
+            </div>
+          `
+        },
+        packing2: {
+          title: "2. 박스 내부는 수량 확인이 가능하도록 정형화하여 포장해주세요",
+          body: `
+            <div class="detail-layout">
+              <div class="detail-copy">
+                <h4>상세 설명</h4>
+                <p>박스 내에는 육안으로 수량 확인이 가능해야 합니다.</p>
+                <p>육안으로 수량 확인이 불가한 경우 벌크 입고로 간주됩니다.</p>
+                <p>벌크 입고는 실셈 여부에 따라 재고 관리 방식이 달라집니다.</p>
+                <div class="detail-note">수량 확인이 어려운 포장은 검수 시간이 증가할 수 있습니다.</div>
+              </div>
+              <div class="detail-visual">
+                <h4>예시 이미지</h4>
+                <img src="./assets/images/packaging-2.png" alt="포장 기준 예시 2">
+              </div>
+            </div>
+          `
+        },
+        packing3: {
+          title: "3. 동일 상품(SKU)이라도 박스 단위로 구분하여 포장해주세요",
+          body: `
+            <div class="detail-layout">
+              <div class="detail-copy">
+                <h4>상세 설명</h4>
+                <p>동일 상품(SKU)이라도 소비기한 또는 제조LOT가 다를 경우 분리 포장이 필요합니다.</p>
 
-      function openImageModal(src, title) {
-        imageModalImg.src = src;
-        imageModalImg.alt = title || '예시 이미지';
-        imageModalTitle.textContent = title || '예시 이미지';
-        imageModal.classList.add('active');
-        imageModal.setAttribute('aria-hidden', 'false');
+                <div class="detail-table-wrap">
+                  <table class="detail-table">
+                    <thead>
+                      <tr>
+                        <th>구성</th>
+                        <th>입고 가능 여부</th>
+                        <th>입고 방법</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>동일 SKU 소비기한/LOT 동일</td>
+                        <td>가능</td>
+                        <td>단일 박스 입고</td>
+                      </tr>
+                      <tr>
+                        <td>동일 SKU 소비기한/LOT 상이</td>
+                        <td>혼합 구성 불가</td>
+                        <td>소비기한/LOT별 박스 분리 포장 후 입고</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="detail-visual">
+                <h4>예시 이미지</h4>
+                <img src="./assets/images/packaging-3.png" alt="포장 기준 예시 3">
+              </div>
+            </div>
+          `
+        },
+        packing4: {
+          title: "4. 완카톤 수량이 아닌 잔량 박스 입고의 경우, 실셈 비용이 발생합니다",
+          body: `
+            <div class="detail-layout">
+              <div class="detail-copy">
+                <h4>상세 설명</h4>
+                <p>잔량 박스란 품고 전산 내 등록된 박스 입수량보다 실제 입고된 박스 내 수량이 적은 경우를 의미합니다.</p>
+                <div class="detail-note">잔량 박스는 실셈 비용이 발생할 수 있으므로 사전 확인이 필요합니다.</div>
+              </div>
+              <div class="detail-visual">
+                <h4>예시 이미지</h4>
+                <img src="./assets/images/packaging-4.png" alt="포장 기준 예시 4">
+              </div>
+            </div>
+          `
+        },
+        packing5: {
+          title: "5. 출고 단위에 맞는 포장 기준을 준수해주세요",
+          body: `
+            <div class="detail-layout">
+              <div class="detail-copy">
+                <h4>상세 설명</h4>
+                <div class="detail-table-wrap">
+                  <table class="detail-table">
+                    <thead>
+                      <tr>
+                        <th>단위</th>
+                        <th>입고 방법</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>낱개 단위 출고</td>
+                        <td>낱개 출고 상품(SKU)은 개별 단위로 입고 되어야 합니다. 번들 또는 묶음 단위로 입고될 경우 해체 후 입고 가능하며, 해체 비용이 발생합니다.</td>
+                      </tr>
+                      <tr>
+                        <td>세트 단위 출고</td>
+                        <td>세트로 구성된 상품(SKU)은 세트로 포장된 상태로 입고되어야 합니다.</td>
+                      </tr>
+                      <tr>
+                        <td>송장 단위 출고</td>
+                        <td>상품(SKU)에 송장을 바로 부착하여 출고하는 경우 박스 입수량 1개 단위로 입고되어야 합니다.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="detail-visual">
+                <h4>예시 이미지</h4>
+                <img src="./assets/images/packaging-5.png" alt="포장 기준 예시 5">
+              </div>
+            </div>
+          `
+        },
+        packing6: {
+          title: "6. 아웃박스에는 필수 정보를 기재해주세요",
+          body: `
+            <div class="detail-layout">
+              <div class="detail-copy">
+                <h4>상세 설명</h4>
+                <div class="detail-table-wrap">
+                  <table class="detail-table">
+                    <thead>
+                      <tr>
+                        <th>단위</th>
+                        <th>SKU명</th>
+                        <th>박스 입수량</th>
+                        <th>바코드 표기</th>
+                        <th>제조 LOT</th>
+                        <th>소비기한</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>낱개 단위 출고</td>
+                        <td>●</td>
+                        <td>●</td>
+                        <td>숫자 표기</td>
+                        <td>●</td>
+                        <td>●</td>
+                      </tr>
+                      <tr>
+                        <td>세트 단위 출고</td>
+                        <td>●</td>
+                        <td>●</td>
+                        <td>숫자 표기</td>
+                        <td>●</td>
+                        <td>●</td>
+                      </tr>
+                      <tr>
+                        <td>송장 단위 출고</td>
+                        <td>●</td>
+                        <td></td>
+                        <td>스캔 가능한 바코드(라벨/인쇄)</td>
+                        <td>●</td>
+                        <td>●</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="detail-visual">
+                <h4>예시 이미지</h4>
+                <img src="./assets/images/packaging-6.png" alt="포장 기준 예시 6">
+              </div>
+            </div>
+          `
+        }
+      };
+
+      const detailModal = document.getElementById('detailModal');
+      const detailTitle = document.getElementById('detailTitle');
+      const detailBody = document.getElementById('detailBody');
+      const detailClose = document.getElementById('detailClose');
+      const detailButtons = document.querySelectorAll('.detail-btn');
+
+      function openDetailModal(key) {
+        const data = detailData[key];
+        if (!data) return;
+
+        detailTitle.innerHTML = data.title;
+        detailBody.innerHTML = data.body;
+        detailModal.classList.add('active');
+        detailModal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
       }
 
-      function closeImageModal() {
-        imageModal.classList.remove('active');
-        imageModal.setAttribute('aria-hidden', 'true');
-        imageModalImg.src = '';
+      function closeDetailModal() {
+        detailModal.classList.remove('active');
+        detailModal.setAttribute('aria-hidden', 'true');
+        detailTitle.innerHTML = '';
+        detailBody.innerHTML = '';
         document.body.style.overflow = '';
       }
 
-      imageButtons.forEach(btn => {
+      detailButtons.forEach(btn => {
         btn.addEventListener('click', function () {
-          openImageModal(this.dataset.image, this.dataset.title);
+          openDetailModal(this.dataset.detail);
         });
       });
 
-      imageClose.addEventListener('click', closeImageModal);
+      detailClose.addEventListener('click', closeDetailModal);
 
-      imageModal.addEventListener('click', function (e) {
-        if (e.target === imageModal) {
-          closeImageModal();
+      detailModal.addEventListener('click', function (e) {
+        if (e.target === detailModal) {
+          closeDetailModal();
         }
       });
 
       document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && imageModal.classList.contains('active')) {
-          closeImageModal();
+        if (e.key === 'Escape' && detailModal.classList.contains('active')) {
+          closeDetailModal();
         }
       });
     })();

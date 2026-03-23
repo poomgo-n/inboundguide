@@ -3,119 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>품고(POOMGO) 스마트 입고 가이드</title>
+    <title>POOMGO | Smart Fulfillment Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .step-card { display: none; }
-        .step-card.active { display: block; }
-        .check-item:checked + span { text-decoration: line-through; color: #9ca3af; }
+        @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;800&display=swap');
+        body { font-family: 'Pretendard', sans-serif; background-color: #0b0f1a; color: #e2e8f0; overflow: hidden; }
+        .sidebar-item.active { background: #1d4ed8; color: white; border-right: 4px solid #60a5fa; }
+        .session-content { display: none; height: calc(100vh - 40px); overflow-y: auto; }
+        .session-content.active { display: block; }
+        .penalty-card { border: 1px solid rgba(239, 68, 68, 0.2); background: rgba(239, 68, 68, 0.05); }
+        .success-card { border: 1px solid rgba(34, 197, 94, 0.2); background: rgba(34, 197, 94, 0.05); }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans leading-relaxed">
+<body class="flex">
 
-    <header class="bg-blue-600 text-white py-8 px-4 shadow-lg mb-8">
-        <div class="max-w-4xl mx-auto">
-            <h1 class="text-3xl font-bold mb-2">📦 POOMGO 입고 가이드 v1.1</h1>
-            <p class="opacity-90 text-sm">원활한 입고 운영을 위한 필수 기준을 확인하세요. [cite: 2]</p>
+    <nav class="w-72 bg-slate-900 h-screen border-r border-slate-800 flex flex-col shrink-0">
+        <div class="p-8">
+            <h1 class="text-2xl font-black tracking-tighter text-blue-500">POOMGO</h1>
+            <p class="text-xs text-slate-500 mt-1 uppercase tracking-widest">Inbound System v1.1</p>
         </div>
-    </header>
-
-    <main class="max-w-4xl mx-auto px-4 pb-20">
         
-        <section class="bg-white rounded-2xl shadow-sm p-6 mb-6 border border-gray-100">
-            <h2 class="text-xl font-bold mb-4 flex items-center">
-                <span class="bg-blue-100 text-blue-600 w-8 h-8 rounded-full flex items-center justify-center mr-2 text-sm">1</span>
-                입고 방식을 선택하세요 [cite: 26]
-            </h2>
-            <div class="grid grid-cols-2 gap-4">
-                <button onclick="switchTab('parcel')" id="btn-parcel" class="py-4 border-2 border-blue-600 rounded-xl font-bold text-blue-600 bg-blue-50 transition-all">택배 입고 [cite: 47]</button>
-                <button onclick="switchTab('truck')" id="btn-truck" class="py-4 border-2 border-gray-200 rounded-xl font-bold text-gray-500 hover:border-blue-300 transition-all">차량 입고 [cite: 48]</button>
-            </div>
-        </section>
+        <div class="flex-1 px-4 space-y-2">
+            <button onclick="openSession('process')" class="sidebar-item active w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition-all">
+                <i class="fa-solid fa-route"></i> 01. 전체 프로세스
+            </button>
+            <button onclick="openSession('reservation')" class="sidebar-item w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition-all">
+                <i class="fa-solid fa-calendar-check"></i> 02. 입고 예약 규정
+            </button>
+            <button onclick="openSession('packing')" class="sidebar-item w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition-all">
+                <i class="fa-solid fa-box-archive"></i> 03. 상품 포장 & 바코드
+            </li>
+            <button onclick="openSession('shipping')" class="sidebar-item w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition-all">
+                <i class="fa-solid fa-truck-fast"></i> 04. 배송 방식(택배/차량)
+            </button>
+            <button onclick="openSession('faq')" class="sidebar-item w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition-all">
+                <i class="fa-solid fa-circle-question"></i> FAQ & 비용 안내
+            </button>
+        </div>
 
-        <section class="bg-white rounded-2xl shadow-sm p-6 mb-6 border border-gray-100">
-            <h2 class="text-xl font-bold mb-4 flex items-center">
-                <span class="bg-blue-100 text-blue-600 w-8 h-8 rounded-full flex items-center justify-center mr-2 text-sm">2</span>
-                공통 필수 준비 사항 
-            </h2>
-            <div class="space-y-3">
-                <label class="flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer transition-colors">
-                    <input type="checkbox" class="check-item w-5 h-5 text-blue-600 rounded mr-3">
-                    <span><strong>바코드 확인:</strong> 모든 SKU에 표준 규격($40 \times 20mm$) 바코드 부착 [cite: 118, 132]</span>
-                </label>
-                <label class="flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer transition-colors">
-                    <input type="checkbox" class="check-item w-5 h-5 text-blue-600 rounded mr-3">
-                    <span><strong>단일 SKU 포장:</strong> 1박스에는 단일 SKU만 구성 (혼적 불가) [cite: 83, 84]</span>
-                </label>
-                <div class="p-4 bg-red-50 border-l-4 border-red-500 rounded-r-lg mt-4">
-                    <p class="text-red-700 text-sm font-bold"><i class="fa-solid fa-circle-exclamation mr-1"></i> 주의: 미예약 건은 회송 처리될 수 있습니다. [cite: 25, 60]</p>
+        <div class="p-6 border-t border-slate-800 bg-slate-950">
+            <p class="text-[10px] text-slate-500 uppercase mb-2">Center Info</p>
+            <p class="text-xs font-bold text-slate-300">감곡센터 입고팀 [cite: 41]</p>
+            <p class="text-[10px] text-slate-400">010-3844-8064 [cite: 42]</p>
+        </div>
+    </nav>
+
+    <main class="flex-1 p-10 relative">
+        
+        <section id="process" class="session-content active space-y-10">
+            <header>
+                <h2 class="text-4xl font-extrabold mb-2">입고 프로세스 [cite: 11]</h2>
+                <p class="text-slate-400">고객사 진행부터 품고 적치까지의 흐름입니다. [cite: 18, 23]</p>
+            </header>
+            <div class="grid grid-cols-4 gap-6">
+                <div class="bg-blue-600/10 border border-blue-500/30 p-6 rounded-3xl relative">
+                    <span class="absolute -top-3 left-6 bg-blue-500 text-[10px] px-2 py-1 rounded-full font-bold">STEP 01</span>
+                    <p class="font-bold text-lg mb-2 text-blue-400 text-center">입고 예약 [cite: 18, 50]</p>
+                    <p class="text-xs text-slate-400 text-center">네이버 판매자 센터 진행 [cite: 24]</p>
                 </div>
-            </div>
-        </section>
-
-        <section class="bg-white rounded-2xl shadow-sm p-6 border border-gray-100">
-            <h2 class="text-xl font-bold mb-4 flex items-center">
-                <span class="bg-blue-100 text-blue-600 w-8 h-8 rounded-full flex items-center justify-center mr-2 text-sm">3</span>
-                상세 가이드
-            </h2>
-
-            <div id="content-parcel" class="step-card active space-y-6">
-                <div class="p-4 bg-blue-50 rounded-xl">
-                    <h3 class="font-bold text-blue-800 mb-2">🗓️ 택배 예약 기한 [cite: 51]</h3>
-                    <p class="text-sm">입고 2일 전 18시까지 예약 필수 (영업일 기준)</p>
                 </div>
-                <ul class="list-disc pl-5 space-y-2 text-sm text-gray-600">
-                    <li>1일 최대 10박스까지만 입고 가능 [cite: 159]</li>
-                    <li>박스 내 <strong>입고증</strong> 필수 동봉 [cite: 161]</li>
-                    <li>송장번호 사전 업데이트 필수 [cite: 163]</li>
+            <div class="bg-slate-800/50 p-6 rounded-3xl border border-slate-700">
+                <h4 class="font-bold mb-4 text-blue-300 inline-block border-b-2 border-blue-500 pb-1">핵심 요약 [cite: 20]</h4>
+                <ul class="grid grid-cols-2 gap-4 text-sm text-slate-300">
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-500"></i> 미예약건 도착 시 회송 처리 [cite: 25]</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-500"></i> 하차 순서대로 당일 내 반영 [cite: 28, 29]</li>
                 </ul>
             </div>
+        </section>
 
-            <div id="content-truck" class="step-card space-y-6">
-                <div class="p-4 bg-green-50 rounded-xl">
-                    <h3 class="font-bold text-green-800 mb-2">🗓️ 차량 예약 기한 [cite: 52]</h3>
-                    <p class="text-sm">입고 1일 전 18시까지 예약 가능 (영업일 기준)</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="border rounded-xl p-4">
-                        <h4 class="font-bold mb-2">PLT 규격 [cite: 206]</h4>
-                        <p class="text-sm text-gray-500">$1100 \times 1100 \times 1800$ (단위: mm)</p>
-                        <p class="text-xs text-red-500 mt-1">※ 나무/일회용 PLT 입고 불가 [cite: 207]</p>
+        <section id="packing" class="session-content space-y-10">
+            <header>
+                <h2 class="text-4xl font-extrabold mb-2 text-purple-400 font-mono">Packing Protocol </h2>
+                <p class="text-slate-400">규격 미준수 시 PCS당 100원의 작업 비용이 발생합니다. [cite: 96, 119]</p>
+            </header>
+
+            <div class="grid grid-cols-2 gap-8">
+                <div class="space-y-4">
+                    <h3 class="text-xl font-bold border-l-4 border-blue-500 pl-4 uppercase">Barcode Policy [cite: 116]</h3>
+                    <div class="bg-slate-900 border border-slate-800 p-6 rounded-3xl space-y-4">
+                        <div class="flex justify-between items-center bg-slate-800 p-4 rounded-2xl">
+                            <span class="text-sm">표준 크기 [cite: 132]</span>
+                            <span class="font-mono text-blue-400">$40 \times 20mm$ [cite: 132]</span>
+                        </div>
+                        <div class="penalty-card p-4 rounded-2xl flex items-start gap-3">
+                            <i class="fa-solid fa-triangle-exclamation text-red-500 mt-1"></i>
+                            <p class="text-xs text-red-200">유색, 반전, 색상 바코드 사용 불가. 흰색 바탕에 검은색 바코드만 인식 가능합니다. [cite: 124, 125]</p>
+                        </div>
                     </div>
-                    <div class="border rounded-xl p-4">
-                        <h4 class="font-bold mb-2">이동 전표 [cite: 198]</h4>
-                        <p class="text-sm text-gray-500">기사님 통해 이동 전표 전달 필수</p>
-                        <p class="text-xs text-red-500 mt-1">※ 미발행 시 하차 불가 [cite: 199]</p>
+                </div>
+
+                <div class="space-y-4">
+                    <h3 class="text-xl font-bold border-l-4 border-purple-500 pl-4 uppercase">Box Packing [cite: 70, 80]</h3>
+                    <div class="bg-slate-900 border border-slate-800 p-6 rounded-3xl space-y-4 text-sm">
+                        <p class="text-slate-400 italic">"1박스에는 단일 SKU만 구성해야 합니다." [cite: 83]</p>
+                        <ul class="space-y-2">
+                            <li class="flex items-center gap-2 text-red-400"><i class="fa-solid fa-xmark"></i> 혼적 금지 (거부 사유) [cite: 84]</li>
+                            <li class="flex items-center gap-2 text-green-400"><i class="fa-solid fa-check"></i> 소비기한/LOT 별 분리 포장 [cite: 77]</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <footer class="mt-8 text-center text-gray-400 text-xs space-y-2">
-            <p>센터 주소: 충북 음성군 감곡면 가곡로 194-13 3층 [cite: 39]</p>
-            <p>운영 시간: 평일 10:00 ~ 18:00 (점심시간 12:30~13:30 제외) [cite: 35]</p>
-        </footer>
-    </main>
+        </main>
 
     <script>
-        function switchTab(type) {
-            const btnParcel = document.getElementById('btn-parcel');
-            const btnTruck = document.getElementById('btn-truck');
-            const contentParcel = document.getElementById('content-parcel');
-            const contentTruck = document.getElementById('content-truck');
-
-            if (type === 'parcel') {
-                btnParcel.className = 'py-4 border-2 border-blue-600 rounded-xl font-bold text-blue-600 bg-blue-50 transition-all';
-                btnTruck.className = 'py-4 border-2 border-gray-200 rounded-xl font-bold text-gray-500 hover:border-blue-300 transition-all';
-                contentParcel.classList.add('active');
-                contentTruck.classList.remove('active');
-            } else {
-                btnTruck.className = 'py-4 border-2 border-blue-600 rounded-xl font-bold text-blue-600 bg-blue-50 transition-all';
-                btnParcel.className = 'py-4 border-2 border-gray-200 rounded-xl font-bold text-gray-500 hover:border-blue-300 transition-all';
-                contentTruck.classList.add('active');
-                contentParcel.classList.remove('active');
-            }
+        function openSession(sessionId) {
+            // 모든 세션 숨기기
+            document.querySelectorAll('.session-content').forEach(s => s.classList.remove('active'));
+            // 모든 사이드바 아이템 비활성화
+            document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+            
+            // 선택한 세션/사이드바 활성화
+            document.getElementById(sessionId).classList.add('active');
+            event.currentTarget.classList.add('active');
         }
     </script>
 </body>

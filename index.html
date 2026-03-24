@@ -656,87 +656,108 @@
         </section>
 
         <section class="content-area" id="contentArea">
-         <section class="panel" id="panel-center">
-  <div style="padding:16px 20px 0 20px;">
-    <div style="font-size:22px;font-weight:800;color:#111111;margin-bottom:12px;">
-      🏢 센터 정보
+       <section class="panel" id="panel-center">
+  <div style="padding:0 4px 18px 4px;">
+    <div style="font-size:24px;font-weight:800;color:#111111;display:flex;align-items:center;gap:10px;">
+      <span style="font-size:22px;">🏢</span>
+      <span>센터 정보</span>
+    </div>
+    <div style="margin-top:6px;font-size:14px;line-height:1.6;color:#6B7280;">
+      입고 전 반드시 확인이 필요한 기본 센터 정보를 안내드립니다.
     </div>
   </div>
 
-  <div style="display:grid; grid-template-columns:minmax(0, 1.1fr) minmax(320px, 0.9fr); gap:20px; padding:0 20px 20px 20px; align-items:start;">
+  <div class="center-info-layout" style="display:grid;grid-template-columns:minmax(0,1.2fr) minmax(320px,0.8fr);gap:20px;align-items:start;">
     
-    <!-- 왼쪽: 정보 영역 -->
-    <div>
-      <div style="border:1px solid #E8EBF0; border-radius:18px; overflow:hidden; background:#ffffff;">
-        <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse; font-size:14px; line-height:1.6; color:#111111;">
-          <tbody>
-            <tr>
-              <th style="padding:16px 12px; background:#F8F9FA; border-right:1px solid #E8EBF0; border-bottom:1px solid #E8EBF0; text-align:center; font-weight:800; word-break:keep-all;">입고 가능 시간</th>
-              <td style="padding:16px 14px; border-bottom:1px solid #E8EBF0;">
-                <span style="font-weight: bold;">오전 10시 ~ 오후 18시</span><br>
-                <span style="font-weight: bold;">점심시간 </span> 오후 12시30분 ~13시30분<br>
-                ▪️센터 점심시간 중에는 하차 및 모든 입고 업무가 중단됩니다.<br>
-                ▪️해당 시간 도착으로 인한 대기 발생 시, 당사는 대기 비용에 대한 책임을 지지 않습니다.<br>
-                ▪️원활한 입고를 위해 반드시 점심시간을 제외하고 도착할 수 있도록 배차 관리를 부탁드립니다.<br>
-              </td>
-            </tr>
-            <tr>
-              <th rowspan="2" style="width:90px; padding:16px 12px; background:#F8F9FA; border-bottom:1px solid #E8EBF0; border-right:1px solid #E8EBF0; text-align:center; font-weight:800; word-break:keep-all;">주소</th>
-              <td style="padding:16px 14px; border-bottom:1px solid #E8EBF0;">
-                <span style="font-weight: bold;">도로명</span><br>
-                경기 이천시 장호원읍 이풍로 86 이천375 XFC
-              </td>
-            </tr>
-            <tr>
-              <td style="padding:16px 14px; border-bottom:1px solid #E8EBF0;">
-                <span style="font-weight: bold;">지번</span><br>
-                경기도 이천시 장호원읍 이황리 375 이천375 XFC
-              </td>
-            </tr>
+    <!-- 왼쪽 정보 카드 -->
+    <div style="background:#ffffff;border:1px solid #E8EBF0;border-radius:20px;overflow:hidden;box-shadow:0 4px 14px rgba(17,24,39,.04);">
+      <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-size:14px;line-height:1.7;color:#111111;">
+        <tbody>
+          <tr>
+            <th style="width:120px;padding:18px 14px;background:#F8F9FA;border-right:1px solid #E8EBF0;border-bottom:1px solid #E8EBF0;text-align:center;font-weight:800;word-break:keep-all;">
+              입고 가능<br>시간
+            </th>
+            <td style="padding:18px 18px;border-bottom:1px solid #E8EBF0;vertical-align:top;">
+              <div style="font-weight:800;margin-bottom:6px;">오전 10시 ~ 오후 18시</div>
+              <div style="font-weight:700;margin-bottom:4px;">점심시간 오후 12시30분 ~ 13시30분</div>
+              <div style="color:#374151;">
+                ▪ 센터 점심시간 중에는 하차 및 모든 입고 업무가 중단됩니다.<br>
+                ▪ 해당 시간 도착으로 인한 대기 발생 시, 당사는 대기 비용에 대한 책임을 지지 않습니다.<br>
+                ▪ 원활한 입고를 위해 반드시 점심시간을 제외하고 도착할 수 있도록 배차 관리를 부탁드립니다.
+              </div>
+            </td>
+          </tr>
 
-            <tr>
-              <th rowspan="2" style="padding:16px 12px; background:#F8F9FA; border-right:1px solid #E8EBF0; border-bottom:1px solid #E8EBF0; text-align:center; font-weight:800; word-break:keep-all;">팔레트 코드</th>
-              <td style="padding:16px 14px; border-bottom:1px solid #E8EBF0;">
-                <span style="font-weight: bold;">KPP</span> 266569
-              </td>
-            </tr>
-            <tr>
-              <td style="padding:16px 14px; border-bottom:1px solid #E8EBF0;">
-                <span style="font-weight: bold;">AJ</span> P262612-9
-              </td>
-            </tr>
+          <tr>
+            <th rowspan="2" style="padding:18px 14px;background:#F8F9FA;border-right:1px solid #E8EBF0;border-bottom:1px solid #E8EBF0;text-align:center;font-weight:800;word-break:keep-all;">
+              주소
+            </th>
+            <td style="padding:18px 18px;border-bottom:1px solid #E8EBF0;">
+              <div style="font-size:12px;font-weight:800;color:#6B7280;margin-bottom:4px;">도로명</div>
+              <div style="font-weight:700;">경기 이천시 장호원읍 이풍로 86 이천375 XFC</div>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:18px 18px;border-bottom:1px solid #E8EBF0;">
+              <div style="font-size:12px;font-weight:800;color:#6B7280;margin-bottom:4px;">지번</div>
+              <div style="font-weight:700;">경기도 이천시 장호원읍 이황리 375 이천375 XFC</div>
+            </td>
+          </tr>
 
-            <tr>
-              <th style="padding:16px 12px; background:#F8F9FA; border-right:1px solid #E8EBF0; border-bottom:1px solid #E8EBF0; text-align:center; font-weight:800; word-break:keep-all;">담당자 정보</th>
-              <td style="padding:16px 14px; border-bottom:1px solid #E8EBF0;">
-                <span style="font-weight: bold;">담당자명 :</span> 품고 네이버 센터 입고팀<br>
-                <span style="font-weight: bold;">연락처 :</span> 010-3844-8064
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+          <tr>
+            <th rowspan="2" style="padding:18px 14px;background:#F8F9FA;border-right:1px solid #E8EBF0;border-bottom:1px solid #E8EBF0;text-align:center;font-weight:800;word-break:keep-all;">
+              팔레트 코드
+            </th>
+            <td style="padding:18px 18px;border-bottom:1px solid #E8EBF0;">
+              <span style="display:inline-block;min-width:44px;font-weight:800;color:#111111;">KPP</span>
+              <span style="font-weight:700;">266569</span>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:18px 18px;border-bottom:1px solid #E8EBF0;">
+              <span style="display:inline-block;min-width:44px;font-weight:800;color:#111111;">AJ</span>
+              <span style="font-weight:700;">P262612-9</span>
+            </td>
+          </tr>
 
-      <div style="margin-top:16px; background:#F4F8FF; border-radius:12px; padding:14px; font-size:13px; line-height:1.7; color:#1F2937;">
-        <span style="font-weight: bold;">✅ 입고 위치 안내</span><br>
-        하차 장소는 센터 진입 후 <span style="font-weight: bold;">바로 왼쪽</span>으로 입차 후 직원의 안내에 따라 도크 배정이 진행됩니다.
-      </div>
+          <tr>
+            <th style="padding:18px 14px;background:#F8F9FA;border-right:1px solid #E8EBF0;text-align:center;font-weight:800;word-break:keep-all;">
+              담당자 정보
+            </th>
+            <td style="padding:18px 18px;">
+              <span style="font-weight:800;">담당자명</span> : 품고 네이버 센터 입고팀<br>
+              <span style="font-weight:800;">연락처</span> : 010-3844-8064
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
-    <!-- 오른쪽: 이미지 영역 -->
-    <div>
-      <div style="font-size:14px; font-weight:800; margin-bottom:10px; color:#111111;">
-        📸 센터 외관 이미지
+    <!-- 오른쪽 이미지 카드 -->
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div style="padding:2px 2px 0 2px;font-size:15px;font-weight:800;color:#111111;display:flex;align-items:center;gap:8px;">
+        <span style="font-size:14px;">📸</span>
+        <span>센터 외관 이미지</span>
       </div>
 
-      <div style="border:1px solid #E8EBF0; border-radius:18px; overflow:hidden; background:#ffffff;">
+      <div style="background:#ffffff;border:1px solid #E8EBF0;border-radius:20px;padding:12px;box-shadow:0 4px 14px rgba(17,24,39,.04);">
         <img
           src="./center-front.png"
           alt="센터 외관 이미지"
-          style="width:100%; height:auto; display:block;"
+          style="width:100%;height:420px;object-fit:cover;border-radius:16px;display:block;"
         >
       </div>
+
+      <div style="font-size:13px;line-height:1.7;color:#6B7280;padding:0 4px;">
+        실제 입고 시 센터 외관 및 진입 위치를 확인 후 안내에 따라 이동해주세요.
+      </div>
     </div>
+  </div>
+
+  <!-- 하단 안내 박스 -->
+  <div style="margin-top:18px;background:#F4F8FF;border:1px solid #D9E7FF;border-radius:16px;padding:16px 18px;font-size:14px;line-height:1.8;color:#1F2937;">
+    <div style="font-weight:800;margin-bottom:6px;">✅ 입고 위치 안내</div>
+    하차 장소는 센터 진입 후 <span style="font-weight:800;">바로 왼쪽</span>으로 입차 후 직원의 안내에 따라 도크 배정이 진행됩니다.
   </div>
 </section>
 

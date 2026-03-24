@@ -1,72 +1,234 @@
-<section class="panel" id="panel-barcode">
-  <div class="panel-head">
-    <div>
-      <div class="badge">바코드 기준</div>
-      <h2>바코드 확인</h2>
-      <p class="desc">스캔 가능한 바코드만 정상 입고 처리됩니다.</p>
-    </div>
-    <div class="chip">입고 유의사항</div>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>입고 가이드</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"/>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:Pretendard,sans-serif;}
+body{background:#f5f7fb;color:#111;}
+
+/* ===== layout ===== */
+.layout{display:flex;height:100vh;}
+.sidebar{
+  width:260px;
+  background:#fff;
+  border-right:1px solid #eee;
+  padding:20px;
+}
+.main{flex:1;padding:30px;overflow:auto}
+
+/* ===== nav ===== */
+.nav-btn{
+  width:100%;
+  padding:14px;
+  margin-bottom:10px;
+  border-radius:14px;
+  border:1px solid #eee;
+  background:#fff;
+  text-align:left;
+  font-weight:700;
+  cursor:pointer;
+}
+.nav-btn.active{
+  background:#0040d1;
+  color:#fff;
+}
+
+/* ===== hero ===== */
+.hero{
+  background:#fff4f2;
+  padding:30px;
+  border-radius:20px;
+}
+.hero h1{
+  color:#d92d20;
+  font-size:28px;
+  margin-bottom:20px;
+}
+
+/* ===== panel ===== */
+.panel{display:none;}
+.panel.active{display:block;}
+
+.panel h2{font-size:26px;margin-bottom:10px;}
+.desc{color:#666;margin-bottom:20px;}
+
+/* ===== list UI (공통) ===== */
+.list-box{
+  display:grid;
+  gap:12px;
+}
+.list-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px;
+  border:1px solid #eee;
+  border-radius:16px;
+  background:#fff;
+}
+.list-left{
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+.num{
+  width:34px;height:34px;
+  background:#eef4ff;
+  color:#0040d1;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:10px;
+  font-weight:800;
+}
+.detail-btn{
+  border:1px solid #cfe0ff;
+  color:#0040d1;
+  padding:8px 12px;
+  border-radius:10px;
+  background:#fff;
+  cursor:pointer;
+}
+
+/* ===== modal ===== */
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:999;
+}
+.modal.show{display:block;}
+.modal-bg{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.5);
+}
+.modal-content{
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:800px;
+  max-width:90%;
+  background:#fff;
+  border-radius:20px;
+  padding:24px;
+}
+.modal h3{margin-bottom:10px;}
+.modal p{color:#555;margin-bottom:16px;white-space:pre-line;}
+.modal img{width:100%;border-radius:14px;}
+.close{
+  position:absolute;
+  top:12px;right:12px;
+  font-size:20px;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="layout">
+
+  <!-- 사이드 -->
+  <div class="sidebar">
+    <button class="nav-btn active" data-target="hero">유의사항</button>
+    <button class="nav-btn" data-target="pack">포장 기준</button>
+    <button class="nav-btn" data-target="barcode">바코드 기준</button>
   </div>
 
-  <div class="barcode-list">
-    <div class="barcode-item">
-      <div class="barcode-title-wrap">
-        <div class="barcode-no">01</div>
-        <div class="barcode-copy">
-          <strong>모든 SKU에는 바코드가 반드시 부착되어 있어야 합니다.</strong>
-        </div>
-      </div>
-      <button class="barcode-detail-btn" data-barcode="1">상세보기</button>
+  <!-- 본문 -->
+  <div class="main">
+
+    <!-- 초기 -->
+    <div class="hero panel active" id="hero">
+      <h1>입고 전 반드시 확인해주세요!</h1>
+      <p>기본 입고 기준을 반드시 숙지해주세요.</p>
     </div>
 
-    <div class="barcode-item">
-      <div class="barcode-title-wrap">
-        <div class="barcode-no">02</div>
-        <div class="barcode-copy">
-          <strong>바코드는 스캔 가능한 상태로 유지해주세요.</strong>
+    <!-- 포장 기준 -->
+    <div class="panel" id="pack">
+      <h2>포장 기준</h2>
+      <p class="desc">입고 유의사항</p>
+
+      <div class="list-box">
+        ${[1,2,3,4,5,6].map(i=>`
+        <div class="list-item">
+          <div class="list-left">
+            <div class="num">0${i}</div>
+            <strong>포장 기준 ${i}</strong>
+          </div>
+          <button class="detail-btn" onclick="openModal('pack',${i})">상세보기</button>
         </div>
+        `).join("")}
       </div>
-      <button class="barcode-detail-btn" data-barcode="2">상세보기</button>
     </div>
 
-    <div class="barcode-item">
-      <div class="barcode-title-wrap">
-        <div class="barcode-no">03</div>
-        <div class="barcode-copy">
-          <strong>중복되거나 오인될 수 있는 바코드는 제거해주세요.</strong>
+    <!-- 바코드 기준 -->
+    <div class="panel" id="barcode">
+      <h2>바코드 기준</h2>
+      <p class="desc">입고 유의사항</p>
+
+      <div class="list-box">
+        ${[1,2,3,4,5,6].map(i=>`
+        <div class="list-item">
+          <div class="list-left">
+            <div class="num">0${i}</div>
+            <strong>바코드 기준 ${i}</strong>
+          </div>
+          <button class="detail-btn" onclick="openModal('barcode',${i})">상세보기</button>
         </div>
+        `).join("")}
       </div>
-      <button class="barcode-detail-btn" data-barcode="3">상세보기</button>
     </div>
 
-    <div class="barcode-item">
-      <div class="barcode-title-wrap">
-        <div class="barcode-no">04</div>
-        <div class="barcode-copy">
-          <strong>훼손되거나 찢어진 바코드는 사용이 불가합니다.</strong>
-        </div>
-      </div>
-      <button class="barcode-detail-btn" data-barcode="4">상세보기</button>
-    </div>
-
-    <div class="barcode-item">
-      <div class="barcode-title-wrap">
-        <div class="barcode-no">05</div>
-        <div class="barcode-copy">
-          <strong>곡면, 접힘 부위, 포장 틈새 등 스캔이 어려운 위치는 피해주세요.</strong>
-        </div>
-      </div>
-      <button class="barcode-detail-btn" data-barcode="5">상세보기</button>
-    </div>
-
-    <div class="barcode-item">
-      <div class="barcode-title-wrap">
-        <div class="barcode-no">06</div>
-        <div class="barcode-copy">
-          <strong>상품 식별이 어려운 임의 바코드 사용은 불가합니다.</strong>
-        </div>
-      </div>
-      <button class="barcode-detail-btn" data-barcode="6">상세보기</button>
-    </div>
   </div>
-</section>
+</div>
+
+<!-- ===== 모달 ===== -->
+<div class="modal" id="modal">
+  <div class="modal-bg" onclick="closeModal()"></div>
+  <div class="modal-content">
+    <div class="close" onclick="closeModal()">×</div>
+    <h3 id="modalTitle"></h3>
+    <p id="modalDesc"></p>
+    <img id="modalImg">
+  </div>
+</div>
+
+<script>
+const navBtns = document.querySelectorAll(".nav-btn");
+const panels = document.querySelectorAll(".panel");
+
+navBtns.forEach(btn=>{
+  btn.onclick=()=>{
+    navBtns.forEach(b=>b.classList.remove("active"));
+    panels.forEach(p=>p.classList.remove("active"));
+
+    btn.classList.add("active");
+    document.getElementById(btn.dataset.target).classList.add("active");
+  }
+});
+
+/* ===== 데이터 ===== */
+function openModal(type,id){
+  const title = (type==="pack"?"포장 기준 ":"바코드 기준 ")+id;
+  const desc = "상세 설명 "+id;
+  const img = `assets/images/${type}-${id}.png`;
+
+  document.getElementById("modalTitle").innerText = title;
+  document.getElementById("modalDesc").innerText = desc;
+  document.getElementById("modalImg").src = img;
+
+  document.getElementById("modal").classList.add("show");
+}
+
+function closeModal(){
+  document.getElementById("modal").classList.remove("show");
+}
+</script>
+
+</body>
+</html>

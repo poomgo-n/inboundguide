@@ -39,6 +39,7 @@
       line-height:1.5;
       word-break:keep-all;
     }
+
     a{text-decoration:none;color:inherit}
     button{font:inherit;border:0;background:none;cursor:pointer}
 
@@ -58,19 +59,19 @@
       overflow:auto;
     }
 
-.logo{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-bottom:20px;
+    }
 
-    .logo-badge{
-      width:42px;height:42px;border-radius:14px;
-      background:var(--brand);
-      color:#fff;
-      display:grid;place-items:center;
-      font-weight:900;
-      box-shadow:var(--shadow);
+    .logo-img{
+      width:42px;
+      height:42px;
+      object-fit:contain;
+      border-radius:12px;
+      flex:0 0 auto;
     }
 
     .logo-text strong{
@@ -95,8 +96,10 @@
     }
 
     .side-card h3{
-      margin:0 0 8px;
-      font-size:15px;
+      margin:0 0 10px;
+      font-size:14px;
+      font-weight:800;
+      color:var(--text);
     }
 
     .side-card p{
@@ -135,51 +138,51 @@
     }
 
     .nav-list{
-      display:grid;
-      gap:10px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
       margin-top:12px;
     }
 
     .nav-btn{
-      display:block;
+      display:flex;
+      align-items:center;
       width:100%;
       text-align:left;
-      padding:14px;
-      border-radius:16px;
-      border:1px solid transparent;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:#fff;
       transition:.2s ease;
     }
 
-    .logo-img{
-  width:42px;
-  height:42px;
-  object-fit:contain;
-  border-radius:12px;
-}
-
-    
-
     .nav-btn:hover{
-      background:#f4f8ff;
-      border-color:#d6e2fb;
+      background:#f6f9ff;
+      border-color:#cfdcff;
     }
 
     .nav-btn.active{
       background:var(--brand);
       color:#fff;
-      box-shadow:0 10px 24px rgba(0,64,209,.18);
+      border-color:var(--brand);
+      box-shadow:0 8px 20px rgba(0,64,209,.16);
     }
 
     .nav-row{
       display:flex;
+      align-items:center;
       gap:10px;
-      align-items:flex-start;
+      width:100%;
     }
 
     .nav-num{
-      width:28px;height:28px;border-radius:999px;
-      display:grid;place-items:center;
-      font-size:13px;font-weight:800;
+      width:28px;
+      height:28px;
+      border-radius:999px;
+      display:grid;
+      place-items:center;
+      font-size:13px;
+      font-weight:800;
       background:var(--brand-soft);
       color:var(--brand);
       flex:0 0 auto;
@@ -190,18 +193,19 @@
       color:#fff;
     }
 
+    .nav-copy{
+      min-width:0;
+    }
+
     .nav-copy strong{
       display:block;
       font-size:14px;
       line-height:1.4;
-      margin-bottom:2px;
+      margin:0;
     }
 
     .nav-copy span{
-      display:block;
-      font-size:12px;
-      opacity:.9;
-      line-height:1.4;
+      display:none;
     }
 
     .main{
@@ -229,6 +233,19 @@
       margin-bottom:14px;
     }
 
+    .eyebrow.danger{
+      background:var(--danger-bg);
+      color:var(--danger);
+      font-size:30px;
+      font-weight:900;
+      line-height:1.25;
+      letter-spacing:-.03em;
+      padding:0;
+      border-radius:0;
+      display:block;
+      margin-bottom:14px;
+    }
+
     .hero h1{
       margin:0 0 12px;
       font-size:42px;
@@ -241,7 +258,7 @@
       color:var(--sub);
       font-size:16px;
       line-height:1.7;
-      max-width:760px;
+      max-width:860px;
     }
 
     .hero-actions{
@@ -282,6 +299,73 @@
       color:var(--brand);
     }
 
+    .hero-guide-box{
+      margin-top:24px;
+      padding:22px;
+      border-radius:22px;
+      border:1px solid #f1d2cf;
+      background:linear-gradient(180deg,#fff 0%,#fff8f7 100%);
+    }
+
+    .hero-guide-box h3{
+      margin:0 0 10px;
+      font-size:20px;
+      line-height:1.4;
+    }
+
+    .hero-guide-box > p{
+      margin:0 0 16px;
+      font-size:15px;
+      color:var(--sub);
+      line-height:1.7;
+      max-width:none;
+    }
+
+    .hero-guide-list{
+      list-style:none;
+      margin:0;
+      padding:0;
+      display:grid;
+      gap:12px;
+    }
+
+    .hero-guide-list li{
+      display:flex;
+      align-items:flex-start;
+      gap:12px;
+      padding:14px 16px;
+      border-radius:16px;
+      background:#fff;
+      border:1px solid #f0e4e2;
+    }
+
+    .hero-guide-dot{
+      width:26px;
+      height:26px;
+      border-radius:999px;
+      display:grid;
+      place-items:center;
+      background:var(--danger-bg);
+      color:var(--danger);
+      font-size:13px;
+      font-weight:900;
+      flex:0 0 auto;
+      margin-top:1px;
+    }
+
+    .hero-guide-copy strong{
+      display:block;
+      font-size:15px;
+      margin-bottom:3px;
+    }
+
+    .hero-guide-copy span{
+      display:block;
+      font-size:14px;
+      line-height:1.65;
+      color:var(--sub);
+    }
+
     .top-summary{
       display:grid;
       grid-template-columns:repeat(4,1fr);
@@ -298,11 +382,15 @@
     }
 
     .mini-no{
-      width:34px;height:34px;border-radius:12px;
+      width:34px;
+      height:34px;
+      border-radius:12px;
       background:var(--brand-soft);
       color:var(--brand);
-      display:grid;place-items:center;
-      font-size:14px;font-weight:900;
+      display:grid;
+      place-items:center;
+      font-size:14px;
+      font-weight:900;
       margin-bottom:12px;
     }
 
@@ -409,8 +497,11 @@
     }
 
     .dot{
-      width:24px;height:24px;border-radius:999px;
-      display:grid;place-items:center;
+      width:24px;
+      height:24px;
+      border-radius:999px;
+      display:grid;
+      place-items:center;
       flex:0 0 auto;
       margin-top:1px;
       font-size:13px;
@@ -516,7 +607,9 @@
     .step-actions{
       display:flex;
       justify-content:flex-end;
+      gap:10px;
       margin-top:14px;
+      flex-wrap:wrap;
     }
 
     .step-next{
@@ -644,7 +737,9 @@
     }
 
     .mobile-menu{
-      width:44px;height:44px;border-radius:12px;
+      width:44px;
+      height:44px;
+      border-radius:12px;
       border:1px solid var(--line);
       background:#fff;
       color:var(--brand);
@@ -662,13 +757,15 @@
     .mobile-drawer.show{display:block}
 
     .drawer-bg{
-      position:absolute;inset:0;
+      position:absolute;
+      inset:0;
       background:rgba(15,23,42,.45);
     }
 
     .drawer{
       position:absolute;
-      top:0;right:0;
+      top:0;
+      right:0;
       width:min(88vw,340px);
       height:100%;
       background:#fff;
@@ -685,7 +782,9 @@
     }
 
     .drawer-close{
-      width:40px;height:40px;border-radius:12px;
+      width:40px;
+      height:40px;
+      border-radius:12px;
       border:1px solid var(--line);
       background:#fff;
       font-size:20px;
@@ -706,6 +805,7 @@
       .section h2{font-size:25px}
       .section-head{flex-direction:column}
       .image-grid{grid-template-columns:1fr}
+      .eyebrow.danger{font-size:24px}
     }
 
     @media (max-width:640px){
@@ -713,6 +813,7 @@
       .hero-actions,.footer-actions{flex-direction:column}
       .btn{width:100%}
       .hero h1{font-size:28px}
+      .eyebrow.danger{font-size:22px}
     }
   </style>
 </head>
@@ -720,10 +821,9 @@
   <div class="mobile-top">
     <div class="mobile-top-inner">
       <div class="mobile-title">
-        <div class="logo-badge">go</div>
+        <img src="./Primary Logo.png" alt="품고 로고" class="logo-img">
         <div>
-          <strong>초도입고 가이드</strong>
-          <span>이것만 지키면 됩니다</span>
+          <strong>품고 입고 가이드</strong>
         </div>
       </div>
       <button class="mobile-menu" id="mobileMenuOpen">☰</button>
@@ -737,37 +837,40 @@
         <strong>가이드 메뉴</strong>
         <button class="drawer-close" id="mobileMenuClose">×</button>
       </div>
+
       <div class="side-card">
-        <h3>진행률</h3>
+        <h3>진행 현황</h3>
         <div class="progress">
           <div class="progress-bar"><div class="progress-fill" id="mobileProgressFill"></div></div>
           <div class="progress-text">
-            <span id="mobileProgressCount">0 / 4 완료</span>
+            <span id="mobileProgressCount">STEP 0 / 4</span>
             <span id="mobileProgressPercent">0%</span>
           </div>
         </div>
       </div>
+
       <div class="nav-list" id="mobileNavList"></div>
     </div>
   </div>
 
   <div class="layout">
     <aside class="sidebar">
-<div class="logo">
-  <img src="./Primary Logo.png" alt="logo" class="logo-img">
-  <div class="logo-text">
-    <strong>품고 입고 가이드</strong>
-  </div>
-</div>
+      <div class="logo">
+        <img src="./Primary Logo.png" alt="품고 로고" class="logo-img">
+        <div class="logo-text">
+          <strong>초도입고 가이드</strong>
+          <span>핵심만 빠르게 확인</span>
+        </div>
+      </div>
 
       <div class="side-card">
         <h3>이 가이드는 이렇게 보세요</h3>
-        <p>긴 설명은 뺐어요.<br>체크만 따라오면 됩니다.</p>
+        <p>핵심 기준만 빠르게 확인하고, 각 STEP을 클릭해서 이동해주세요.</p>
 
         <div class="progress">
           <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
           <div class="progress-text">
-            <span id="progressCount">0 / 4 완료</span>
+            <span id="progressCount">STEP 0 / 4</span>
             <span id="progressPercent">0%</span>
           </div>
         </div>
@@ -784,15 +887,66 @@
 
     <main class="main">
       <section class="hero">
-        <div class="eyebrow">초도입고 전 필수 확인</div>
+        <div class="eyebrow danger">입고 전 반드시 확인해주세요!</div>
         <h1>초도입고,<br>이것만 지키면 됩니다</h1>
         <p>
-          복잡한 설명은 빼고, 실제로 꼭 지켜야 하는 기준만 남겼습니다.
-          아래 4가지만 확인해주세요.
+          본 가이드는 원활한 물류 운영을 위한 필수 기준입니다.
+          원활한 입고를 위해 아래 내용을 반드시 숙지해 주시기 바랍니다.
         </p>
+
         <div class="hero-actions">
           <a href="#step1" class="btn primary">가이드 시작하기</a>
           <a href="#danger" class="btn secondary">반려 사례 보기</a>
+        </div>
+
+        <div class="hero-guide-box">
+          <h3>입고 전 필수 운영 기준</h3>
+          <p>아래 기준은 입고 지연 및 반려를 방지하기 위한 기본 운영 정책입니다.</p>
+
+          <ul class="hero-guide-list">
+            <li>
+              <div class="hero-guide-dot">1</div>
+              <div class="hero-guide-copy">
+                <strong>상품 등록</strong>
+                <span>모든 상품(SKU)은 입고 예약 전 스마트스토어에 등록 완료되어야 합니다.</span>
+              </div>
+            </li>
+            <li>
+              <div class="hero-guide-dot">2</div>
+              <div class="hero-guide-copy">
+                <strong>예약 방법</strong>
+                <span>네이버 판매자 센터에서 직접 예약해 주세요. 단, 초도 입고는 기존과 동일하게 품고를 통해 진행됩니다.</span>
+              </div>
+            </li>
+            <li>
+              <div class="hero-guide-dot">3</div>
+              <div class="hero-guide-copy">
+                <strong>미예약 입고 제한</strong>
+                <span>사전 예약 없이 도착한 물품은 센터 입고가 거부되어 회송 처리될 수 있습니다.</span>
+              </div>
+            </li>
+            <li>
+              <div class="hero-guide-dot">4</div>
+              <div class="hero-guide-copy">
+                <strong>입고 수단</strong>
+                <span>차량 및 택배 입고 중 선택 가능합니다.</span>
+              </div>
+            </li>
+            <li>
+              <div class="hero-guide-dot">5</div>
+              <div class="hero-guide-copy">
+                <strong>검수 범위</strong>
+                <span>입고 시 외관 검수 위주로 진행되며, 제품 내부 등 정밀 검수는 지원되지 않습니다.</span>
+              </div>
+            </li>
+            <li>
+              <div class="hero-guide-dot">6</div>
+              <div class="hero-guide-copy">
+                <strong>재고 반영</strong>
+                <span>하차 순서에 따라 순차적으로 진행됩니다. 당일 반영을 원칙으로 하나, 현장 상황 및 입고 컨디션에 따라 시간이 소요될 수 있습니다.</span>
+              </div>
+            </li>
+          </ul>
         </div>
       </section>
 
@@ -870,7 +1024,7 @@
             </label>
           </div>
           <div class="step-actions">
-            <button class="btn primary step-next" data-current="1" data-next="2">다음</button>
+            <button class="btn primary step-next" data-current="1" data-next="2">다음 STEP 보기</button>
           </div>
         </div>
       </section>
@@ -926,7 +1080,7 @@
             </label>
           </div>
           <div class="step-actions">
-            <button class="btn primary step-next" data-current="2" data-next="3">다음</button>
+            <button class="btn primary step-next" data-current="2" data-next="3">다음 STEP 보기</button>
           </div>
         </div>
       </section>
@@ -982,7 +1136,7 @@
             </label>
           </div>
           <div class="step-actions">
-            <button class="btn primary step-next" data-current="3" data-next="4">다음</button>
+            <button class="btn primary step-next" data-current="3" data-next="4">다음 STEP 보기</button>
           </div>
         </div>
       </section>
@@ -1074,7 +1228,7 @@
         <div class="faq-wrap">
           <div class="faq-item">
             <button class="faq-q"><span>예약 없이 보내도 되나요?</span><span>+</span></button>
-            <div class="faq-a">권장하지 않습니다. 예약 없이 도착하면 검수가 지연될 수 있습니다.</div>
+            <div class="faq-a">권장하지 않습니다. 예약 없이 도착하면 검수가 지연되거나 입고가 제한될 수 있습니다.</div>
           </div>
           <div class="faq-item">
             <button class="faq-q"><span>바코드가 2개 보이면 괜찮나요?</span><span>+</span></button>
@@ -1086,7 +1240,7 @@
           </div>
           <div class="faq-item">
             <button class="faq-q"><span>소비기한이 다르면 같이 보내도 되나요?</span><span>+</span></button>
-            <div class="faq-a">같은 SKU라도 소비기한이나 제조LOT가 다르면 분리 포장해주세요.</div>
+            <div class="faq-a">같은 SKU라도 소비기한이나 제조 LOT가 다르면 분리 포장해주세요.</div>
           </div>
         </div>
       </section>
@@ -1139,17 +1293,18 @@
     renderNav(sideNavList);
     renderNav(mobileNavList);
 
-    const navButtons = [...document.querySelectorAll(".nav-btn")];
-    const sections = stepMeta.map(step => document.querySelector(step.anchor));
     const checkboxes = [...document.querySelectorAll(".step-check")];
     const nextButtons = [...document.querySelectorAll(".step-next")];
-
     const progressFill = document.getElementById("progressFill");
     const progressCount = document.getElementById("progressCount");
     const progressPercent = document.getElementById("progressPercent");
     const mobileProgressFill = document.getElementById("mobileProgressFill");
     const mobileProgressCount = document.getElementById("mobileProgressCount");
     const mobileProgressPercent = document.getElementById("mobileProgressPercent");
+
+    function getNavButtons() {
+      return [...document.querySelectorAll(".nav-btn")];
+    }
 
     function getCompletedSteps() {
       const completed = new Set();
@@ -1169,11 +1324,11 @@
       const percent = Math.round((count / total) * 100);
 
       progressFill.style.width = `${percent}%`;
-      progressCount.textContent = `${count} / ${total} 완료`;
+      progressCount.textContent = `STEP ${count} / ${total}`;
       progressPercent.textContent = `${percent}%`;
 
       mobileProgressFill.style.width = `${percent}%`;
-      mobileProgressCount.textContent = `${count} / ${total} 완료`;
+      mobileProgressCount.textContent = `STEP ${count} / ${total}`;
       mobileProgressPercent.textContent = `${percent}%`;
 
       nextButtons.forEach(btn => {
@@ -1185,6 +1340,9 @@
     }
 
     function updateActiveNav() {
+      const navButtons = getNavButtons();
+      const sections = stepMeta.map(step => document.querySelector(step.anchor));
+
       let activeId = sections[0]?.id || "step1";
       sections.forEach(section => {
         const rect = section.getBoundingClientRect();

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title> 품고 입고 가이드</title>
+  <title>품고 입고 가이드</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
   <style>
     :root{
@@ -36,10 +36,7 @@
       word-break:keep-all;
     }
 
-    body{
-      line-height:1.5;
-    }
-
+    body{line-height:1.5}
     a{text-decoration:none;color:inherit}
     button{
       font:inherit;
@@ -242,6 +239,11 @@
       flex:1 1 auto;
       min-height:0;
       overflow:hidden;
+      display:none;
+    }
+
+    .content-area.show{
+      display:block;
     }
 
     .panel{
@@ -353,7 +355,6 @@
     .dot.ok{background:var(--ok-bg);color:var(--ok)}
     .dot.warn{background:var(--warn-bg);color:var(--warn)}
     .dot.danger{background:var(--danger-bg);color:var(--danger)}
-    .dot.brand{background:var(--brand-soft);color:var(--brand)}
 
     .image-box{
       margin-top:16px;
@@ -539,6 +540,9 @@
       .content-area{
         overflow:visible;
       }
+      .content-area.show{
+        display:block;
+      }
       .panel{
         min-height:420px;
       }
@@ -655,8 +659,8 @@
           </ul>
         </section>
 
-        <section class="content-area">
-          <section class="panel active" id="panel-center">
+        <section class="content-area" id="contentArea">
+          <section class="panel" id="panel-center">
             <div class="panel-head">
               <div>
                 <div class="badge">센터 정보</div>
@@ -681,7 +685,7 @@
                 <ul class="list">
                   <li><span class="dot warn">!</span><span>제품 내부 등 정밀 검수는 지원되지 않습니다.</span></li>
                   <li><span class="dot warn">!</span><span>당일 반영이 원칙이나 현장 상황 및 입고 컨디션에 따라 지연될 수 있습니다.</span></li>
-                  <li><span class="dot warn">!</span><span>사전 기준 미숙지로 인한 지연은 센터에서 별도 보장되지 않습니다.</span></li>
+                  <li><span class="dot warn">!</span><span>사전 기준 미숙지로 인한 지연은 별도 보장되지 않습니다.</span></li>
                 </ul>
               </div>
             </div>
@@ -712,7 +716,7 @@
                 <ul class="list">
                   <li><span class="dot danger">!</span><span>혼적 포장</span></li>
                   <li><span class="dot danger">!</span><span>벌크 입고</span></li>
-                  <li><span class="dot danger">!</span><span>같은 박스 내 서로 다른 상품 혼합</span></li>
+                  <li><span class="dot danger">!</span><span>서로 다른 상품 혼합 포장</span></li>
                 </ul>
               </div>
             </div>
@@ -744,7 +748,7 @@
                 <ul class="list">
                   <li><span class="dot ok">✓</span><span>모든 SKU에 바코드를 부착해주세요.</span></li>
                   <li><span class="dot ok">✓</span><span>스캔 가능한 상태를 유지해주세요.</span></li>
-                  <li><span class="dot ok">✓</span><span>불필요하거나 오인 가능한 바코드는 제거해주세요.</span></li>
+                  <li><span class="dot ok">✓</span><span>불필요한 바코드는 제거해주세요.</span></li>
                 </ul>
               </div>
 
@@ -792,7 +796,7 @@
               <div class="info-card">
                 <h3>유의사항</h3>
                 <ul class="list">
-                  <li><span class="dot danger">!</span><span>사전 예약 없이 도착한 물품은 입고가 거부되어 회송 처리될 수 있습니다.</span></li>
+                  <li><span class="dot danger">!</span><span>사전 예약 없이 도착한 물품은 회송 처리될 수 있습니다.</span></li>
                   <li><span class="dot danger">!</span><span>입고 정보가 누락되면 검수 및 재고 반영이 지연될 수 있습니다.</span></li>
                   <li><span class="dot danger">!</span><span>예약과 실제 도착 물량이 다를 경우 추가 확인이 필요할 수 있습니다.</span></li>
                 </ul>
@@ -838,16 +842,11 @@
                   </tr>
                   <tr>
                     <td>예외 입고 대응</td>
-                    <td>미예약 입고, 정보 불일치, 기준 외 입고 처리 요청</td>
+                    <td>미예약 입고, 정보 불일치, 기준 외 처리 요청</td>
                     <td>상황에 따라 제한 또는 별도 비용 가능</td>
                   </tr>
                 </tbody>
               </table>
-            </div>
-
-            <div class="image-box">
-              <h4>안내 문구 예시</h4>
-              <p>실제 부가비용 기준표가 있다면 이 영역에 이미지 또는 표로 교체해서 넣으면 됩니다.</p>
             </div>
           </section>
         </section>
@@ -866,13 +865,14 @@
 
     const sideNavList = document.getElementById("sideNavList");
     const mobileNavList = document.getElementById("mobileNavList");
+    const contentArea = document.getElementById("contentArea");
 
     function renderNav(target) {
       target.innerHTML = "";
       navItems.forEach((item, idx) => {
         const button = document.createElement("button");
         button.type = "button";
-        button.className = "nav-btn" + (idx === 0 ? " active" : "");
+        button.className = "nav-btn";
         button.dataset.target = item.panel;
         button.innerHTML = `
           <div class="nav-row">
@@ -890,6 +890,8 @@
     renderNav(mobileNavList);
 
     function setActivePanel(panelId) {
+      contentArea.classList.add("show");
+
       document.querySelectorAll(".panel").forEach(panel => {
         panel.classList.toggle("active", panel.id === panelId);
         if (panel.id === panelId) panel.scrollTop = 0;

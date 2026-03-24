@@ -762,45 +762,77 @@
   </div>
 </section>
           <section class="panel" id="panel-pack">
-            <div class="panel-head">
-              <div>
-                <div class="badge">포장 기준</div>
-                <h2>포장 기준 확인</h2>
-                <p class="desc">검수와 입고가 빠르게 진행될 수 있도록 정리된 상태로 보내주세요.</p>
-              </div>
-              <div class="chip">한 박스 = 한 SKU</div>
-            </div>
+  <div class="panel-head">
+    <div>
+      <div class="badge">포장 기준</div>
+      <h2>포장 기준 확인</h2>
+      <p class="desc">검수와 입고가 빠르게 진행될 수 있도록 정리된 상태로 보내주세요.</p>
+    </div>
+    <div class="chip">입고 유의사항</div>
+  </div>
 
-            <div class="grid-2">
-              <div class="info-card">
-                <h3>이렇게 해주세요</h3>
-                <ul class="list">
-                  <li><span class="dot ok">✓</span><span>한 박스에는 한 SKU만 포장해주세요.</span></li>
-                  <li><span class="dot ok">✓</span><span>수량 확인이 쉽도록 정리된 상태로 보내주세요.</span></li>
-                  <li><span class="dot ok">✓</span><span>소비기한 또는 제조 LOT가 다르면 분리 포장해주세요.</span></li>
-                </ul>
-              </div>
+  <div class="packaging-list">
+    <div class="packaging-item">
+      <div class="packaging-title-wrap">
+        <div class="packaging-no">01</div>
+        <div class="packaging-copy">
+          <strong>한 박스에는 한 SKU만 포장해주세요.</strong>
+        </div>
+      </div>
+      <button class="detail-btn" data-packaging="1">상세보기</button>
+    </div>
 
-              <div class="info-card">
-                <h3>이건 안돼요</h3>
-                <ul class="list">
-                  <li><span class="dot danger">!</span><span>혼적 포장</span></li>
-                  <li><span class="dot danger">!</span><span>벌크 입고</span></li>
-                  <li><span class="dot danger">!</span><span>서로 다른 상품 혼합 포장</span></li>
-                </ul>
-              </div>
-            </div>
+    <div class="packaging-item">
+      <div class="packaging-title-wrap">
+        <div class="packaging-no">02</div>
+        <div class="packaging-copy">
+          <strong>수량 확인이 쉽도록 정리된 상태로 입고해주세요.</strong>
+        </div>
+      </div>
+      <button class="detail-btn" data-packaging="2">상세보기</button>
+    </div>
 
-            <div class="image-box">
-              <h4>이미지 넣는 자리</h4>
-              <p>정상 포장 / 혼적 금지 / 벌크 금지 이미지를 넣어주세요.</p>
-              <div class="image-grid">
-                <div class="placeholder">정상 포장</div>
-                <div class="placeholder">혼적 금지</div>
-                <div class="placeholder">벌크 금지</div>
-              </div>
-            </div>
-          </section>
+    <div class="packaging-item">
+      <div class="packaging-title-wrap">
+        <div class="packaging-no">03</div>
+        <div class="packaging-copy">
+          <strong>소비기한 또는 제조 LOT가 다르면 분리 포장해주세요.</strong>
+        </div>
+      </div>
+      <button class="detail-btn" data-packaging="3">상세보기</button>
+    </div>
+
+    <div class="packaging-item">
+      <div class="packaging-title-wrap">
+        <div class="packaging-no">04</div>
+        <div class="packaging-copy">
+          <strong>혼적 포장은 불가합니다.</strong>
+        </div>
+      </div>
+      <button class="detail-btn" data-packaging="4">상세보기</button>
+    </div>
+
+    <div class="packaging-item">
+      <div class="packaging-title-wrap">
+        <div class="packaging-no">05</div>
+        <div class="packaging-copy">
+          <strong>벌크 상태 입고는 불가합니다.</strong>
+        </div>
+      </div>
+      <button class="detail-btn" data-packaging="5">상세보기</button>
+    </div>
+
+    <div class="packaging-item">
+      <div class="packaging-title-wrap">
+        <div class="packaging-no">06</div>
+        <div class="packaging-copy">
+          <strong>서로 다른 상품은 반드시 분리 포장해주세요.</strong>
+        </div>
+      </div>
+      <button class="detail-btn" data-packaging="6">상세보기</button>
+    </div>
+  </div>
+</section>
 
           <section class="panel" id="panel-barcode">
             <div class="panel-head">

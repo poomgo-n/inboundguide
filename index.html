@@ -3,1257 +3,764 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>POOMGO 초도입고 가이드</title>
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <title>초도입고 가이드</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
   <style>
-    :root {
-      --brand: #0040d1;
-      --brand-strong: #0033a8;
-      --brand-soft: #eef4ff;
-      --bg: #f5f7fb;
-      --surface: #ffffff;
-      --line: #e5eaf3;
-      --text: #111827;
-      --sub: #4b5563;
-      --muted: #6b7280;
-      --danger: #d92d20;
-      --danger-soft: #fff2f0;
-      --warn: #b54708;
-      --warn-soft: #fff7ed;
-      --ok: #027a48;
-      --ok-soft: #ecfdf3;
-      --shadow: 0 12px 32px rgba(17, 24, 39, 0.08);
-      --radius-xl: 28px;
-      --radius-lg: 20px;
-      --radius-md: 14px;
-      --radius-sm: 10px;
-      --sidebar-w: 310px;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      font-family: Pretendard, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      word-break: keep-all;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button {
-      font: inherit;
-      cursor: pointer;
-      border: 0;
-      background: none;
-    }
-
-    .layout {
-      display: grid;
-      grid-template-columns: var(--sidebar-w) minmax(0, 1fr);
-      min-height: 100vh;
-    }
-
-    .sidebar {
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      padding: 28px 20px 24px;
-      background: #f9fbff;
-      border-right: 1px solid var(--line);
-      overflow-y: auto;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 22px;
-    }
-
-    .brand-badge {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      background: var(--brand);
-      color: #fff;
-      display: grid;
-      place-items: center;
-      font-weight: 900;
-      font-size: 18px;
-      box-shadow: var(--shadow);
-    }
-
-    .brand-text strong {
-      display: block;
-      font-size: 18px;
-      line-height: 1.2;
-    }
-
-    .brand-text span {
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .side-card {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      padding: 18px;
-      box-shadow: 0 6px 20px rgba(17,24,39,0.04);
-      margin-bottom: 16px;
-    }
-
-    .side-card h2,
-    .side-card h3 {
-      margin: 0 0 10px;
-      font-size: 16px;
-      line-height: 1.4;
-    }
-
-    .side-card p {
-      margin: 0;
-      color: var(--sub);
-      font-size: 14px;
-      line-height: 1.65;
-    }
-
-    .progress {
-      margin-top: 14px;
-    }
-
-    .progress-bar {
-      width: 100%;
-      height: 10px;
-      border-radius: 999px;
-      background: #e9eef8;
-      overflow: hidden;
-      margin-bottom: 8px;
-    }
-
-    .progress-fill {
-      width: 0%;
-      height: 100%;
-      background: linear-gradient(90deg, var(--brand), #3a74ff);
-      transition: width 0.25s ease;
-    }
-
-    .progress-text {
-      display: flex;
-      justify-content: space-between;
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 600;
-    }
-
-    .nav-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 16px;
-    }
-
-    .nav-btn {
-      width: 100%;
-      text-align: left;
-      padding: 14px 14px 14px 16px;
-      border-radius: 16px;
-      border: 1px solid transparent;
-      background: transparent;
-      transition: all 0.2s ease;
-    }
-
-    .nav-btn:hover {
-      background: #f3f7ff;
-      border-color: #d9e6ff;
-    }
-
-    .nav-btn.active {
-      background: var(--brand);
-      color: #fff;
-      box-shadow: 0 10px 24px rgba(0, 64, 209, 0.18);
-    }
-
-    .nav-step {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-    }
-
-    .nav-num {
-      flex: 0 0 auto;
-      width: 28px;
-      height: 28px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.18);
-      display: grid;
-      place-items: center;
-      font-size: 13px;
-      font-weight: 800;
-    }
-
-    .nav-btn:not(.active) .nav-num {
-      background: var(--brand-soft);
-      color: var(--brand);
-    }
-
-    .nav-copy strong {
-      display: block;
-      font-size: 14px;
-      line-height: 1.4;
-      margin-bottom: 2px;
-    }
-
-    .nav-copy span {
-      display: block;
-      font-size: 12px;
-      color: inherit;
-      opacity: 0.86;
-      line-height: 1.45;
-    }
-
-    .quick-links {
-      display: grid;
-      gap: 10px;
-      margin-top: 8px;
-    }
-
-    .quick-link {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 13px 14px;
-      border-radius: 14px;
-      background: #f8fbff;
-      border: 1px solid var(--line);
-      color: var(--sub);
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .quick-link:hover {
-      border-color: #cfe0ff;
-      color: var(--brand);
-      background: #f2f7ff;
-    }
-
-    .main {
-      padding: 32px;
-    }
-
-    .hero {
-      background: linear-gradient(135deg, #ffffff 0%, #f4f8ff 55%, #edf4ff 100%);
-      border: 1px solid var(--line);
-      border-radius: 32px;
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      margin-bottom: 24px;
-    }
-
-    .hero-inner {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 24px;
-      padding: 34px;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--brand-soft);
-      color: var(--brand);
-      padding: 8px 12px;
-      border-radius: 999px;
-      font-size: 13px;
-      font-weight: 800;
-      margin-bottom: 14px;
-    }
-
-    .hero h1 {
-      margin: 0 0 14px;
-      font-size: 44px;
-      line-height: 1.18;
-      letter-spacing: -0.03em;
-    }
-
-    .hero p {
-      margin: 0;
-      color: var(--sub);
-      font-size: 17px;
-      line-height: 1.75;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 24px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      min-height: 50px;
-      padding: 0 18px;
-      border-radius: 14px;
-      font-weight: 800;
-      font-size: 15px;
-      transition: all 0.2s ease;
-    }
-
-    .btn.primary {
-      background: var(--brand);
-      color: #fff;
-      box-shadow: 0 12px 24px rgba(0, 64, 209, 0.18);
+    :root{
+      --brand:#0040d1;
+      --brand-strong:#0035ad;
+      --brand-soft:#eef4ff;
+      --bg:#f5f7fb;
+      --surface:#ffffff;
+      --line:#e7edf7;
+      --text:#111827;
+      --sub:#5b6472;
+      --ok-bg:#eefbf3;
+      --ok:#167c4b;
+      --warn-bg:#fff4e8;
+      --warn:#b95d00;
+      --danger-bg:#fff1f0;
+      --danger:#d92d20;
+      --shadow:0 10px 30px rgba(17,24,39,.08);
+      --radius-xl:28px;
+      --radius-lg:20px;
+      --radius-md:16px;
+      --radius-sm:12px;
+      --sidebar-w:280px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Pretendard,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.5;
+      word-break:keep-all;
+    }
+    a{text-decoration:none;color:inherit}
+    button{font:inherit;border:0;background:none;cursor:pointer}
+
+    .layout{
+      display:grid;
+      grid-template-columns:var(--sidebar-w) 1fr;
+      min-height:100vh;
+    }
+
+    .sidebar{
+      position:sticky;
+      top:0;
+      height:100vh;
+      padding:24px 18px;
+      border-right:1px solid var(--line);
+      background:#fbfcff;
+      overflow:auto;
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:20px;
+    }
+
+    .logo-badge{
+      width:42px;height:42px;border-radius:14px;
+      background:var(--brand);
+      color:#fff;
+      display:grid;place-items:center;
+      font-weight:900;
+      box-shadow:var(--shadow);
+    }
+
+    .logo-text strong{
+      display:block;
+      font-size:17px;
+    }
+
+    .logo-text span{
+      display:block;
+      font-size:12px;
+      color:var(--sub);
+      margin-top:2px;
+    }
+
+    .side-card{
+      background:var(--surface);
+      border:1px solid var(--line);
+      border-radius:20px;
+      padding:16px;
+      margin-bottom:14px;
+      box-shadow:0 6px 18px rgba(17,24,39,.04);
+    }
+
+    .side-card h3{
+      margin:0 0 8px;
+      font-size:15px;
     }
 
-    .btn.primary:hover {
-      background: var(--brand-strong);
+    .side-card p{
+      margin:0;
+      font-size:13px;
+      color:var(--sub);
+      line-height:1.6;
     }
 
-    .btn.secondary {
-      background: #fff;
-      color: var(--text);
-      border: 1px solid var(--line);
+    .progress{
+      margin-top:12px;
     }
 
-    .btn.secondary:hover {
-      border-color: #bfd3ff;
-      color: var(--brand);
-      background: #f8fbff;
+    .progress-bar{
+      width:100%;
+      height:10px;
+      border-radius:999px;
+      background:#e9eef7;
+      overflow:hidden;
     }
 
-    .hero-panel {
-      display: grid;
-      gap: 14px;
-      align-content: start;
+    .progress-fill{
+      width:0%;
+      height:100%;
+      background:linear-gradient(90deg,var(--brand),#4f7cff);
+      transition:.2s ease;
     }
 
-    .summary-card {
-      background: rgba(255,255,255,0.9);
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      padding: 18px;
-      backdrop-filter: blur(10px);
+    .progress-text{
+      display:flex;
+      justify-content:space-between;
+      margin-top:8px;
+      font-size:12px;
+      color:var(--sub);
+      font-weight:700;
     }
 
-    .summary-card h3 {
-      margin: 0 0 10px;
-      font-size: 18px;
+    .nav-list{
+      display:grid;
+      gap:10px;
+      margin-top:12px;
     }
 
-    .summary-list {
-      display: grid;
-      gap: 10px;
-      margin-top: 10px;
+    .nav-btn{
+      display:block;
+      width:100%;
+      text-align:left;
+      padding:14px;
+      border-radius:16px;
+      border:1px solid transparent;
+      transition:.2s ease;
     }
 
-    .summary-item {
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-      padding: 12px;
-      border-radius: 14px;
-      background: #f8fbff;
+    .nav-btn:hover{
+      background:#f4f8ff;
+      border-color:#d6e2fb;
     }
 
-    .summary-icon {
-      width: 34px;
-      height: 34px;
-      border-radius: 12px;
-      display: grid;
-      place-items: center;
-      background: var(--brand-soft);
-      color: var(--brand);
-      font-size: 17px;
-      flex: 0 0 auto;
+    .nav-btn.active{
+      background:var(--brand);
+      color:#fff;
+      box-shadow:0 10px 24px rgba(0,64,209,.18);
     }
 
-    .summary-item strong {
-      display: block;
-      font-size: 14px;
-      margin-bottom: 2px;
+    .nav-row{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
     }
 
-    .summary-item span {
-      display: block;
-      color: var(--sub);
-      font-size: 13px;
-      line-height: 1.55;
+    .nav-num{
+      width:28px;height:28px;border-radius:999px;
+      display:grid;place-items:center;
+      font-size:13px;font-weight:800;
+      background:var(--brand-soft);
+      color:var(--brand);
+      flex:0 0 auto;
     }
 
-    .top-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 14px;
-      margin-bottom: 24px;
+    .nav-btn.active .nav-num{
+      background:rgba(255,255,255,.18);
+      color:#fff;
     }
 
-    .mini-step {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      padding: 18px;
-      box-shadow: 0 6px 20px rgba(17,24,39,0.04);
+    .nav-copy strong{
+      display:block;
+      font-size:14px;
+      line-height:1.4;
+      margin-bottom:2px;
     }
 
-    .mini-step .num {
-      display: inline-grid;
-      place-items: center;
-      width: 34px;
-      height: 34px;
-      border-radius: 12px;
-      background: var(--brand-soft);
-      color: var(--brand);
-      font-size: 14px;
-      font-weight: 900;
-      margin-bottom: 12px;
+    .nav-copy span{
+      display:block;
+      font-size:12px;
+      opacity:.9;
+      line-height:1.4;
     }
 
-    .mini-step strong {
-      display: block;
-      font-size: 16px;
-      margin-bottom: 6px;
-      line-height: 1.4;
+    .main{
+      padding:28px;
     }
 
-    .mini-step p {
-      margin: 0;
-      color: var(--sub);
-      font-size: 14px;
-      line-height: 1.65;
+    .hero{
+      background:linear-gradient(135deg,#fff 0%,#f5f9ff 60%,#eef4ff 100%);
+      border:1px solid var(--line);
+      border-radius:32px;
+      padding:30px;
+      box-shadow:var(--shadow);
+      margin-bottom:22px;
     }
 
-    .alert-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin-bottom: 24px;
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      padding:8px 12px;
+      border-radius:999px;
+      background:var(--brand-soft);
+      color:var(--brand);
+      font-size:13px;
+      font-weight:800;
+      margin-bottom:14px;
     }
 
-    .alert-card {
-      border-radius: 22px;
-      padding: 18px 20px;
-      border: 1px solid transparent;
+    .hero h1{
+      margin:0 0 12px;
+      font-size:42px;
+      line-height:1.18;
+      letter-spacing:-.03em;
     }
 
-    .alert-card h3 {
-      margin: 0 0 8px;
-      font-size: 18px;
+    .hero p{
+      margin:0;
+      color:var(--sub);
+      font-size:16px;
+      line-height:1.7;
+      max-width:760px;
     }
 
-    .alert-card p {
-      margin: 0;
-      font-size: 14px;
-      line-height: 1.7;
+    .hero-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:20px;
     }
 
-    .alert-card.warn {
-      background: var(--warn-soft);
-      border-color: #ffd6ae;
+    .btn{
+      min-height:48px;
+      padding:0 18px;
+      border-radius:14px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      font-size:15px;
+      font-weight:800;
+      transition:.2s ease;
     }
 
-    .alert-card.danger {
-      background: var(--danger-soft);
-      border-color: #ffd1cc;
+    .btn.primary{
+      background:var(--brand);
+      color:#fff;
+      box-shadow:0 10px 22px rgba(0,64,209,.18);
     }
 
-    .section {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: 30px;
-      box-shadow: var(--shadow);
-      padding: 28px;
-      margin-bottom: 24px;
-      scroll-margin-top: 24px;
-    }
-
-    .section-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 18px;
-      margin-bottom: 20px;
-    }
-
-    .section-title-wrap {
-      display: grid;
-      gap: 10px;
-    }
-
-    .section-badge {
-      display: inline-flex;
-      width: fit-content;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: var(--brand-soft);
-      color: var(--brand);
-      font-size: 13px;
-      font-weight: 900;
-    }
-
-    .section h2 {
-      margin: 0;
-      font-size: 32px;
-      line-height: 1.25;
-      letter-spacing: -0.03em;
-    }
-
-    .section-desc {
-      margin: 0;
-      color: var(--sub);
-      font-size: 16px;
-      line-height: 1.75;
-      max-width: 860px;
-    }
-
-    .step-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      border-radius: 999px;
-      padding: 10px 14px;
-      background: #f8fbff;
-      border: 1px solid var(--line);
-      color: var(--sub);
-      font-size: 13px;
-      font-weight: 800;
-      white-space: nowrap;
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 18px;
-      margin-top: 18px;
-    }
-
-    .grid-2.equal {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .card {
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      padding: 20px;
-      background: #fff;
-    }
-
-    .card.soft {
-      background: #fbfcff;
-    }
-
-    .card h3 {
-      margin: 0 0 12px;
-      font-size: 20px;
-      line-height: 1.4;
-    }
-
-    .card h4 {
-      margin: 0 0 10px;
-      font-size: 16px;
-      line-height: 1.4;
-    }
-
-    .card p {
-      margin: 0;
-      color: var(--sub);
-      font-size: 14px;
-      line-height: 1.75;
-    }
-
-    .bullet-list,
-    .check-list,
-    .danger-list,
-    .faq-list {
-      display: grid;
-      gap: 10px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .bullet-item,
-    .check-item,
-    .danger-item {
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-      font-size: 15px;
-      color: var(--text);
-      line-height: 1.7;
-    }
-
-    .bullet-dot,
-    .check-dot,
-    .danger-dot {
-      flex: 0 0 auto;
-      width: 24px;
-      height: 24px;
-      border-radius: 999px;
-      display: grid;
-      place-items: center;
-      margin-top: 1px;
-      font-size: 13px;
-      font-weight: 900;
-    }
+    .btn.primary:hover{background:var(--brand-strong)}
 
-    .bullet-dot {
-      background: var(--brand-soft);
-      color: var(--brand);
+    .btn.secondary{
+      background:#fff;
+      color:var(--text);
+      border:1px solid var(--line);
     }
 
-    .check-dot {
-      background: var(--ok-soft);
-      color: var(--ok);
+    .btn.secondary:hover{
+      border-color:#c8d8fb;
+      color:var(--brand);
     }
 
-    .danger-dot {
-      background: var(--danger-soft);
-      color: var(--danger);
+    .top-summary{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
+      margin-bottom:22px;
     }
 
-    .mini-note {
-      margin-top: 14px;
-      padding: 14px 16px;
-      border-radius: 16px;
-      background: #f8fbff;
-      color: var(--sub);
-      font-size: 14px;
-      line-height: 1.7;
-      border: 1px solid var(--line);
+    .mini-card{
+      background:var(--surface);
+      border:1px solid var(--line);
+      border-radius:20px;
+      padding:18px;
+      box-shadow:0 6px 18px rgba(17,24,39,.04);
     }
 
-    .image-box {
-      border-radius: 22px;
-      border: 1px dashed #cfd8ea;
-      background: linear-gradient(180deg, #f9fbff 0%, #f2f6fd 100%);
-      padding: 18px;
-      min-height: 220px;
-      display: grid;
-      gap: 12px;
-      align-content: start;
+    .mini-no{
+      width:34px;height:34px;border-radius:12px;
+      background:var(--brand-soft);
+      color:var(--brand);
+      display:grid;place-items:center;
+      font-size:14px;font-weight:900;
+      margin-bottom:12px;
     }
 
-    .image-box h4 {
-      margin: 0;
-      font-size: 16px;
+    .mini-card strong{
+      display:block;
+      font-size:16px;
+      margin-bottom:6px;
     }
 
-    .image-box p {
-      margin: 0;
-      color: var(--sub);
-      font-size: 14px;
-      line-height: 1.7;
+    .mini-card span{
+      display:block;
+      font-size:13px;
+      color:var(--sub);
+      line-height:1.6;
     }
 
-    .image-placeholder-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 4px;
+    .section{
+      background:var(--surface);
+      border:1px solid var(--line);
+      border-radius:28px;
+      padding:26px;
+      box-shadow:var(--shadow);
+      margin-bottom:22px;
+      scroll-margin-top:20px;
     }
 
-    .image-placeholder {
-      min-height: 115px;
-      border-radius: 16px;
-      background: #ffffff;
-      border: 1px solid #dde5f3;
-      display: grid;
-      place-items: center;
-      color: #8290a7;
-      text-align: center;
-      font-size: 13px;
-      padding: 10px;
-      line-height: 1.55;
-      font-weight: 700;
+    .section-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:16px;
+      margin-bottom:18px;
     }
 
-    .compare-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin-top: 16px;
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      padding:8px 12px;
+      border-radius:999px;
+      background:var(--brand-soft);
+      color:var(--brand);
+      font-size:13px;
+      font-weight:900;
+      margin-bottom:10px;
     }
 
-    .compare-card {
-      border-radius: 20px;
-      padding: 18px;
-      border: 1px solid var(--line);
+    .section h2{
+      margin:0 0 8px;
+      font-size:30px;
+      line-height:1.25;
+      letter-spacing:-.03em;
     }
 
-    .compare-card.good {
-      background: #f4fff8;
-      border-color: #cdeedc;
+    .section p.desc{
+      margin:0;
+      color:var(--sub);
+      font-size:15px;
+      line-height:1.7;
     }
 
-    .compare-card.bad {
-      background: #fff7f6;
-      border-color: #ffd7d2;
+    .chip{
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:#f8fbff;
+      color:var(--sub);
+      font-size:13px;
+      font-weight:800;
+      white-space:nowrap;
     }
 
-    .compare-card h4 {
-      margin: 0 0 10px;
-      font-size: 17px;
+    .grid-2{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
     }
 
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 16px;
+    .info-card{
+      border:1px solid var(--line);
+      border-radius:20px;
+      padding:18px;
+      background:#fff;
     }
 
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 10px 12px;
-      border-radius: 999px;
-      background: #f8fbff;
-      border: 1px solid var(--line);
-      color: var(--sub);
-      font-size: 13px;
-      font-weight: 700;
+    .info-card h3{
+      margin:0 0 12px;
+      font-size:18px;
     }
 
-    .check-panel {
-      margin-top: 20px;
-      border-radius: 22px;
-      border: 1px solid var(--line);
-      background: #fbfcff;
-      padding: 18px;
+    .list{
+      list-style:none;
+      margin:0;
+      padding:0;
+      display:grid;
+      gap:10px;
     }
 
-    .check-panel h3 {
-      margin: 0 0 12px;
-      font-size: 18px;
+    .list li{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      font-size:15px;
+      line-height:1.6;
     }
 
-    .check-group {
-      display: grid;
-      gap: 10px;
+    .dot{
+      width:24px;height:24px;border-radius:999px;
+      display:grid;place-items:center;
+      flex:0 0 auto;
+      margin-top:1px;
+      font-size:13px;
+      font-weight:900;
     }
 
-    .checkbox-item {
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-      padding: 14px;
-      border-radius: 16px;
-      border: 1px solid #e3eaf6;
-      background: #fff;
-      transition: all 0.2s ease;
-    }
-
-    .checkbox-item:hover {
-      border-color: #c9dafc;
-      background: #fbfdff;
-    }
-
-    .checkbox-item input {
-      margin-top: 3px;
-      width: 18px;
-      height: 18px;
-      accent-color: var(--brand);
-      cursor: pointer;
-      flex: 0 0 auto;
-    }
-
-    .checkbox-copy strong {
-      display: block;
-      font-size: 15px;
-      margin-bottom: 2px;
-    }
-
-    .checkbox-copy span {
-      display: block;
-      color: var(--sub);
-      font-size: 13px;
-      line-height: 1.6;
-    }
-
-    .step-actions {
-      display: flex;
-      justify-content: flex-end;
-      margin-top: 16px;
-    }
-
-    .step-next {
-      opacity: 0.55;
-      pointer-events: none;
-    }
-
-    .step-next.enabled {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .transport-tabs {
-      display: inline-flex;
-      background: #f3f6fb;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 6px;
-      gap: 6px;
-      margin-bottom: 18px;
-    }
+    .dot.ok{background:var(--ok-bg);color:var(--ok)}
+    .dot.warn{background:var(--warn-bg);color:var(--warn)}
+    .dot.danger{background:var(--danger-bg);color:var(--danger)}
+    .dot.brand{background:var(--brand-soft);color:var(--brand)}
 
-    .transport-tab {
-      min-height: 42px;
-      padding: 0 16px;
-      border-radius: 12px;
-      color: var(--sub);
-      font-size: 14px;
-      font-weight: 800;
+    .image-box{
+      margin-top:16px;
+      border:1px dashed #cfd8ea;
+      border-radius:20px;
+      padding:18px;
+      background:linear-gradient(180deg,#fbfdff 0%,#f4f8ff 100%);
     }
 
-    .transport-tab.active {
-      background: var(--brand);
-      color: #fff;
-      box-shadow: 0 8px 18px rgba(0, 64, 209, 0.18);
+    .image-box h4{
+      margin:0 0 8px;
+      font-size:16px;
     }
 
-    .transport-panel {
-      display: none;
+    .image-box p{
+      margin:0;
+      font-size:13px;
+      color:var(--sub);
+      line-height:1.6;
     }
 
-    .transport-panel.active {
-      display: block;
+    .image-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+      margin-top:12px;
     }
 
-    .faq-wrap {
-      display: grid;
-      gap: 12px;
-      margin-top: 18px;
+    .placeholder{
+      min-height:110px;
+      border-radius:14px;
+      border:1px solid #dbe4f2;
+      background:#fff;
+      color:#7b8799;
+      display:grid;
+      place-items:center;
+      text-align:center;
+      font-size:12px;
+      font-weight:700;
+      padding:10px;
+      line-height:1.5;
     }
 
-    .faq-item {
-      border-radius: 18px;
-      border: 1px solid var(--line);
-      background: #fff;
-      overflow: hidden;
+    .check-panel{
+      margin-top:18px;
+      padding:18px;
+      border-radius:20px;
+      border:1px solid var(--line);
+      background:#fbfcff;
     }
 
-    .faq-q {
-      width: 100%;
-      padding: 18px 20px;
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      align-items: center;
-      text-align: left;
-      font-size: 15px;
-      font-weight: 800;
-      color: var(--text);
+    .check-panel h3{
+      margin:0 0 12px;
+      font-size:18px;
     }
 
-    .faq-q span:last-child {
-      color: var(--brand);
-      font-size: 20px;
-      line-height: 1;
-      flex: 0 0 auto;
+    .check-group{
+      display:grid;
+      gap:10px;
     }
 
-    .faq-a {
-      display: none;
-      padding: 0 20px 18px;
-      color: var(--sub);
-      font-size: 14px;
-      line-height: 1.8;
+    .check-item{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      padding:14px;
+      border-radius:16px;
+      border:1px solid #e3eaf6;
+      background:#fff;
     }
 
-    .faq-item.open .faq-a {
-      display: block;
+    .check-item input{
+      width:18px;
+      height:18px;
+      margin-top:2px;
+      accent-color:var(--brand);
+      flex:0 0 auto;
     }
 
-    .footer-cta {
-      background: linear-gradient(135deg, #0f172a 0%, #1f3f90 100%);
-      color: #fff;
-      border-radius: 28px;
-      padding: 28px;
-      box-shadow: var(--shadow);
+    .check-copy strong{
+      display:block;
+      font-size:15px;
+      margin-bottom:2px;
     }
 
-    .footer-cta h2 {
-      margin: 0 0 10px;
-      font-size: 30px;
-      line-height: 1.3;
+    .check-copy span{
+      display:block;
+      font-size:13px;
+      color:var(--sub);
+      line-height:1.55;
     }
 
-    .footer-cta p {
-      margin: 0;
-      color: rgba(255,255,255,0.85);
-      font-size: 15px;
-      line-height: 1.8;
-      max-width: 760px;
+    .step-actions{
+      display:flex;
+      justify-content:flex-end;
+      margin-top:14px;
     }
 
-    .footer-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 18px;
+    .step-next{
+      opacity:.45;
+      pointer-events:none;
     }
 
-    .footer-actions .btn.secondary {
-      color: #fff;
-      border-color: rgba(255,255,255,0.28);
-      background: rgba(255,255,255,0.06);
+    .step-next.enabled{
+      opacity:1;
+      pointer-events:auto;
     }
 
-    .footer-actions .btn.secondary:hover {
-      background: rgba(255,255,255,0.12);
-      border-color: rgba(255,255,255,0.4);
+    .danger-section{
+      background:linear-gradient(180deg,#fff 0%,#fff7f6 100%);
     }
 
-    .mobile-topbar {
-      display: none;
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--line);
-      padding: 14px 16px;
+    .faq-wrap{
+      display:grid;
+      gap:10px;
     }
 
-    .mobile-topbar-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
+    .faq-item{
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:#fff;
+      overflow:hidden;
     }
 
-    .mobile-title {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      min-width: 0;
+    .faq-q{
+      width:100%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      text-align:left;
+      padding:16px 18px;
+      font-size:15px;
+      font-weight:800;
     }
 
-    .mobile-title strong {
-      display: block;
-      font-size: 15px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+    .faq-a{
+      display:none;
+      padding:0 18px 16px;
+      color:var(--sub);
+      font-size:14px;
+      line-height:1.7;
     }
 
-    .mobile-title span {
-      display: block;
-      color: var(--muted);
-      font-size: 12px;
+    .faq-item.open .faq-a{
+      display:block;
     }
 
-    .mobile-menu-btn {
-      min-width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      border: 1px solid var(--line);
-      background: #fff;
-      font-size: 18px;
-      font-weight: 900;
-      color: var(--brand);
+    .footer{
+      background:linear-gradient(135deg,#10203f 0%,#1f3d8f 100%);
+      color:#fff;
+      border-radius:28px;
+      padding:26px;
+      box-shadow:var(--shadow);
     }
 
-    .mobile-drawer {
-      position: fixed;
-      inset: 0;
-      z-index: 60;
-      display: none;
+    .footer h2{
+      margin:0 0 10px;
+      font-size:28px;
+      line-height:1.3;
     }
 
-    .mobile-drawer.show {
-      display: block;
+    .footer p{
+      margin:0;
+      color:rgba(255,255,255,.86);
+      font-size:15px;
+      line-height:1.7;
+      max-width:720px;
     }
 
-    .drawer-backdrop {
-      position: absolute;
-      inset: 0;
-      background: rgba(15, 23, 42, 0.42);
+    .footer-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:18px;
     }
 
-    .drawer-panel {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: min(88vw, 360px);
-      height: 100%;
-      background: #fff;
-      padding: 20px;
-      overflow-y: auto;
-      box-shadow: -12px 0 32px rgba(17,24,39,0.18);
+    .footer .btn.secondary{
+      color:#fff;
+      border-color:rgba(255,255,255,.28);
+      background:rgba(255,255,255,.06);
     }
 
-    .drawer-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 18px;
+    .footer .btn.secondary:hover{
+      background:rgba(255,255,255,.12);
     }
 
-    .drawer-top strong {
-      font-size: 18px;
+    .mobile-top{
+      display:none;
+      position:sticky;
+      top:0;
+      z-index:30;
+      background:rgba(255,255,255,.92);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--line);
+      padding:14px 16px;
     }
 
-    .drawer-close {
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
-      border: 1px solid var(--line);
-      background: #fff;
-      color: var(--text);
-      font-size: 20px;
+    .mobile-top-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
     }
 
-    .modal {
-      position: fixed;
-      inset: 0;
-      z-index: 80;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
+    .mobile-title{
+      display:flex;
+      gap:10px;
+      align-items:center;
     }
 
-    .modal.show {
-      display: flex;
+    .mobile-title strong{
+      display:block;
+      font-size:15px;
     }
 
-    .modal-backdrop {
-      position: absolute;
-      inset: 0;
-      background: rgba(15, 23, 42, 0.48);
+    .mobile-title span{
+      display:block;
+      font-size:12px;
+      color:var(--sub);
+      margin-top:2px;
     }
 
-    .modal-dialog {
-      position: relative;
-      width: min(680px, 100%);
-      background: #fff;
-      border-radius: 28px;
-      box-shadow: 0 24px 60px rgba(17,24,39,0.2);
-      border: 1px solid var(--line);
-      overflow: hidden;
+    .mobile-menu{
+      width:44px;height:44px;border-radius:12px;
+      border:1px solid var(--line);
+      background:#fff;
+      color:var(--brand);
+      font-size:18px;
+      font-weight:900;
     }
 
-    .modal-head {
-      padding: 22px 24px 12px;
-      border-bottom: 1px solid var(--line);
+    .mobile-drawer{
+      position:fixed;
+      inset:0;
+      display:none;
+      z-index:40;
     }
 
-    .modal-head h3 {
-      margin: 0 0 8px;
-      font-size: 24px;
-      line-height: 1.35;
-    }
+    .mobile-drawer.show{display:block}
 
-    .modal-head p {
-      margin: 0;
-      color: var(--sub);
-      font-size: 14px;
-      line-height: 1.7;
+    .drawer-bg{
+      position:absolute;inset:0;
+      background:rgba(15,23,42,.45);
     }
 
-    .modal-body {
-      padding: 20px 24px;
+    .drawer{
+      position:absolute;
+      top:0;right:0;
+      width:min(88vw,340px);
+      height:100%;
+      background:#fff;
+      padding:18px;
+      overflow:auto;
+      box-shadow:-10px 0 28px rgba(17,24,39,.18);
     }
 
-    .modal-body .danger-list {
-      gap: 12px;
+    .drawer-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:16px;
     }
 
-    .modal-foot {
-      display: flex;
-      justify-content: flex-end;
-      gap: 10px;
-      padding: 16px 24px 24px;
+    .drawer-close{
+      width:40px;height:40px;border-radius:12px;
+      border:1px solid var(--line);
+      background:#fff;
+      font-size:20px;
     }
-
-    @media (max-width: 1200px) {
-      .hero-inner {
-        grid-template-columns: 1fr;
-      }
-
-      .top-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
 
-      .grid-2,
-      .grid-2.equal,
-      .alert-row {
-        grid-template-columns: 1fr;
-      }
+    @media (max-width:1100px){
+      .top-summary{grid-template-columns:repeat(2,1fr)}
+      .grid-2{grid-template-columns:1fr}
     }
-
-    @media (max-width: 960px) {
-      .layout {
-        grid-template-columns: 1fr;
-      }
-
-      .sidebar {
-        display: none;
-      }
-
-      .mobile-topbar {
-        display: block;
-      }
-
-      .main {
-        padding: 18px;
-      }
 
-      .hero-inner,
-      .section {
-        padding: 22px;
-      }
-
-      .hero h1 {
-        font-size: 34px;
-      }
-
-      .section h2 {
-        font-size: 26px;
-      }
-
-      .top-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .compare-grid,
-      .image-placeholder-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .section-head {
-        flex-direction: column;
-      }
+    @media (max-width:900px){
+      .layout{grid-template-columns:1fr}
+      .sidebar{display:none}
+      .mobile-top{display:block}
+      .main{padding:18px}
+      .hero,.section,.footer{padding:20px}
+      .hero h1{font-size:32px}
+      .section h2{font-size:25px}
+      .section-head{flex-direction:column}
+      .image-grid{grid-template-columns:1fr}
     }
-
-    @media (max-width: 640px) {
-      .hero h1 {
-        font-size: 29px;
-      }
-
-      .btn {
-        width: 100%;
-      }
-
-      .hero-actions,
-      .footer-actions {
-        flex-direction: column;
-      }
-
-      .hero-inner,
-      .section,
-      .footer-cta {
-        padding: 18px;
-      }
 
-      .transport-tabs {
-        width: 100%;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-      }
+    @media (max-width:640px){
+      .top-summary{grid-template-columns:1fr}
+      .hero-actions,.footer-actions{flex-direction:column}
+      .btn{width:100%}
+      .hero h1{font-size:28px}
     }
   </style>
 </head>
 <body>
-  <div class="mobile-topbar">
-    <div class="mobile-topbar-inner">
+  <div class="mobile-top">
+    <div class="mobile-top-inner">
       <div class="mobile-title">
-        <div class="brand-badge">go</div>
+        <div class="logo-badge">go</div>
         <div>
           <strong>초도입고 가이드</strong>
-          <span>이것만 지키면 완벽해요</span>
+          <span>이것만 지키면 됩니다</span>
         </div>
       </div>
-      <button class="mobile-menu-btn" id="mobileMenuOpen" aria-label="메뉴 열기">☰</button>
+      <button class="mobile-menu" id="mobileMenuOpen">☰</button>
     </div>
   </div>
 
   <div class="mobile-drawer" id="mobileDrawer">
-    <div class="drawer-backdrop" id="drawerBackdrop"></div>
-    <aside class="drawer-panel">
-      <div class="drawer-top">
+    <div class="drawer-bg" id="drawerBg"></div>
+    <div class="drawer">
+      <div class="drawer-head">
         <strong>가이드 메뉴</strong>
-        <button class="drawer-close" id="mobileMenuClose" aria-label="메뉴 닫기">×</button>
+        <button class="drawer-close" id="mobileMenuClose">×</button>
       </div>
-
       <div class="side-card">
         <h3>진행률</h3>
         <div class="progress">
-          <div class="progress-bar">
-            <div class="progress-fill" id="mobileProgressFill"></div>
-          </div>
+          <div class="progress-bar"><div class="progress-fill" id="mobileProgressFill"></div></div>
           <div class="progress-text">
-            <span id="mobileProgressCount">0 / 5 완료</span>
+            <span id="mobileProgressCount">0 / 4 완료</span>
             <span id="mobileProgressPercent">0%</span>
           </div>
         </div>
       </div>
-
       <div class="nav-list" id="mobileNavList"></div>
-    </aside>
-  </div>
-
-  <div class="modal" id="noticeModal" aria-hidden="true">
-    <div class="modal-backdrop" id="modalBackdrop"></div>
-    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <div class="modal-head">
-        <h3 id="modalTitle">다음 단계로 넘어가기 전, 이것만 꼭 확인해주세요</h3>
-        <p>입고 지연과 반려를 줄이기 위해 반드시 숙지해야 하는 기준만 모았습니다.</p>
-      </div>
-      <div class="modal-body">
-        <ul class="danger-list" id="modalList"></ul>
-      </div>
-      <div class="modal-foot">
-        <button class="btn secondary" id="modalCloseBtn">다시 볼게요</button>
-        <button class="btn primary" id="modalConfirmBtn">확인했어요</button>
-      </div>
     </div>
   </div>
 
   <div class="layout">
     <aside class="sidebar">
-      <div class="brand">
-        <div class="brand-badge">go</div>
-        <div class="brand-text">
-          <strong>POOMGO 입고가이드</strong>
-          <span>초도입고 필수 기준 안내</span>
+      <div class="logo">
+        <div class="logo-badge">go</div>
+        <div class="logo-text">
+          <strong>초도입고 가이드</strong>
+          <span>핵심만 빠르게 확인</span>
         </div>
       </div>
 
       <div class="side-card">
-        <h2>처음 입고하신다면</h2>
-        <p>
-          아래 5단계만 순서대로 확인해주세요.<br />
-          체크를 완료하면 다음 단계로 넘어갈 수 있도록 구성했습니다.
-        </p>
+        <h3>이 가이드는 이렇게 보세요</h3>
+        <p>긴 설명은 뺐어요.<br>체크만 따라오면 됩니다.</p>
 
         <div class="progress">
-          <div class="progress-bar">
-            <div class="progress-fill" id="progressFill"></div>
-          </div>
+          <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
           <div class="progress-text">
-            <span id="progressCount">0 / 5 완료</span>
+            <span id="progressCount">0 / 4 완료</span>
             <span id="progressPercent">0%</span>
           </div>
         </div>
@@ -1263,682 +770,325 @@
 
       <div class="side-card">
         <h3>빠른 이동</h3>
-        <div class="quick-links">
-          <a class="quick-link" href="#delay-danger">
-            <span>입고 지연 / 반려 사례</span>
-            <span>→</span>
-          </a>
-          <a class="quick-link" href="#transport-guide">
-            <span>택배 / 차량 입고 기준</span>
-            <span>→</span>
-          </a>
-          <a class="quick-link" href="#faq">
-            <span>자주 묻는 질문</span>
-            <span>→</span>
-          </a>
-        </div>
+        <p><a href="#danger">지연 / 반려 사례 보기</a></p>
+        <p style="margin-top:6px;"><a href="#faq">FAQ 보기</a></p>
       </div>
     </aside>
 
     <main class="main">
       <section class="hero">
-        <div class="hero-inner">
-          <div>
-            <div class="eyebrow">초도입고 전 필수 확인</div>
-            <h1>초도입고,<br />이것만 지키면 문제없이 입고됩니다</h1>
-            <p>
-              처음 입고하시는 판매자분들도 쉽게 따라오실 수 있도록 꼭 필요한 내용만 정리했습니다.
-              상품 정보, 포장, 바코드, 입고 예약과 발송 기준이 맞지 않으면 입고가 지연되거나
-              반려될 수 있으니, 아래 순서대로 확인해주세요.
-            </p>
-            <div class="hero-actions">
-              <a href="#step1" class="btn primary">가이드 시작하기</a>
-              <a href="#delay-danger" class="btn secondary">반려 사례 먼저 보기</a>
-            </div>
-          </div>
-
-          <div class="hero-panel">
-            <div class="summary-card">
-              <h3>이 페이지에서 바로 확인할 수 있어요</h3>
-              <div class="summary-list">
-                <div class="summary-item">
-                  <div class="summary-icon">📦</div>
-                  <div>
-                    <strong>입고 전 준비사항</strong>
-                    <span>상품 정보, 바코드, 수량, 소비기한·제조LOT 확인</span>
-                  </div>
-                </div>
-                <div class="summary-item">
-                  <div class="summary-icon">🏷️</div>
-                  <div>
-                    <strong>포장 / 라벨 기준</strong>
-                    <span>혼적 금지, 단일 SKU 구성, 외부 라벨 기재 기준</span>
-                  </div>
-                </div>
-                <div class="summary-item">
-                  <div class="summary-icon">🚚</div>
-                  <div>
-                    <strong>택배 / 차량 입고 기준</strong>
-                    <span>예약, 입고증, 박스 수량, 팔레트 적재 기준</span>
-                  </div>
-                </div>
-                <div class="summary-item">
-                  <div class="summary-icon">⚠️</div>
-                  <div>
-                    <strong>지연 / 반려 포인트</strong>
-                    <span>실무에서 가장 많이 발생하는 오류를 한 번에 확인</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="summary-card">
-              <h3>핵심 원칙 4가지</h3>
-              <div class="pill-row">
-                <span class="pill">✔ 실물과 등록 정보 일치</span>
-                <span class="pill">✔ 1박스 = 단일 SKU</span>
-                <span class="pill">✔ 스캔 가능한 바코드</span>
-                <span class="pill">✔ 예약 / 공유 후 입고</span>
-              </div>
-            </div>
-          </div>
+        <div class="eyebrow">초도입고 전 필수 확인</div>
+        <h1>초도입고,<br>이것만 지키면 됩니다</h1>
+        <p>
+          복잡한 설명은 빼고, 실제로 꼭 지켜야 하는 기준만 남겼습니다.
+          아래 4가지만 확인해주세요.
+        </p>
+        <div class="hero-actions">
+          <a href="#step1" class="btn primary">가이드 시작하기</a>
+          <a href="#danger" class="btn secondary">반려 사례 보기</a>
         </div>
       </section>
 
-      <section class="top-grid">
-        <div class="mini-step">
-          <div class="num">1</div>
-          <strong>상품 정보 확인</strong>
-          <p>SKU, 수량, 바코드, 소비기한·제조LOT 등 기본 정보를 먼저 맞춰주세요.</p>
+      <section class="top-summary">
+        <div class="mini-card">
+          <div class="mini-no">1</div>
+          <strong>상품 정보</strong>
+          <span>상품명 / 수량 / 바코드 확인</span>
         </div>
-        <div class="mini-step">
-          <div class="num">2</div>
-          <strong>포장 기준 확인</strong>
-          <p>혼적 없이, 정형화된 상태로, 외부 정보가 정확히 보이도록 포장해야 합니다.</p>
+        <div class="mini-card">
+          <div class="mini-no">2</div>
+          <strong>포장 기준</strong>
+          <span>한 박스 = 한 SKU</span>
         </div>
-        <div class="mini-step">
-          <div class="num">3</div>
-          <strong>바코드 / 라벨 확인</strong>
-          <p>모든 SKU는 식별 가능해야 하며, 중복 바코드는 제거 또는 덮밥 후 입고해야 합니다.</p>
+        <div class="mini-card">
+          <div class="mini-no">3</div>
+          <strong>바코드</strong>
+          <span>스캔 가능 / 중복 제거</span>
         </div>
-        <div class="mini-step">
-          <div class="num">4</div>
-          <strong>발송 / 예약 확인</strong>
-          <p>입고 예약, 입고증, 송장번호, 차량·팔레트 조건까지 사전에 맞춰야 합니다.</p>
-        </div>
-      </section>
-
-      <section class="alert-row">
-        <div class="alert-card warn">
-          <h3>운영 시간 꼭 확인해주세요</h3>
-          <p>
-            입고 운영 시간은 평일 기준으로 운영되며, 운영 시간 외 도착 시 대기나 추가 비용이 발생할 수 있습니다.
-            실제 운영 시간과 입고 가능 시간은 센터 안내 기준으로 확인해주세요.
-          </p>
-        </div>
-        <div class="alert-card danger">
-          <h3>사전 예약 없이 도착하면 지연될 수 있어요</h3>
-          <p>
-            입고 예약, 입고증, 송장번호 또는 차량 정보가 누락되면 당일 검수 및 입고가 어려울 수 있습니다.
-            먼저 예약과 정보 입력을 완료한 뒤 발송해 주세요.
-          </p>
+        <div class="mini-card">
+          <div class="mini-no">4</div>
+          <strong>예약 / 발송</strong>
+          <span>예약 후 송장 / 차량 정보 입력</span>
         </div>
       </section>
 
       <section class="section" id="step1">
         <div class="section-head">
-          <div class="section-title-wrap">
-            <div class="section-badge">STEP 1</div>
-            <h2>입고할 상품 정보를 먼저 맞춰주세요</h2>
-            <p class="section-desc">
-              초도입고의 첫 번째 기준은 <strong>시스템에 등록된 정보와 실제 입고 상품 정보가 일치하는지</strong>입니다.
-              상품명, 옵션명, 수량, 바코드, 소비기한·제조LOT가 다르면 검수 지연이나 반려가 발생할 수 있습니다.
-            </p>
+          <div>
+            <div class="badge">STEP 1</div>
+            <h2>상품 정보 확인</h2>
+            <p class="desc">실물 정보와 등록 정보가 같아야 합니다.</p>
           </div>
-          <div class="step-chip">핵심: 실물 정보 일치</div>
+          <div class="chip">핵심: 정보 일치</div>
         </div>
 
         <div class="grid-2">
-          <div class="card soft">
-            <h3>꼭 확인할 항목</h3>
-            <ul class="bullet-list">
-              <li class="bullet-item"><span class="bullet-dot">1</span><span><strong>상품명 / 옵션명</strong>이 시스템 등록 정보와 동일한지 확인</span></li>
-              <li class="bullet-item"><span class="bullet-dot">2</span><span><strong>수량</strong>이 입고 예약 수량과 일치하는지 확인</span></li>
-              <li class="bullet-item"><span class="bullet-dot">3</span><span><strong>바코드</strong>가 SKU와 정확히 연결되는지 확인</span></li>
-              <li class="bullet-item"><span class="bullet-dot">4</span><span><strong>소비기한 / 제조LOT</strong> 관리 상품은 구분 포장 여부 확인</span></li>
-              <li class="bullet-item"><span class="bullet-dot">5</span><span><strong>세트 / 사은품 / 행사 물량</strong> 여부를 사전에 정리</span></li>
-            </ul>
-            <div class="mini-note">
-              동일한 SKU라도 소비기한이나 제조LOT가 다르면 분리 포장 후 입고해야 합니다.
-            </div>
-          </div>
-
-          <div class="image-box">
-            <h4>실무 포인트</h4>
-            <p>외부 박스에는 SKU명, 박스 입수량, 제조LOT/소비기한(관리 시), 바코드 번호가 기재되어야 하며, 기재 정보와 실제 내용물이 일치해야 합니다.</p>
-            <div class="image-placeholder-grid">
-              <div class="image-placeholder">외부 박스 라벨 예시<br />SKU / 수량 / LOT / 기한 / 바코드</div>
-              <div class="image-placeholder">소비기한 상이 시<br />박스 분리 포장</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="compare-grid">
-          <div class="compare-card good">
-            <h4>이렇게 준비해주세요</h4>
-            <ul class="check-list">
-              <li class="check-item"><span class="check-dot">✓</span><span>입고 예정 SKU 목록을 먼저 정리</span></li>
-              <li class="check-item"><span class="check-dot">✓</span><span>옵션별 실물과 등록 정보 재확인</span></li>
-              <li class="check-item"><span class="check-dot">✓</span><span>기한 관리 상품은 날짜별 분리</span></li>
+          <div class="info-card">
+            <h3>이렇게 해주세요</h3>
+            <ul class="list">
+              <li><span class="dot ok">✓</span><span>상품명 / 옵션명 확인</span></li>
+              <li><span class="dot ok">✓</span><span>수량 확인</span></li>
+              <li><span class="dot ok">✓</span><span>바코드 확인</span></li>
             </ul>
           </div>
-          <div class="compare-card bad">
-            <h4>이런 경우 문제가 생겨요</h4>
-            <ul class="danger-list">
-              <li class="danger-item"><span class="danger-dot">!</span><span>옵션명만 다르고 실제 상품이 같다고 판단해 임의 발송</span></li>
-              <li class="danger-item"><span class="danger-dot">!</span><span>세트 상품인데 단품 기준으로 포장</span></li>
-              <li class="danger-item"><span class="danger-dot">!</span><span>사은품 포함 행사 물량인데 사전 공유 누락</span></li>
+          <div class="info-card">
+            <h3>이건 안돼요</h3>
+            <ul class="list">
+              <li><span class="dot danger">!</span><span>등록 정보와 다른 상품 발송</span></li>
+              <li><span class="dot danger">!</span><span>세트 / 사은품 사전 공유 없음</span></li>
+              <li><span class="dot danger">!</span><span>소비기한 다른 상품 혼합</span></li>
             </ul>
           </div>
         </div>
 
-        <div class="check-panel" data-step="1">
+        <div class="image-box">
+          <h4>이미지 넣는 자리</h4>
+          <p>상품명 / 옵션명 / 바코드 / 소비기한 표시 예시 이미지를 넣어주세요.</p>
+          <div class="image-grid">
+            <div class="placeholder">상품 정보 예시</div>
+            <div class="placeholder">바코드 예시</div>
+            <div class="placeholder">기한 표시 예시</div>
+          </div>
+        </div>
+
+        <div class="check-panel">
           <h3>STEP 1 체크</h3>
           <div class="check-group">
-            <label class="checkbox-item">
-              <input type="checkbox" class="step-check" data-step="1" />
-              <div class="checkbox-copy">
-                <strong>상품명 / 옵션명을 확인했어요</strong>
-                <span>시스템 등록 정보와 실제 입고 상품 정보가 일치합니다.</span>
-              </div>
-            </label>
-            <label class="checkbox-item">
-              <input type="checkbox" class="step-check" data-step="1" />
-              <div class="checkbox-copy">
-                <strong>수량 / 바코드 / 기한 정보를 확인했어요</strong>
-                <span>수량, 바코드, 소비기한 / 제조LOT 관리 여부를 정리했습니다.</span>
+            <label class="check-item">
+              <input type="checkbox" class="step-check" data-step="1">
+              <div class="check-copy">
+                <strong>상품 정보 확인 완료</strong>
+                <span>상품명 / 수량 / 바코드를 확인했어요.</span>
               </div>
             </label>
           </div>
           <div class="step-actions">
-            <button class="btn primary step-next" data-current="1" data-next="2">다음 단계 보기</button>
+            <button class="btn primary step-next" data-current="1" data-next="2">다음</button>
           </div>
         </div>
       </section>
 
       <section class="section" id="step2">
         <div class="section-head">
-          <div class="section-title-wrap">
-            <div class="section-badge">STEP 2</div>
-            <h2>포장 기준을 맞춰주세요</h2>
-            <p class="section-desc">
-              포장은 단순히 보기 좋게 하는 것이 아니라, <strong>입고 검수와 재고 운영이 가능하도록 만드는 기준</strong>입니다.
-              혼적, 벌크, 잔량 박스, 번들 포장 상태는 반드시 기준에 맞아야 합니다.
-            </p>
+          <div>
+            <div class="badge">STEP 2</div>
+            <h2>포장 기준 확인</h2>
+            <p class="desc">검수하기 쉬운 상태로 보내주세요.</p>
           </div>
-          <div class="step-chip">핵심: 1박스 = 단일 SKU</div>
+          <div class="chip">핵심: 한 박스 = 한 SKU</div>
         </div>
 
-        <div class="grid-2 equal">
-          <div class="card">
-            <h3>포장 기준 핵심</h3>
-            <ul class="bullet-list">
-              <li class="bullet-item"><span class="bullet-dot">1</span><span>모든 아웃박스에는 정보가 기입되어 있어야 합니다.</span></li>
-              <li class="bullet-item"><span class="bullet-dot">2</span><span>동일 SKU라도 소비기한 / 제조LOT가 다르면 분리 포장해야 합니다.</span></li>
-              <li class="bullet-item"><span class="bullet-dot">3</span><span>한 박스에는 단일 SKU만 구성해야 합니다.</span></li>
-              <li class="bullet-item"><span class="bullet-dot">4</span><span>박스 내부는 정형화된 상태로, 육안 수량 파악이 가능해야 합니다.</span></li>
+        <div class="grid-2">
+          <div class="info-card">
+            <h3>이렇게 해주세요</h3>
+            <ul class="list">
+              <li><span class="dot ok">✓</span><span>한 박스에 한 SKU만</span></li>
+              <li><span class="dot ok">✓</span><span>수량 확인 가능하게 정리</span></li>
+              <li><span class="dot ok">✓</span><span>기한 다르면 분리 포장</span></li>
             </ul>
           </div>
-          <div class="card">
-            <h3>비용 또는 지연이 발생할 수 있는 경우</h3>
-            <ul class="danger-list">
-              <li class="danger-item"><span class="danger-dot">!</span><span>혼적 박스 구성</span></li>
-              <li class="danger-item"><span class="danger-dot">!</span><span>잔량 박스 다수 발생</span></li>
-              <li class="danger-item"><span class="danger-dot">!</span><span>벌크 입고처럼 수량 확인이 어려운 상태</span></li>
-              <li class="danger-item"><span class="danger-dot">!</span><span>날개 출고 SKU를 번들 또는 수량 포장 상태로 입고</span></li>
+          <div class="info-card">
+            <h3>이건 안돼요</h3>
+            <ul class="list">
+              <li><span class="dot danger">!</span><span>혼적 포장</span></li>
+              <li><span class="dot danger">!</span><span>벌크 입고</span></li>
+              <li><span class="dot danger">!</span><span>잔량 박스 다수 발생</span></li>
             </ul>
           </div>
         </div>
 
-        <div class="compare-grid">
-          <div class="compare-card good">
-            <h4>가능</h4>
-            <ul class="check-list">
-              <li class="check-item"><span class="check-dot">✓</span><span>한 박스에 같은 SKU만 담기</span></li>
-              <li class="check-item"><span class="check-dot">✓</span><span>안쪽 수량이 정렬돼 있어 육안 확인 가능</span></li>
-              <li class="check-item"><span class="check-dot">✓</span><span>기한이나 LOT가 다르면 박스 분리</span></li>
-            </ul>
-          </div>
-          <div class="compare-card bad">
-            <h4>불가 / 주의</h4>
-            <ul class="danger-list">
-              <li class="danger-item"><span class="danger-dot">!</span><span>서로 다른 SKU 혼적</span></li>
-              <li class="danger-item"><span class="danger-dot">!</span><span>벌크 상태로 넣어 수량 파악 불가</span></li>
-              <li class="danger-item"><span class="danger-dot">!</span><span>번들 포장을 1개 상품처럼 착오하게 되는 상태</span></li>
-            </ul>
+        <div class="image-box">
+          <h4>이미지 넣는 자리</h4>
+          <p>정상 포장 / 혼적 금지 / 벌크 금지 이미지를 넣어주세요.</p>
+          <div class="image-grid">
+            <div class="placeholder">정상 포장</div>
+            <div class="placeholder">혼적 금지</div>
+            <div class="placeholder">벌크 금지</div>
           </div>
         </div>
 
-        <div class="image-box" style="margin-top:16px;">
-          <h4>이미지 배치 추천 영역</h4>
-          <p>여기에 실제 박스 사진을 넣어주면 가장 효과적입니다. 정상 예시 / 혼적 예시 / 벌크 예시 / 번들 예시 순으로 배치하면 이해가 빠릅니다.</p>
-          <div class="image-placeholder-grid">
-            <div class="image-placeholder">정상 포장 예시</div>
-            <div class="image-placeholder">혼적 금지 예시</div>
-            <div class="image-placeholder">벌크 금지 예시</div>
-            <div class="image-placeholder">번들 포장 주의 예시</div>
-          </div>
-        </div>
-
-        <div class="check-panel" data-step="2">
+        <div class="check-panel">
           <h3>STEP 2 체크</h3>
           <div class="check-group">
-            <label class="checkbox-item">
-              <input type="checkbox" class="step-check" data-step="2" />
-              <div class="checkbox-copy">
-                <strong>한 박스에 단일 SKU만 구성했어요</strong>
-                <span>혼적 없이 SKU별로 분리 포장했습니다.</span>
-              </div>
-            </label>
-            <label class="checkbox-item">
-              <input type="checkbox" class="step-check" data-step="2" />
-              <div class="checkbox-copy">
-                <strong>정형화된 상태로 포장했어요</strong>
-                <span>육안 수량 확인이 가능하고 벌크 상태가 아닙니다.</span>
+            <label class="check-item">
+              <input type="checkbox" class="step-check" data-step="2">
+              <div class="check-copy">
+                <strong>포장 기준 확인 완료</strong>
+                <span>혼적 없이 정리된 상태로 포장했어요.</span>
               </div>
             </label>
           </div>
           <div class="step-actions">
-            <button class="btn primary step-next" data-current="2" data-next="3">다음 단계 보기</button>
+            <button class="btn primary step-next" data-current="2" data-next="3">다음</button>
           </div>
         </div>
       </section>
 
       <section class="section" id="step3">
         <div class="section-head">
-          <div class="section-title-wrap">
-            <div class="section-badge">STEP 3</div>
-            <h2>바코드 / 라벨은 이렇게 부착해주세요</h2>
-            <p class="section-desc">
-              입고 작업은 <strong>상품 식별이 가능해야 진행</strong>됩니다. 모든 SKU에는 바코드가 부착되어 있어야 하며,
-              스캔 가능한 상태인지, 중복 바코드가 없는지 반드시 확인해주세요.
-            </p>
+          <div>
+            <div class="badge">STEP 3</div>
+            <h2>바코드 확인</h2>
+            <p class="desc">스캔 가능해야 입고가 됩니다.</p>
           </div>
-          <div class="step-chip">핵심: 스캔 가능한 단일 바코드</div>
+          <div class="chip">핵심: 단일 / 정상 바코드</div>
         </div>
 
-        <div class="grid-2 equal">
-          <div class="card">
-            <h3>바코드 기본 원칙</h3>
-            <ul class="bullet-list">
-              <li class="bullet-item"><span class="bullet-dot">1</span><span>모든 SKU에는 바코드가 부착되어 있어야 합니다.</span></li>
-              <li class="bullet-item"><span class="bullet-dot">2</span><span>흰색 바탕의 검은색 바코드처럼 스캔 가능한 상태여야 합니다.</span></li>
-              <li class="bullet-item"><span class="bullet-dot">3</span><span>등록된 바코드와 동일하게 스캔되는지 확인 후 입고해야 합니다.</span></li>
-              <li class="bullet-item"><span class="bullet-dot">4</span><span>상품 및 포장 외부에 바코드가 2개 이상 존재하면 제거 또는 덮밥 후 입고해야 합니다.</span></li>
+        <div class="grid-2">
+          <div class="info-card">
+            <h3>이렇게 해주세요</h3>
+            <ul class="list">
+              <li><span class="dot ok">✓</span><span>모든 SKU 바코드 부착</span></li>
+              <li><span class="dot ok">✓</span><span>스캔 가능한 상태 유지</span></li>
+              <li><span class="dot ok">✓</span><span>불필요한 바코드 제거</span></li>
             </ul>
           </div>
-          <div class="card">
-            <h3>자주 발생하는 오류</h3>
-            <ul class="danger-list">
-              <li class="danger-item"><span class="danger-dot">!</span><span>유사 바코드 / 반전 바코드 / 색상 바코드</span></li>
-              <li class="danger-item"><span class="danger-dot">!</span><span>라벨 주름, 곡면, 훼손으로 스캔 불가</span></li>
-              <li class="danger-item"><span class="danger-dot">!</span><span>박스 외부 바코드와 상품 바코드가 함께 노출</span></li>
-              <li class="danger-item"><span class="danger-dot">!</span><span>날개 출고 SKU인데 인박스에 바코드가 남아 있는 경우</span></li>
+          <div class="info-card">
+            <h3>이건 안돼요</h3>
+            <ul class="list">
+              <li><span class="dot danger">!</span><span>바코드 누락</span></li>
+              <li><span class="dot danger">!</span><span>중복 바코드 노출</span></li>
+              <li><span class="dot danger">!</span><span>훼손 / 반전 / 색상 바코드</span></li>
             </ul>
           </div>
         </div>
 
-        <div class="image-box" style="margin-top:16px;">
-          <h4>이미지 배치 추천 영역</h4>
-          <p>정상 바코드 / 불가 바코드 / 중복 바코드 / 잘못된 부착 위치 예시를 넣어주세요. PDF에 있는 바코드 예시 페이지처럼 가능/불가 비교가 가장 직관적입니다.</p>
-          <div class="image-placeholder-grid">
-            <div class="image-placeholder">가능한 바코드 예시</div>
-            <div class="image-placeholder">반전 / 색상 / 유사 바코드 예시</div>
-            <div class="image-placeholder">박스 외부 중복 바코드 예시</div>
-            <div class="image-placeholder">상품만 바코드 유지해야 하는 예시</div>
+        <div class="image-box">
+          <h4>이미지 넣는 자리</h4>
+          <p>가능한 바코드 / 불가 바코드 / 중복 바코드 예시를 넣어주세요.</p>
+          <div class="image-grid">
+            <div class="placeholder">가능</div>
+            <div class="placeholder">불가</div>
+            <div class="placeholder">중복 금지</div>
           </div>
         </div>
 
-        <div class="mini-note">
-          바코드 표준 크기, 덮밥 처리, 외부 박스 라벨 제거 여부는 실제 운영 기준에 맞춰 이미지와 함께 보여주면 훨씬 잘 지켜집니다.
-        </div>
-
-        <div class="check-panel" data-step="3">
+        <div class="check-panel">
           <h3>STEP 3 체크</h3>
           <div class="check-group">
-            <label class="checkbox-item">
-              <input type="checkbox" class="step-check" data-step="3" />
-              <div class="checkbox-copy">
-                <strong>모든 SKU 바코드를 확인했어요</strong>
-                <span>누락 없이 부착되어 있고 스캔 가능합니다.</span>
-              </div>
-            </label>
-            <label class="checkbox-item">
-              <input type="checkbox" class="step-check" data-step="3" />
-              <div class="checkbox-copy">
-                <strong>중복 / 불필요한 바코드를 정리했어요</strong>
-                <span>박스 또는 포장 외부의 혼선이 생기는 바코드를 제거 또는 덮밥했습니다.</span>
+            <label class="check-item">
+              <input type="checkbox" class="step-check" data-step="3">
+              <div class="check-copy">
+                <strong>바코드 확인 완료</strong>
+                <span>누락 / 중복 없이 스캔 가능해요.</span>
               </div>
             </label>
           </div>
           <div class="step-actions">
-            <button class="btn primary step-next" data-current="3" data-next="4">다음 단계 보기</button>
+            <button class="btn primary step-next" data-current="3" data-next="4">다음</button>
           </div>
         </div>
       </section>
 
       <section class="section" id="step4">
         <div class="section-head">
-          <div class="section-title-wrap">
-            <div class="section-badge">STEP 4</div>
-            <h2>입고 예약과 발송 기준을 맞춰주세요</h2>
-            <p class="section-desc">
-              입고는 예약부터 시작됩니다. 입고 방식에 따라 필요한 정보가 다르므로,
-              <strong>택배 입고 / 차량 입고 기준을 구분해서 확인</strong>해주세요.
-            </p>
+          <div>
+            <div class="badge">STEP 4</div>
+            <h2>예약 / 발송 확인</h2>
+            <p class="desc">예약 후 보내야 입고가 빨라집니다.</p>
           </div>
-          <div class="step-chip">핵심: 예약 후 발송</div>
+          <div class="chip">핵심: 예약 후 발송</div>
         </div>
 
-        <div class="transport-tabs">
-          <button class="transport-tab active" data-tab="parcel">택배 입고</button>
-          <button class="transport-tab" data-tab="vehicle">차량 입고</button>
-        </div>
-
-        <div class="transport-panel active" id="tab-parcel">
-          <div class="grid-2 equal">
-            <div class="card">
-              <h3>택배 입고 기준</h3>
-              <ul class="bullet-list">
-                <li class="bullet-item"><span class="bullet-dot">1</span><span>여러 입고 신청건의 SKU를 한 번에 담아 발송하면 입고 불가</span></li>
-                <li class="bullet-item"><span class="bullet-dot">2</span><span>1일 최대 입고 가능 박스 수량은 기준 내에서 운영</span></li>
-                <li class="bullet-item"><span class="bullet-dot">3</span><span>박스 내 입고증을 동봉해야 합니다.</span></li>
-                <li class="bullet-item"><span class="bullet-dot">4</span><span>입고 예약 시 송장번호를 반드시 입력해야 합니다.</span></li>
-                <li class="bullet-item"><span class="bullet-dot">5</span><span>모든 택배 박스는 도착 후 입고 검수를 진행합니다.</span></li>
-              </ul>
-            </div>
-            <div class="card">
-              <h3>택배 입고 주의사항</h3>
-              <ul class="danger-list">
-                <li class="danger-item"><span class="danger-dot">!</span><span>예약한 일시보다 먼저 도착해도 예약일에 맞춰 검수가 진행될 수 있습니다.</span></li>
-                <li class="danger-item"><span class="danger-dot">!</span><span>10개 이상 송장 중 일부 미도착 시 전체 도착 후 진행될 수 있습니다.</span></li>
-                <li class="danger-item"><span class="danger-dot">!</span><span>파손 방지를 위해 내부 완충은 필수입니다.</span></li>
-              </ul>
-            </div>
+        <div class="grid-2">
+          <div class="info-card">
+            <h3>이렇게 해주세요</h3>
+            <ul class="list">
+              <li><span class="dot ok">✓</span><span>입고 예약 완료</span></li>
+              <li><span class="dot ok">✓</span><span>택배는 송장번호 입력</span></li>
+              <li><span class="dot ok">✓</span><span>차량은 차량 정보 입력</span></li>
+            </ul>
+          </div>
+          <div class="info-card">
+            <h3>이건 안돼요</h3>
+            <ul class="list">
+              <li><span class="dot danger">!</span><span>예약 없이 입고</span></li>
+              <li><span class="dot danger">!</span><span>송장 / 차량 정보 누락</span></li>
+              <li><span class="dot danger">!</span><span>여러 신청건 한 번에 발송</span></li>
+            </ul>
           </div>
         </div>
 
-        <div class="transport-panel" id="tab-vehicle">
-          <div class="grid-2 equal">
-            <div class="card">
-              <h3>차량 입고 기준</h3>
-              <ul class="bullet-list">
-                <li class="bullet-item"><span class="bullet-dot">1</span><span>1PLT에는 1SKU만 적재해야 합니다.</span></li>
-                <li class="bullet-item"><span class="bullet-dot">2</span><span>잔량 박스가 있을 경우 최상단 적재 후 외부 표시가 필요합니다.</span></li>
-                <li class="bullet-item"><span class="bullet-dot">3</span><span>완전한 PLT가 아닐 경우 보이는 면 기준으로 빈 공간 확인이 가능해야 합니다.</span></li>
-                <li class="bullet-item"><span class="bullet-dot">4</span><span>입고증은 각 PLT에 부착 후 입고해야 합니다.</span></li>
-                <li class="bullet-item"><span class="bullet-dot">5</span><span>PLT 이동 전표는 기사님을 통해 전달해야 합니다.</span></li>
-              </ul>
-            </div>
-            <div class="card">
-              <h3>차량 입고 주의사항</h3>
-              <ul class="danger-list">
-                <li class="danger-item"><span class="danger-dot">!</span><span>PLT 미적재 상태로 입고 시 비용이 발생할 수 있습니다.</span></li>
-                <li class="danger-item"><span class="danger-dot">!</span><span>하차 가능 시간 이전 도착, 과도한 높이, 나무 PLT / 월회용 PLT 사용은 불가할 수 있습니다.</span></li>
-                <li class="danger-item"><span class="danger-dot">!</span><span>PLT 랩핑이 단단하지 않으면 파손 발생 시 제한될 수 있습니다.</span></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="check-panel" data-step="4">
-          <h3>STEP 4 체크</h3>
+        <div class="check-panel">
+          <h3>최종 체크</h3>
           <div class="check-group">
-            <label class="checkbox-item">
-              <input type="checkbox" class="step-check" data-step="4" />
-              <div class="checkbox-copy">
-                <strong>입고 예약을 완료했어요</strong>
-                <span>입고 일자, 방식, 예약 수량을 확인했습니다.</span>
-              </div>
-            </label>
-            <label class="checkbox-item">
-              <input type="checkbox" class="step-check" data-step="4" />
-              <div class="checkbox-copy">
-                <strong>입고 방식별 제출 정보를 입력했어요</strong>
-                <span>택배는 입고증 / 송장번호, 차량은 차량 정보 / PLT 기준까지 확인했습니다.</span>
+            <label class="check-item">
+              <input type="checkbox" class="step-check" data-step="4">
+              <div class="check-copy">
+                <strong>예약 / 발송 확인 완료</strong>
+                <span>예약 후 필요한 정보를 모두 입력했어요.</span>
               </div>
             </label>
           </div>
           <div class="step-actions">
-            <button class="btn primary step-next" data-current="4" data-next="5">다음 단계 보기</button>
+            <a href="#danger" class="btn secondary">반려 사례 보기</a>
           </div>
         </div>
       </section>
 
-      <section class="section" id="step5">
+      <section class="section danger-section" id="danger">
         <div class="section-head">
-          <div class="section-title-wrap">
-            <div class="section-badge">STEP 5</div>
-            <h2>보내기 전 마지막으로 이것만 체크해주세요</h2>
-            <p class="section-desc">
-              아래 체크리스트만 모두 맞으면 초도입고에서 가장 자주 발생하는 문제를 대부분 예방할 수 있습니다.
-            </p>
+          <div>
+            <div class="badge" style="background:var(--danger-bg); color:var(--danger);">반드시 확인</div>
+            <h2>이런 경우 입고가 지연돼요</h2>
+            <p class="desc">가장 많이 발생하는 반려 / 지연 사례만 모았습니다.</p>
           </div>
-          <div class="step-chip">핵심: 최종 점검</div>
         </div>
 
-        <div class="grid-2 equal">
-          <div class="card soft">
-            <h3>최종 체크리스트</h3>
-            <ul class="check-list">
-              <li class="check-item"><span class="check-dot">✓</span><span>상품 정보가 시스템 등록 내용과 일치한다</span></li>
-              <li class="check-item"><span class="check-dot">✓</span><span>SKU별로 분리 포장되어 있다</span></li>
-              <li class="check-item"><span class="check-dot">✓</span><span>바코드 식별이 가능하고 중복 바코드가 정리되어 있다</span></li>
-              <li class="check-item"><span class="check-dot">✓</span><span>포장 상태가 양호하고 수량 확인이 가능하다</span></li>
-              <li class="check-item"><span class="check-dot">✓</span><span>입고 예약 및 방식별 제출 정보를 모두 입력했다</span></li>
+        <div class="grid-2">
+          <div class="info-card">
+            <h3>정보 문제</h3>
+            <ul class="list">
+              <li><span class="dot danger">!</span><span>상품 정보 불일치</span></li>
+              <li><span class="dot danger">!</span><span>수량 불일치</span></li>
+              <li><span class="dot danger">!</span><span>기한 / LOT 혼합</span></li>
             </ul>
           </div>
-          <div class="card">
-            <h3>이 단계까지 확인했다면</h3>
-            <p>
-              초도입고 시 가장 빈번한 지연 사유인 정보 불일치, 혼적 포장, 바코드 오류, 예약 누락을 대부분 예방할 수 있습니다.
-              특히 행사 물량, 사은품, 세트 상품처럼 일반 입고와 다른 조건이 있다면 반드시 사전에 공유해 주세요.
-            </p>
-            <div class="mini-note">
-              실제 센터 운영 시간, 예약 마감 시간, 하차 가능 시간, 팔레트 코드와 같은 상세 정보는 운영 공지 또는 담당자 안내 기준을 우선 적용해 주세요.
-            </div>
-          </div>
-        </div>
-
-        <div class="check-panel" data-step="5">
-          <h3>STEP 5 체크</h3>
-          <div class="check-group">
-            <label class="checkbox-item">
-              <input type="checkbox" class="step-check" data-step="5" />
-              <div class="checkbox-copy">
-                <strong>최종 체크를 완료했어요</strong>
-                <span>입고 전 확인 항목을 모두 검토했습니다.</span>
-              </div>
-            </label>
-          </div>
-          <div class="step-actions">
-            <a href="#delay-danger" class="btn secondary">반려 사례 다시 보기</a>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="delay-danger">
-        <div class="section-head">
-          <div class="section-title-wrap">
-            <div class="section-badge">반드시 확인</div>
-            <h2>이런 경우 입고가 지연되거나 반려될 수 있습니다</h2>
-            <p class="section-desc">
-              운영상 실제로 자주 발생하는 케이스들입니다. 셀러가 가장 많이 놓치는 포인트만 따로 모았습니다.
-            </p>
-          </div>
-        </div>
-
-        <div class="grid-2 equal">
-          <div class="card">
-            <h3>정보 불일치</h3>
-            <ul class="danger-list">
-              <li class="danger-item"><span class="danger-dot">!</span><span>상품 정보와 실제 입고 상품이 다른 경우</span></li>
-              <li class="danger-item"><span class="danger-dot">!</span><span>예약 수량과 실제 수량이 다른 경우</span></li>
-              <li class="danger-item"><span class="danger-dot">!</span><span>소비기한 / 제조LOT 구분 없이 혼합 입고한 경우</span></li>
+          <div class="info-card">
+            <h3>포장 / 바코드 문제</h3>
+            <ul class="list">
+              <li><span class="dot danger">!</span><span>혼적 포장</span></li>
+              <li><span class="dot danger">!</span><span>벌크 입고</span></li>
+              <li><span class="dot danger">!</span><span>바코드 누락 / 중복</span></li>
             </ul>
-          </div>
-          <div class="card">
-            <h3>포장 / 바코드 오류</h3>
-            <ul class="danger-list">
-              <li class="danger-item"><span class="danger-dot">!</span><span>혼적 박스, 벌크 입고, 수량 확인이 어려운 포장</span></li>
-              <li class="danger-item"><span class="danger-dot">!</span><span>바코드 누락, 중복, 스캔 불가 상태</span></li>
-              <li class="danger-item"><span class="danger-dot">!</span><span>인박스 / 외부 박스의 바코드 정리가 되지 않은 경우</span></li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>예약 / 발송 기준 미준수</h3>
-            <ul class="danger-list">
-              <li class="danger-item"><span class="danger-dot">!</span><span>예약 없이 도착하거나 예약일과 다른 방식으로 입고한 경우</span></li>
-              <li class="danger-item"><span class="danger-dot">!</span><span>송장번호, 차량 정보, 입고증 누락</span></li>
-              <li class="danger-item"><span class="danger-dot">!</span><span>다수 입고 신청건을 한 번에 발송한 경우</span></li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>차량 입고 기준 미준수</h3>
-            <ul class="danger-list">
-              <li class="danger-item"><span class="danger-dot">!</span><span>1PLT 1SKU 미준수</span></li>
-              <li class="danger-item"><span class="danger-dot">!</span><span>잔량 박스 표시 누락, 랩핑 불량</span></li>
-              <li class="danger-item"><span class="danger-dot">!</span><span>허용 높이 초과, 부적절한 PLT 사용</span></li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="transport-guide">
-        <div class="section-head">
-          <div class="section-title-wrap">
-            <div class="section-badge">운영 방식 안내</div>
-            <h2>입고 과정 요약</h2>
-            <p class="section-desc">
-              입고는 일반적으로 <strong>입고 예약 → 상품 발송 → 상품 검수 → 입고 완료 → 로케이션 적치</strong>
-              순서로 진행됩니다. 판매자는 예약과 발송까지, 이후 검수와 입고 완료는 센터 진행 단계입니다.
-            </p>
-          </div>
-        </div>
-
-        <div class="card soft">
-          <div class="pill-row">
-            <span class="pill">1. 입고 예약</span>
-            <span class="pill">2. 상품 발송</span>
-            <span class="pill">3. 상품 검수</span>
-            <span class="pill">4. 입고 완료</span>
-            <span class="pill">5. 로케이션 적치</span>
-          </div>
-          <div class="mini-note">
-            예약 후 변경이 필요한 경우 취소 후 재예약으로 운영될 수 있으며, 임의의 날짜 / 시간 지정은 회송 또는 지연 사유가 될 수 있습니다.
           </div>
         </div>
       </section>
 
       <section class="section" id="faq">
         <div class="section-head">
-          <div class="section-title-wrap">
-            <div class="section-badge">FAQ</div>
+          <div>
+            <div class="badge">FAQ</div>
             <h2>자주 묻는 질문</h2>
-            <p class="section-desc">
-              업로드된 PDF의 FAQ 내용을 바탕으로, 초도입고 시 가장 많이 물어보는 질문을 보기 쉽게 정리했습니다. :contentReference[oaicite:1]{index=1}
-            </p>
+            <p class="desc">필요한 질문만 눌러서 확인해주세요.</p>
           </div>
         </div>
 
         <div class="faq-wrap">
           <div class="faq-item">
-            <button class="faq-q">
-              <span>예약 시간보다 늦게 도착하면 어떻게 되나요?</span>
-              <span>+</span>
-            </button>
-            <div class="faq-a">
-              예약 시간보다 늦게 도착할 경우 입고가 지연될 수 있으며, 당일 입고가 어려운 시간대라면 센터 운영 시간 내 도착 순서에 따라 처리될 수 있습니다.
-            </div>
+            <button class="faq-q"><span>예약 없이 보내도 되나요?</span><span>+</span></button>
+            <div class="faq-a">권장하지 않습니다. 예약 없이 도착하면 검수가 지연될 수 있습니다.</div>
           </div>
-
           <div class="faq-item">
-            <button class="faq-q">
-              <span>택배는 도착 시간을 미리 알 수 없는데 괜찮나요?</span>
-              <span>+</span>
-            </button>
-            <div class="faq-a">
-              택배는 도착 시간 변동이 있을 수 있습니다. 다만 예약 정보와 송장번호 입력이 선행되어야 하며, 실제 검수 시점은 센터 운영 상황에 따라 달라질 수 있습니다.
-            </div>
+            <button class="faq-q"><span>바코드가 2개 보이면 괜찮나요?</span><span>+</span></button>
+            <div class="faq-a">아니요. 혼선이 생기지 않도록 불필요한 바코드는 제거 또는 덮밥 처리해주세요.</div>
           </div>
-
           <div class="faq-item">
-            <button class="faq-q">
-              <span>택배 발송 건 중 일부만 먼저 도착해도 입고되나요?</span>
-              <span>+</span>
-            </button>
-            <div class="faq-a">
-              다수 송장으로 나뉜 입고 건은 일부 미도착 시 전체 도착 후 진행될 수 있습니다. 분할 발송 시에는 특히 송장번호 입력과 박스 구성 관리가 중요합니다.
-            </div>
+            <button class="faq-q"><span>한 박스에 여러 SKU 넣어도 되나요?</span><span>+</span></button>
+            <div class="faq-a">아니요. 한 박스에는 한 SKU만 구성해주세요.</div>
           </div>
-
           <div class="faq-item">
-            <button class="faq-q">
-              <span>박스 입수량이 바뀌면 어떻게 해야 하나요?</span>
-              <span>+</span>
-            </button>
-            <div class="faq-a">
-              기존 박스 입수량과 달라진 경우 사전에 전달해 주세요. 박스 입수량 기준으로 재고 운영이 진행될 수 있어, 미고지 시 운영 오류가 발생할 수 있습니다.
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-q">
-              <span>입고된 소비기한보다 더 빠른 상품을 추가로 보내도 되나요?</span>
-              <span>+</span>
-            </button>
-            <div class="faq-a">
-              기존 재고보다 더 빠른 소비기한 상품은 선입선출 기준에 영향을 줄 수 있으므로, 사전 협의 없이 입고하지 않도록 관리하는 것이 안전합니다.
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-q">
-              <span>비용이 발생하는 사유는 어디서 확인할 수 있나요?</span>
-              <span>+</span>
-            </button>
-            <div class="faq-a">
-              입고 과정 중 비용이 발생할 경우 리포트나 별도 승인 절차로 안내될 수 있습니다. 혼적, 초과 수량, 별도 작업 발생 여부를 먼저 확인해주세요.
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-q">
-              <span>배차 전인데 차량 정보를 아직 못 넣었어요</span>
-              <span>+</span>
-            </button>
-            <div class="faq-a">
-              차량 정보는 배차 후 업데이트가 가능하도록 운영될 수 있습니다. 다만 차량 입고 예약 건은 하차 가능 시간과 PLT 기준을 먼저 맞춰두어야 합니다.
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-q">
-              <span>예약 수량보다 실제 입고 수량이 많으면 가능한가요?</span>
-              <span>+</span>
-            </button>
-            <div class="faq-a">
-              초과 수량은 추가 검수와 운영 부담을 유발할 수 있어, 사전에 추가 예약이나 협의가 필요할 수 있습니다. 예약 수량 기준으로 준비하는 것을 권장합니다.
-            </div>
+            <button class="faq-q"><span>소비기한이 다르면 같이 보내도 되나요?</span><span>+</span></button>
+            <div class="faq-a">같은 SKU라도 소비기한이나 제조LOT가 다르면 분리 포장해주세요.</div>
           </div>
         </div>
       </section>
 
-      <section class="footer-cta">
-        <h2>여기까지 확인했다면, 초도입고 준비는 거의 끝났습니다</h2>
+      <section class="footer">
+        <h2>여기까지 확인했다면 초도입고 준비 완료입니다</h2>
         <p>
-          이 페이지는 업로드된 입고가이드 PDF의 핵심 기준을 더 이해하기 쉬운 구조로 재정리한 버전입니다.
-          실제 운영 공지, 센터별 상세 안내, 담당자 공지가 있다면 그 기준을 우선 적용해 주세요. :contentReference[oaicite:2]{index=2}
+          이 페이지는 길게 읽는 안내문이 아니라,
+          실수 없이 보내기 위한 체크 페이지로 구성했습니다.
         </p>
         <div class="footer-actions">
           <a href="#step1" class="btn primary">처음부터 다시 보기</a>
@@ -1950,73 +1100,24 @@
 
   <script>
     const stepMeta = [
-      {
-        id: 1,
-        anchor: "#step1",
-        title: "상품 정보 확인",
-        desc: "SKU / 수량 / 바코드 / 기한 정보 확인"
-      },
-      {
-        id: 2,
-        anchor: "#step2",
-        title: "포장 기준 확인",
-        desc: "혼적 금지 / 단일 SKU / 정형 포장"
-      },
-      {
-        id: 3,
-        anchor: "#step3",
-        title: "바코드 / 라벨 확인",
-        desc: "스캔 가능 / 중복 바코드 정리"
-      },
-      {
-        id: 4,
-        anchor: "#step4",
-        title: "예약 / 발송 기준 확인",
-        desc: "택배 / 차량 입고 기준 확인"
-      },
-      {
-        id: 5,
-        anchor: "#step5",
-        title: "최종 점검",
-        desc: "발송 전 마지막 확인"
-      }
+      { id: 1, anchor: "#step1", title: "상품 정보", desc: "상품명 / 수량 / 바코드" },
+      { id: 2, anchor: "#step2", title: "포장 기준", desc: "한 박스 = 한 SKU" },
+      { id: 3, anchor: "#step3", title: "바코드", desc: "스캔 가능 / 중복 제거" },
+      { id: 4, anchor: "#step4", title: "예약 / 발송", desc: "예약 후 발송" }
     ];
-
-    const noticeMap = {
-      1: [
-        "실제 입고 상품 정보와 시스템 등록 정보가 다르면 검수 지연이 발생할 수 있어요.",
-        "소비기한 / 제조LOT 관리 상품은 반드시 분리 포장해 주세요.",
-        "세트 / 사은품 / 행사 물량은 일반 입고와 다를 수 있으니 꼭 사전 공유가 필요해요."
-      ],
-      2: [
-        "한 박스에는 단일 SKU만 구성해야 해요.",
-        "벌크처럼 수량 확인이 어려운 상태는 별도 작업이나 지연 사유가 될 수 있어요.",
-        "잔량 박스, 번들 포장 상태는 운영 기준에 따라 추가 비용이 발생할 수 있어요."
-      ],
-      3: [
-        "모든 SKU는 스캔 가능한 바코드가 부착되어 있어야 해요.",
-        "상품 및 포장 외부에 바코드가 2개 이상 보이면 제거 또는 덮밥 후 입고해야 해요.",
-        "반전, 색상, 훼손된 바코드는 인식 불가할 수 있어요."
-      ],
-      4: [
-        "예약 정보 없이 도착하면 당일 검수가 어렵거나 지연될 수 있어요.",
-        "택배는 송장번호, 차량은 배차 / 차량 / PLT 기준을 반드시 확인해 주세요.",
-        "여러 입고 신청건을 한 번에 보내면 입고가 불가할 수 있어요."
-      ]
-    };
 
     const sideNavList = document.getElementById("sideNavList");
     const mobileNavList = document.getElementById("mobileNavList");
 
-    function renderNav(targetEl) {
-      targetEl.innerHTML = "";
+    function renderNav(target) {
+      target.innerHTML = "";
       stepMeta.forEach((step, idx) => {
         const a = document.createElement("a");
         a.href = step.anchor;
         a.className = "nav-btn";
         a.dataset.target = step.anchor.replace("#", "");
         a.innerHTML = `
-          <div class="nav-step">
+          <div class="nav-row">
             <div class="nav-num">${idx + 1}</div>
             <div class="nav-copy">
               <strong>${step.title}</strong>
@@ -2024,7 +1125,7 @@
             </div>
           </div>
         `;
-        targetEl.appendChild(a);
+        target.appendChild(a);
       });
     }
 
@@ -2033,6 +1134,9 @@
 
     const navButtons = [...document.querySelectorAll(".nav-btn")];
     const sections = stepMeta.map(step => document.querySelector(step.anchor));
+    const checkboxes = [...document.querySelectorAll(".step-check")];
+    const nextButtons = [...document.querySelectorAll(".step-next")];
+
     const progressFill = document.getElementById("progressFill");
     const progressCount = document.getElementById("progressCount");
     const progressPercent = document.getElementById("progressPercent");
@@ -2040,19 +1144,14 @@
     const mobileProgressCount = document.getElementById("mobileProgressCount");
     const mobileProgressPercent = document.getElementById("mobileProgressPercent");
 
-    const checkboxes = [...document.querySelectorAll(".step-check")];
-    const nextButtons = [...document.querySelectorAll(".step-next")];
-
     function getCompletedSteps() {
       const completed = new Set();
-
       stepMeta.forEach(step => {
         const stepChecks = checkboxes.filter(chk => Number(chk.dataset.step) === step.id);
         if (stepChecks.length && stepChecks.every(chk => chk.checked)) {
           completed.add(step.id);
         }
       });
-
       return completed;
     }
 
@@ -2071,21 +1170,18 @@
       mobileProgressPercent.textContent = `${percent}%`;
 
       nextButtons.forEach(btn => {
-        const currentStep = Number(btn.dataset.current);
-        const panelChecks = checkboxes.filter(chk => Number(chk.dataset.step) === currentStep);
-        const enabled = panelChecks.length && panelChecks.every(chk => chk.checked);
+        const current = Number(btn.dataset.current);
+        const relatedChecks = checkboxes.filter(chk => Number(chk.dataset.step) === current);
+        const enabled = relatedChecks.length && relatedChecks.every(chk => chk.checked);
         btn.classList.toggle("enabled", enabled);
       });
     }
 
     function updateActiveNav() {
       let activeId = sections[0]?.id || "step1";
-
       sections.forEach(section => {
         const rect = section.getBoundingClientRect();
-        if (rect.top <= 180) {
-          activeId = section.id;
-        }
+        if (rect.top <= 180) activeId = section.id;
       });
 
       navButtons.forEach(btn => {
@@ -2093,46 +1189,32 @@
       });
     }
 
-    checkboxes.forEach(chk => {
-      chk.addEventListener("change", updateProgress);
-    });
-
+    checkboxes.forEach(chk => chk.addEventListener("change", updateProgress));
     window.addEventListener("scroll", updateActiveNav);
     window.addEventListener("load", () => {
       updateProgress();
       updateActiveNav();
     });
 
-    const transportTabs = [...document.querySelectorAll(".transport-tab")];
-    const transportPanels = {
-      parcel: document.getElementById("tab-parcel"),
-      vehicle: document.getElementById("tab-vehicle")
-    };
-
-    transportTabs.forEach(tab => {
-      tab.addEventListener("click", () => {
-        transportTabs.forEach(t => t.classList.remove("active"));
-        tab.classList.add("active");
-
-        const name = tab.dataset.tab;
-        Object.entries(transportPanels).forEach(([key, panel]) => {
-          panel.classList.toggle("active", key === name);
-        });
+    nextButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        if (!btn.classList.contains("enabled")) return;
+        const next = btn.dataset.next;
+        const nextEl = document.getElementById(`step${next}`);
+        if (nextEl) nextEl.scrollIntoView({ behavior: "smooth", block: "start" });
       });
     });
 
     const faqItems = [...document.querySelectorAll(".faq-item")];
     faqItems.forEach(item => {
-      const btn = item.querySelector(".faq-q");
-      const icon = btn.querySelector("span:last-child");
-      btn.addEventListener("click", () => {
+      const q = item.querySelector(".faq-q");
+      const icon = q.querySelector("span:last-child");
+      q.addEventListener("click", () => {
         const isOpen = item.classList.contains("open");
         faqItems.forEach(f => {
           f.classList.remove("open");
-          const fIcon = f.querySelector(".faq-q span:last-child");
-          if (fIcon) fIcon.textContent = "+";
+          f.querySelector(".faq-q span:last-child").textContent = "+";
         });
-
         if (!isOpen) {
           item.classList.add("open");
           icon.textContent = "−";
@@ -2140,64 +1222,10 @@
       });
     });
 
-    const modal = document.getElementById("noticeModal");
-    const modalList = document.getElementById("modalList");
-    const modalCloseBtn = document.getElementById("modalCloseBtn");
-    const modalConfirmBtn = document.getElementById("modalConfirmBtn");
-    const modalBackdrop = document.getElementById("modalBackdrop");
-
-    let pendingNextStep = null;
-
-    function openModal(step) {
-      const notices = noticeMap[step] || [];
-      modalList.innerHTML = notices.map(text => `
-        <li class="danger-item">
-          <span class="danger-dot">!</span>
-          <span>${text}</span>
-        </li>
-      `).join("");
-      modal.classList.add("show");
-      document.body.style.overflow = "hidden";
-    }
-
-    function closeModal() {
-      modal.classList.remove("show");
-      document.body.style.overflow = "";
-      pendingNextStep = null;
-    }
-
-    nextButtons.forEach(btn => {
-      btn.addEventListener("click", () => {
-        if (!btn.classList.contains("enabled")) return;
-
-        const current = Number(btn.dataset.current);
-        const next = Number(btn.dataset.next);
-        pendingNextStep = next;
-
-        if (noticeMap[current]) {
-          openModal(current);
-        } else if (next) {
-          const nextEl = document.getElementById(`step${next}`);
-          if (nextEl) nextEl.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-      });
-    });
-
-    modalCloseBtn.addEventListener("click", closeModal);
-    modalBackdrop.addEventListener("click", closeModal);
-
-    modalConfirmBtn.addEventListener("click", () => {
-      const nextEl = document.getElementById(`step${pendingNextStep}`);
-      closeModal();
-      if (nextEl) {
-        nextEl.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    });
-
     const mobileDrawer = document.getElementById("mobileDrawer");
     const mobileMenuOpen = document.getElementById("mobileMenuOpen");
     const mobileMenuClose = document.getElementById("mobileMenuClose");
-    const drawerBackdrop = document.getElementById("drawerBackdrop");
+    const drawerBg = document.getElementById("drawerBg");
 
     function openDrawer() {
       mobileDrawer.classList.add("show");
@@ -2211,11 +1239,9 @@
 
     mobileMenuOpen.addEventListener("click", openDrawer);
     mobileMenuClose.addEventListener("click", closeDrawer);
-    drawerBackdrop.addEventListener("click", closeDrawer);
-
-    mobileNavList.addEventListener("click", (e) => {
-      const link = e.target.closest(".nav-btn");
-      if (link) closeDrawer();
+    drawerBg.addEventListener("click", closeDrawer);
+    mobileNavList.addEventListener("click", e => {
+      if (e.target.closest(".nav-btn")) closeDrawer();
     });
   </script>
 </body>

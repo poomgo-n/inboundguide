@@ -466,13 +466,15 @@
     }
 
     .packaging-list,
-    .barcode-list{
+    .barcode-list,
+    .booking-list{
       display:grid;
       gap:12px;
     }
 
     .packaging-item,
-    .barcode-item{
+    .barcode-item,
+    .booking-item{
       display:flex;
       align-items:center;
       justify-content:space-between;
@@ -485,7 +487,8 @@
     }
 
     .packaging-title-wrap,
-    .barcode-title-wrap{
+    .barcode-title-wrap,
+    .booking-title-wrap{
       display:flex;
       align-items:center;
       gap:14px;
@@ -493,7 +496,8 @@
     }
 
     .packaging-no,
-    .barcode-no{
+    .barcode-no,
+    .booking-no{
       width:38px;
       height:38px;
       border-radius:12px;
@@ -507,15 +511,26 @@
     }
 
     .packaging-copy strong,
-    .barcode-copy strong{
+    .barcode-copy strong,
+    .booking-copy strong{
       display:block;
       font-size:15px;
       line-height:1.5;
       color:#111827;
     }
 
+    .booking-copy span{
+      display:block;
+      margin-top:4px;
+      font-size:13px;
+      line-height:1.6;
+      color:var(--sub);
+    }
+
     .detail-btn,
-    .barcode-detail-btn{
+    .barcode-detail-btn,
+    .booking-detail-btn,
+    .download-btn{
       flex:0 0 auto;
       min-height:40px;
       padding:0 14px;
@@ -529,13 +544,27 @@
     }
 
     .detail-btn:hover,
-    .barcode-detail-btn:hover{
+    .barcode-detail-btn:hover,
+    .booking-detail-btn:hover,
+    .download-btn:hover{
       background:#f5f9ff;
       border-color:#bfd3ff;
     }
 
+    .download-btn{
+      background:var(--brand);
+      color:#fff;
+      border-color:var(--brand);
+    }
+
+    .download-btn:hover{
+      background:var(--brand-strong);
+      border-color:var(--brand-strong);
+    }
+
     .packaging-modal,
-    .barcode-modal{
+    .barcode-modal,
+    .booking-modal{
       position:fixed;
       inset:0;
       display:none;
@@ -543,19 +572,22 @@
     }
 
     .packaging-modal.show,
-    .barcode-modal.show{
+    .barcode-modal.show,
+    .booking-modal.show{
       display:block;
     }
 
     .packaging-modal-backdrop,
-    .barcode-modal-backdrop{
+    .barcode-modal-backdrop,
+    .booking-modal-backdrop{
       position:absolute;
       inset:0;
       background:rgba(15,23,42,.56);
     }
 
     .packaging-modal-dialog,
-    .barcode-modal-dialog{
+    .barcode-modal-dialog,
+    .booking-modal-dialog{
       position:absolute;
       top:50%;
       left:50%;
@@ -570,7 +602,8 @@
     }
 
     .packaging-modal-close,
-    .barcode-modal-close{
+    .barcode-modal-close,
+    .booking-modal-close{
       position:absolute;
       top:16px;
       right:16px;
@@ -585,12 +618,14 @@
     }
 
     .packaging-modal-header,
-    .barcode-modal-header{
+    .barcode-modal-header,
+    .booking-modal-header{
       margin-bottom:18px;
     }
 
     .packaging-modal-header h3,
-    .barcode-modal-header h3{
+    .barcode-modal-header h3,
+    .booking-modal-header h3{
       margin:0 0 8px;
       font-size:26px;
       line-height:1.3;
@@ -598,7 +633,8 @@
     }
 
     .packaging-modal-body,
-    .barcode-modal-body{
+    .barcode-modal-body,
+    .booking-modal-body{
       font-size:15px;
       line-height:1.8;
       color:var(--sub);
@@ -649,81 +685,6 @@
       background:#F8F9FA;
       font-weight:800;
       color:#111111;
-    }
-
-    .booking-tabs{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-bottom:18px;
-    }
-
-    .booking-tab{
-      padding:12px 16px;
-      border-radius:12px;
-      border:1px solid #d7e3fb;
-      background:#fff;
-      color:var(--brand);
-      font-size:14px;
-      font-weight:800;
-      transition:.2s ease;
-    }
-
-    .booking-tab.active{
-      background:var(--brand);
-      color:#fff;
-      border-color:var(--brand);
-    }
-
-    .booking-pane{
-      display:none;
-    }
-
-    .booking-pane.active{
-      display:block;
-    }
-
-    .download-box{
-      display:flex;
-      flex-wrap:wrap;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      padding:18px 20px;
-      background:#f8fbff;
-      border:1px solid #d7e3fb;
-      border-radius:18px;
-      margin-bottom:18px;
-    }
-
-    .download-box h3{
-      margin:0 0 6px;
-      font-size:18px;
-    }
-
-    .download-box p{
-      margin:0;
-      color:var(--sub);
-      font-size:14px;
-      line-height:1.7;
-    }
-
-    .download-btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:44px;
-      padding:0 18px;
-      border-radius:12px;
-      background:var(--brand);
-      color:#fff;
-      font-size:14px;
-      font-weight:800;
-      white-space:nowrap;
-    }
-
-    .download-btn:hover{
-      background:var(--brand-strong);
     }
 
     .faq-list{
@@ -812,21 +773,26 @@
     @media (max-width:768px){
       #panel-center{padding:20px !important;}
       .packaging-item,
-      .barcode-item{
+      .barcode-item,
+      .booking-item{
         align-items:flex-start;
         flex-direction:column;
       }
       .detail-btn,
-      .barcode-detail-btn{
+      .barcode-detail-btn,
+      .booking-detail-btn,
+      .download-btn{
         width:100%;
       }
       .packaging-modal-dialog,
-      .barcode-modal-dialog{
+      .barcode-modal-dialog,
+      .booking-modal-dialog{
         padding:20px;
         border-radius:20px;
       }
       .packaging-modal-header h3,
-      .barcode-modal-header h3{
+      .barcode-modal-header h3,
+      .booking-modal-header h3{
         font-size:22px;
       }
     }
@@ -1149,88 +1115,54 @@
               <div>
                 <div class="badge">입고 예약</div>
                 <h2>입고 예약 안내</h2>
-                <p class="desc">입고 방식에 따라 필요한 절차를 확인해주세요.</p>
+                <p class="desc">입고 방식별 양식 다운로드 및 유의사항을 확인해주세요.</p>
               </div>
               <div class="chip">예약 필수</div>
             </div>
 
-            <div class="booking-tabs">
-              <button class="booking-tab active" data-booking-tab="packing">패킹리스트 제출하기</button>
-              <button class="booking-tab" data-booking-tab="parcel">택배 입고</button>
-              <button class="booking-tab" data-booking-tab="vehicle">차량 입고</button>
-            </div>
-
-            <div class="booking-pane active" data-booking-pane="packing">
-              <div class="download-box">
-                <div>
-                  <h3>패킹리스트 양식 다운로드</h3>
-                  <p>입고 전 패킹리스트를 작성 후 제출해주세요. 아래 버튼을 누르면 양식 파일을 바로 다운로드할 수 있습니다.</p>
+            <div class="booking-list">
+              <div class="booking-item">
+                <div class="booking-title-wrap">
+                  <div class="booking-no">01</div>
+                  <div class="booking-copy">
+                    <strong>택배 양식 다운로드</strong>
+                    <span>택배 입고용 패킹리스트 양식을 다운로드해주세요.</span>
+                  </div>
                 </div>
-                <button class="download-btn" id="downloadPackingListBtn">양식 다운로드</button>
+                <button class="download-btn" id="downloadDeliveryBtn">다운로드</button>
               </div>
 
-              <div class="grid-2">
-                <div class="info-card">
-                  <h3>제출 전 확인</h3>
-                  <ul class="list">
-                    <li><span class="dot ok">✓</span><span>상품명, SKU, 수량, 박스 수량을 정확히 기재해주세요.</span></li>
-                    <li><span class="dot ok">✓</span><span>실제 입고 수량과 제출 수량은 반드시 일치해야 합니다.</span></li>
-                    <li><span class="dot ok">✓</span><span>소비기한 또는 제조 LOT가 상이한 경우 분리하여 작성해주세요.</span></li>
-                  </ul>
+              <div class="booking-item">
+                <div class="booking-title-wrap">
+                  <div class="booking-no">02</div>
+                  <div class="booking-copy">
+                    <strong>차량 양식 다운로드</strong>
+                    <span>차량 입고용 패킹리스트 양식을 다운로드해주세요.</span>
+                  </div>
                 </div>
-
-                <div class="info-card">
-                  <h3>유의사항</h3>
-                  <ul class="list">
-                    <li><span class="dot danger">!</span><span>패킹리스트 미제출 또는 오기재 시 입고 지연이 발생할 수 있습니다.</span></li>
-                    <li><span class="dot danger">!</span><span>실물과 양식이 다른 경우 현장 재확인이 필요합니다.</span></li>
-                    <li><span class="dot danger">!</span><span>기준 외 양식 제출 시 재작성 요청이 발생할 수 있습니다.</span></li>
-                  </ul>
-                </div>
+                <button class="download-btn" id="downloadTruckBtn">다운로드</button>
               </div>
-            </div>
 
-            <div class="booking-pane" data-booking-pane="parcel">
-              <div class="grid-2">
-                <div class="info-card">
-                  <h3>택배 입고 절차</h3>
-                  <ul class="list">
-                    <li><span class="dot ok">1</span><span>입고 예정 상품의 패킹리스트를 먼저 제출해주세요.</span></li>
-                    <li><span class="dot ok">2</span><span>아웃박스 표기 기준에 맞게 박스 외부 정보를 기재해주세요.</span></li>
-                    <li><span class="dot ok">3</span><span>센터 주소로 발송 후 운송장 정보를 공유해주세요.</span></li>
-                  </ul>
+              <div class="booking-item">
+                <div class="booking-title-wrap">
+                  <div class="booking-no">03</div>
+                  <div class="booking-copy">
+                    <strong>택배 입고 유의사항</strong>
+                    <span>택배 발송 전 반드시 확인이 필요한 기준입니다.</span>
+                  </div>
                 </div>
-
-                <div class="info-card">
-                  <h3>택배 입고 유의사항</h3>
-                  <ul class="list">
-                    <li><span class="dot warn">!</span><span>도착 시간 지정은 어려울 수 있으며, 센터 상황에 따라 순차 입고됩니다.</span></li>
-                    <li><span class="dot warn">!</span><span>혼적, 바코드 누락, 기준 외 포장 상태는 별도 비용 또는 입고 지연 사유가 됩니다.</span></li>
-                    <li><span class="dot warn">!</span><span>박스 훼손 상태가 심한 경우 현장 확인 후 입고 제한될 수 있습니다.</span></li>
-                  </ul>
-                </div>
+                <button class="booking-detail-btn" data-booking="delivery">상세보기</button>
               </div>
-            </div>
 
-            <div class="booking-pane" data-booking-pane="vehicle">
-              <div class="grid-2">
-                <div class="info-card">
-                  <h3>차량 입고 절차</h3>
-                  <ul class="list">
-                    <li><span class="dot ok">1</span><span>입고 전 예약 및 패킹리스트 제출을 완료해주세요.</span></li>
-                    <li><span class="dot ok">2</span><span>센터 도착 전 기사님께 도착 예정 시간을 공유해주세요.</span></li>
-                    <li><span class="dot ok">3</span><span>센터 도착 후 안내에 따라 지정 도크에 차량을 접안해주세요.</span></li>
-                  </ul>
+              <div class="booking-item">
+                <div class="booking-title-wrap">
+                  <div class="booking-no">04</div>
+                  <div class="booking-copy">
+                    <strong>차량 입고 유의사항</strong>
+                    <span>차량 입차 전 반드시 확인이 필요한 기준입니다.</span>
+                  </div>
                 </div>
-
-                <div class="info-card">
-                  <h3>차량 입고 유의사항</h3>
-                  <ul class="list">
-                    <li><span class="dot warn">!</span><span>점심시간 및 센터 혼잡 시간에는 대기가 발생할 수 있습니다.</span></li>
-                    <li><span class="dot warn">!</span><span>예약 정보와 실제 물량이 상이할 경우 하차 전 재확인이 필요합니다.</span></li>
-                    <li><span class="dot warn">!</span><span>기준 외 팔레트 적재, 혼적 포장, 분류 불가 상태는 현장 입고 지연 사유가 됩니다.</span></li>
-                  </ul>
-                </div>
+                <button class="booking-detail-btn" data-booking="truck">상세보기</button>
               </div>
             </div>
           </section>
@@ -1389,6 +1321,18 @@
     </div>
   </div>
 
+  <div class="booking-modal" id="bookingModal">
+    <div class="booking-modal-backdrop" id="bookingModalBackdrop"></div>
+    <div class="booking-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="bookingModalTitle">
+      <button class="booking-modal-close" id="bookingModalClose" aria-label="닫기">×</button>
+      <div class="booking-modal-header">
+        <div class="badge">입고 예약 상세</div>
+        <h3 id="bookingModalTitle">제목</h3>
+        <div class="booking-modal-body" id="bookingModalDesc">설명</div>
+      </div>
+    </div>
+  </div>
+
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const navItems = [
@@ -1483,14 +1427,30 @@
           image: "assets/images/barcode-4.png"
         },
         5: {
-          title: "곡면, 접힘 부위, 포장 틈새 등 스캔이 어려운 위치는 피해주세요.",
-          desc: `바코드는 평평하고 쉽게 인식 가능한 위치에 부착해주세요.`,
+          title: "상품별 바코드 예시",
+          desc: `상품별로 등록된 바코드가 실제 입고 상품에 동일하게 부착되어 있는지 확인해주세요.`,
           image: "assets/images/barcode-5.png"
+        }
+      };
+
+      const bookingDetailMap = {
+        delivery: {
+          title: "택배 입고 유의사항",
+          desc: `• 입고 예정 상품의 패킹리스트를 먼저 제출해주세요.<br>
+• 아웃박스 표기 기준에 맞게 박스 외부 정보를 기재해주세요.<br>
+• 센터 주소로 발송 후 운송장 정보를 공유해주세요.<br><br>
+• 도착 시간 지정은 어려울 수 있으며, 센터 상황에 따라 순차 입고됩니다.<br>
+• 혼적, 바코드 누락, 기준 외 포장 상태는 별도 비용 또는 입고 지연 사유가 됩니다.<br>
+• 박스 훼손 상태가 심한 경우 현장 확인 후 입고 제한될 수 있습니다.`
         },
-        6: {
-          title: "상품 식별이 어려운 임의 바코드 사용은 불가합니다.",
-          desc: `실제 상품 식별과 매칭되지 않는 임의 라벨, 임시 코드, 수기 표기 방식은 사용할 수 없습니다.`,
-          image: "assets/images/barcode-6.png"
+        truck: {
+          title: "차량 입고 유의사항",
+          desc: `• 입고 전 예약 및 패킹리스트 제출을 완료해주세요.<br>
+• 센터 도착 전 기사님께 도착 예정 시간을 공유해주세요.<br>
+• 센터 도착 후 안내에 따라 지정 도크에 차량을 접안해주세요.<br><br>
+• 점심시간 및 센터 혼잡 시간에는 대기가 발생할 수 있습니다.<br>
+• 예약 정보와 실제 물량이 상이할 경우 하차 전 재확인이 필요합니다.<br>
+• 기준 외 팔레트 적재, 혼적 포장, 분류 불가 상태는 현장 입고 지연 사유가 됩니다.`
         }
       };
 
@@ -1517,6 +1477,12 @@
       const barcodeModalTitle = document.getElementById("barcodeModalTitle");
       const barcodeModalDesc = document.getElementById("barcodeModalDesc");
       const barcodeModalImage = document.getElementById("barcodeModalImage");
+
+      const bookingModal = document.getElementById("bookingModal");
+      const bookingModalBackdrop = document.getElementById("bookingModalBackdrop");
+      const bookingModalClose = document.getElementById("bookingModalClose");
+      const bookingModalTitle = document.getElementById("bookingModalTitle");
+      const bookingModalDesc = document.getElementById("bookingModalDesc");
 
       function renderNav(target) {
         if (!target) return;
@@ -1562,36 +1528,13 @@
         document.body.style.overflow = "";
       }
 
-      function setBookingTab(tabId) {
-        document.querySelectorAll(".booking-tab").forEach(tab => {
-          tab.classList.toggle("active", tab.dataset.bookingTab === tabId);
-        });
-
-        document.querySelectorAll(".booking-pane").forEach(pane => {
-          pane.classList.toggle("active", pane.dataset.bookingPane === tabId);
-        });
-      }
-
-      function downloadPackingListTemplate() {
-        const csvRows = [
-          ["입고예정일", "고객사명", "SKU명", "SKU코드", "바코드", "박스수량", "박스입수량", "총수량", "소비기한", "제조LOT", "비고"],
-          ["2026-03-25", "예시 고객사", "예시 상품A", "SKU-001", "8800000000001", "10", "30", "300", "2027-12-31", "LOT-001", ""],
-          ["2026-03-25", "예시 고객사", "예시 상품B", "SKU-002", "8800000000002", "5", "20", "100", "2027-10-31", "LOT-002", ""]
-        ];
-
-        const csvContent = "\uFEFF" + csvRows
-          .map(row => row.map(value => `"${String(value).replace(/"/g, '""')}"`).join(","))
-          .join("\n");
-
-        const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
-        const url = URL.createObjectURL(blob);
+      function downloadFile(fileName) {
         const link = document.createElement("a");
-        link.href = url;
-        link.download = "packing-list-template.csv";
+        link.href = `./${fileName}`;
+        link.download = fileName;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-        URL.revokeObjectURL(url);
       }
 
       function renderDetailContent(text) {
@@ -1696,6 +1639,20 @@
         document.body.style.overflow = "";
       }
 
+      function openBookingModal(id){
+        const item = bookingDetailMap[id];
+        if (!item) return;
+        bookingModalTitle.textContent = item.title;
+        bookingModalDesc.innerHTML = item.desc;
+        bookingModal.classList.add("show");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeBookingModal(){
+        bookingModal.classList.remove("show");
+        document.body.style.overflow = "";
+      }
+
       renderNav(sideNavList);
       renderNav(mobileNavList);
 
@@ -1709,9 +1666,17 @@
       if (barcodeModalClose) barcodeModalClose.addEventListener("click", closeBarcodeModal);
       if (barcodeModalBackdrop) barcodeModalBackdrop.addEventListener("click", closeBarcodeModal);
 
-      const downloadPackingListBtn = document.getElementById("downloadPackingListBtn");
-      if (downloadPackingListBtn) {
-        downloadPackingListBtn.addEventListener("click", downloadPackingListTemplate);
+      if (bookingModalClose) bookingModalClose.addEventListener("click", closeBookingModal);
+      if (bookingModalBackdrop) bookingModalBackdrop.addEventListener("click", closeBookingModal);
+
+      const downloadDeliveryBtn = document.getElementById("downloadDeliveryBtn");
+      if (downloadDeliveryBtn) {
+        downloadDeliveryBtn.addEventListener("click", () => downloadFile("poomgoinboundlist_delivery.xlsx"));
+      }
+
+      const downloadTruckBtn = document.getElementById("downloadTruckBtn");
+      if (downloadTruckBtn) {
+        downloadTruckBtn.addEventListener("click", () => downloadFile("poomgoinboundlist_truck.xlsx"));
       }
 
       document.addEventListener("click", (e) => {
@@ -1735,9 +1700,9 @@
           return;
         }
 
-        const bookingTab = e.target.closest(".booking-tab");
-        if (bookingTab) {
-          setBookingTab(bookingTab.dataset.bookingTab);
+        const bookingBtn = e.target.closest(".booking-detail-btn");
+        if (bookingBtn) {
+          openBookingModal(bookingBtn.dataset.booking);
           return;
         }
 
@@ -1752,6 +1717,7 @@
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape" && packagingModal.classList.contains("show")) closePackagingModal();
         if (e.key === "Escape" && barcodeModal.classList.contains("show")) closeBarcodeModal();
+        if (e.key === "Escape" && bookingModal.classList.contains("show")) closeBookingModal();
       });
     });
   </script>

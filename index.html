@@ -682,34 +682,34 @@
     }
 
     .detail-table-wrap{
-  margin-top:16px;
-  overflow:auto;
-}
+      margin-top:16px;
+      overflow:auto;
+    }
 
-.detail-table{
-  width:100%;
-  border-collapse:collapse;
-  border-radius:14px;
-  overflow:hidden;
-  background:#fff;
-  box-shadow:0 0 0 1px #E8EBF0 inset;
-}
+    .detail-table{
+      width:100%;
+      border-collapse:collapse;
+      border-radius:14px;
+      overflow:hidden;
+      background:#fff;
+      box-shadow:0 0 0 1px #E8EBF0 inset;
+    }
 
-.detail-table th,
-.detail-table td{
-  padding:14px 12px;
-  border:1px solid #E8EBF0;
-  text-align:left;
-  font-size:14px;
-  line-height:1.6;
-  vertical-align:top;
-}
+    .detail-table th,
+    .detail-table td{
+      padding:14px 12px;
+      border:1px solid #E8EBF0;
+      text-align:left;
+      font-size:14px;
+      line-height:1.6;
+      vertical-align:top;
+    }
 
-.detail-table th{
-  background:#F8F9FA;
-  font-weight:800;
-  color:#111111;
-}
+    .detail-table th{
+      background:#F8F9FA;
+      font-weight:800;
+      color:#111111;
+    }
   </style>
 </head>
 <body>
@@ -1230,42 +1230,42 @@
     if (mobileMenuClose) mobileMenuClose.addEventListener("click", closeDrawer);
     if (drawerBg) drawerBg.addEventListener("click", closeDrawer);
 
-   const packagingDetailMap = {
-  1: {
-    title: "1박스에는 1개의 상품(SKU)만 구성해주세요.",
-    desc: `하나의 박스에는 동일한 상품(SKU)만 담아 입고해야 하며,
+    const packagingDetailMap = {
+      1: {
+        title: "1박스에는 1개의 상품(SKU)만 구성해주세요.",
+        desc: `하나의 박스에는 동일한 상품(SKU)만 담아 입고해야 하며,
 단일 상품(SKU) 기준을 지키지 않을 경우 입고가 제한될 수 있습니다.`,
-    image: "assets/images/pack-1.png"
-  },
-  2: {
-    title: "박스 내부는 수량 확인이 가능하도록 정형화하여 포장해주세요.",
-    desc: `박스 내에는 육안으로 수량 확인이 가능해야 합니다.
+        image: "assets/images/pack-1.png"
+      },
+      2: {
+        title: "박스 내부는 수량 확인이 가능하도록 정형화하여 포장해주세요.",
+        desc: `박스 내에는 육안으로 수량 확인이 가능해야 합니다.
 육안으로 수량 확인이 불가한 경우 벌크 입고로 간주됩니다.
 벌크 입고는 실셈 여부에 따라 재고 관리 방식이 달라집니다.`,
-    image: "assets/images/pack-2.png"
-  },
-  3: {
-    title: "동일 상품(SKU)이라도 소비기한 또는 제조 LOT가 다르면 분리 포장해주세요.",
-    desc: `동일 상품(SKU)이라도 소비기한 또는 제조 LOT가 다를 경우 분리 포장이 필요합니다.
+        image: "assets/images/pack-2.png"
+      },
+      3: {
+        title: "동일 상품(SKU)이라도 소비기한 또는 제조 LOT가 다르면 분리 포장해주세요.",
+        desc: `동일 상품(SKU)이라도 소비기한 또는 제조 LOT가 다를 경우 분리 포장이 필요합니다.
 
 [[table]]
 구성 | 입고 가능 여부 | 입고 방법
 동일 SKU 소비기한/LOT 동일 | 가능 | 단일 박스 입고
 동일 SKU 소비기한/LOT 상이 | 혼합 구성 불가 | 소비기한/LOT별 박스 분리 포장 후 입고
 [[/table]]`,
-    image: "assets/images/pack-3.png"
-  },
-  4: {
-    title: "완카톤 수량이 아닌 잔량 박스 입고의 경우, 실셈 비용이 발생합니다.",
-    desc: `📦 잔량 박스란?
+        image: "assets/images/pack-3.png"
+      },
+      4: {
+        title: "완카톤 수량이 아닌 잔량 박스 입고의 경우, 실셈 비용이 발생합니다.",
+        desc: `📦 잔량 박스란?
 품고 전산 내 등록된 박스 입수량보다 실제 입고된 박스 내 수량이 적은 경우를 의미합니다.
 
 예) 등록 박스 입수량: 30 / 실제 입고 수량: 30 미만`,
-    image: "assets/images/pack-4.png"
-  },
-  5: {
-    title: "출고 단위에 맞는 포장 기준을 준수해주세요.",
-    desc: `출고 단위에 따라 입고 방식이 달라집니다.
+        image: "assets/images/pack-4.png"
+      },
+      5: {
+        title: "출고 단위에 맞는 포장 기준을 준수해주세요.",
+        desc: `출고 단위에 따라 입고 방식이 달라집니다.
 
 [[table]]
 단위 | 입고 방법
@@ -1273,11 +1273,11 @@
 세트 단위 출고 | 세트로 구성된 상품(SKU)은 세트로 포장된 상태로 입고되어야 합니다.
 송장 단위 출고 | 상품(SKU)에 송장을 바로 부착하여 출고하는 경우 박스 입수량 1개 단위로 입고되어야 합니다.
 [[/table]]`,
-    image: "assets/images/pack-5.png"
-  },
-  6: {
-    title: "아웃박스에는 필수 정보를 기재해주세요.",
-    desc: `아웃박스 표기 기준입니다.
+        image: "assets/images/pack-5.png"
+      },
+      6: {
+        title: "아웃박스에는 필수 정보를 기재해주세요.",
+        desc: `아웃박스 표기 기준입니다.
 
 [[table]]
 단위 | SKU명 | 박스 입수량 | 바코드 표기 | 제조 LOT | 소비기한
@@ -1285,9 +1285,56 @@
 세트 단위 출고 | ● | ● | 숫자 표기 | ● | ●
 송장 단위 출고 | ● |  | 스캔 가능한 바코드(라벨/인쇄) | ● | ●
 [[/table]]`,
-    image: "assets/images/pack-6.png"
-  }
-};
+        image: "assets/images/pack-6.png"
+      }
+    };
+
+    function renderDetailContent(text) {
+      const tableParsed = text.replace(/\[\[table\]\]([\s\S]*?)\[\[\/table\]\]/g, (_, tableContent) => {
+        const rows = tableContent
+          .trim()
+          .split("\n")
+          .map(row => row.trim())
+          .filter(Boolean);
+
+        if (!rows.length) return "";
+
+        const headers = rows[0].split("|").map(cell => cell.trim());
+        const bodyRows = rows.slice(1);
+
+        const thead = `
+          <thead>
+            <tr>
+              ${headers.map(header => `<th>${header}</th>`).join("")}
+            </tr>
+          </thead>
+        `;
+
+        const tbody = `
+          <tbody>
+            ${bodyRows.map(row => {
+              const cols = row.split("|").map(cell => cell.trim());
+              return `
+                <tr>
+                  ${cols.map(col => `<td>${col}</td>`).join("")}
+                </tr>
+              `;
+            }).join("")}
+          </tbody>
+        `;
+
+        return `
+          <div class="detail-table-wrap">
+            <table class="detail-table">
+              ${thead}
+              ${tbody}
+            </table>
+          </div>
+        `;
+      });
+
+      return tableParsed.replace(/\n/g, "<br>");
+    }
 
     const packagingModal = document.getElementById("packagingModal");
     const packagingModalBackdrop = document.getElementById("packagingModalBackdrop");
@@ -1300,7 +1347,7 @@
       const item = packagingDetailMap[id];
       if (!item) return;
       packagingModalTitle.textContent = item.title;
-      packagingModalDesc.textContent = item.desc;
+      packagingModalDesc.innerHTML = renderDetailContent(item.desc);
       packagingModalImage.src = item.image;
       packagingModalImage.alt = item.title;
       packagingModal.classList.add("show");
@@ -1326,7 +1373,7 @@
       const item = barcodeDetailMap[id];
       if (!item) return;
       barcodeModalTitle.textContent = item.title;
-      barcodeModalDesc.textContent = item.desc;
+      barcodeModalDesc.innerHTML = renderDetailContent(item.desc);
       barcodeModalImage.src = item.image;
       barcodeModalImage.alt = item.title;
       barcodeModal.classList.add("show");

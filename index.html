@@ -1103,10 +1103,19 @@
               <div class="barcode-item">
                 <div class="barcode-title-wrap">
                   <div class="barcode-no">05</div>
-                  <div class="barcode-copy"><strong>상품별 바코드 예시</strong></div>
+                  <div class="barcode-copy"><strong>단수 출고 상품(SKU) 바코드 기준</strong></div>
                 </div>
                 <button class="barcode-detail-btn" data-barcode="5">상세보기</button>
               </div>
+
+             <div class="barcode-item">
+                <div class="barcode-title-wrap">
+                  <div class="barcode-no">06</div>
+                  <div class="barcode-copy"><strong>낱개 출고 상품(SKU) 바코드 기준</strong></div>
+                </div>
+                <button class="barcode-detail-btn" data-barcode="6">상세보기</button>
+              </div>              
+              
             </div>
           </section>
 
@@ -1405,31 +1414,41 @@
 
       const barcodeDetailMap = {
         1: {
-          title: "모든 SKU에는 바코드가 반드시 부착되어 있어야 합니다.",
+          title: "모든 상품(SKU)에는 바코드가 반드시 부착 또는 인쇄된 채로 입고해주세요.",
           desc: `입고되는 모든 상품에는 식별 가능한 바코드가 반드시 있어야 합니다.
-상품별 바코드 누락 시 입고가 지연되거나 별도 작업 비용이 발생할 수 있습니다.`,
+상품(SKU)에 바코드가 인쇄 또는 미부착된 경우 별도의 바코드 부착 비용이 발생됩니다.',
           image: "assets/images/barcode-1.png"
         },
         2: {
-          title: "바코드는 스캔 가능한 상태로 유지해주세요.",
-          desc: `오염, 번짐, 훼손 없이 스캔 가능한 상태여야 합니다.
-리딩이 어려운 바코드는 현장 작업이 필요할 수 있습니다.`,
+          title: "바코드 미검수 상품(SKU)의 경우 별도 부착 없이 입고 가능합니다.",
+          desc: `바코드 검수가 필요하지 않은 상품(SKU)의 경우 바코드가 인쇄 또는 미부착되어있더라도 입고가 가능합니다.<br>
+단, 재고 관리 비대상으로 운영되며 재고 loss 또는 과출고,출고 누락이 발생하더라도 품고에서 책임지지 않습니다.`,
           image: "assets/images/barcode-2.png"
         },
         3: {
-          title: "중복되거나 오인될 수 있는 바코드는 제거해주세요.",
-          desc: `상품 또는 박스 외부에 기존 라벨, 타 바코드, 오인 가능한 코드가 남아있지 않도록 제거해주세요.`,
+          title: "흰색 바탕에 검은색 바코드로 입고해주세요.",
+          desc:: '흰색 바탕에 검색은 바코드로 입고되지 않아 바코드 스캔이 불가한 경우 덧방 비용이 추가로 발생됩니다.'
           image: "assets/images/barcode-3.png"
         },
         4: {
-          title: "훼손되거나 찢어진 바코드는 사용이 불가합니다.",
-          desc: `일부가 찢어졌거나 접혀 있어 스캔이 어려운 바코드는 사용이 불가합니다.`,
+          title: "1개의 상품(SKU)에는 1개의 바코드만 있어야합니다.",
+          desc: `1개의 상품(SKU)에 여러개의 바코드가 있을 경우 덧방 작업을 진행 후 입고해야하며,<br>이는 출고 작업 시 작업 오류가 발생될 수 있는 사항으로,덧방없이 입고될 경우 덧방 비용이 추가로 발생됩니다.`,
           image: "assets/images/barcode-4.png"
         },
         5: {
-          title: "상품별 바코드 예시",
-          desc: `상품별로 등록된 바코드가 실제 입고 상품에 동일하게 부착되어 있는지 확인해주세요.`,
+          title: "단수 출고 상품(SKU) 바코드 기준",
+          desc: `📦단수 출고 상품(SKU) 이란? 
+        상품(SKU) 자체에 송장을 부착하여 출고하는 상품(SKU)<br>
+        ① 박스채로 출고하는 단수 상품(SKU)의 경우 박스 외부에 스캔 가능한 바코드가 부착 또는 인쇄되어있어야합니다.<br>
+        ② 폴리백,안전봉투의 형태로 구성된 단수 상품(SKU)의 경우 아웃박스를 사용하여 입고해야합니다<br>
+        단, 아웃박스 외부에는 스캔 가능한 바코드가 없어야하며, 상품(SKU)명/바코드 넘버/박스 입수량이 필히 명시되어야합니다.`,
           image: "assets/images/barcode-5.png"
+        },
+        6: {
+          title: "낱개 출고 상품(SKU) 바코드 기준",
+          desc: `낱개 출고 상품(SKU)의 경우 카톤박스 내 인박스로 구성되어있을 경우, 인박스에는 스캔 가능한 바코드가 없어야합니다.<br>
+        인박스에 스캔 가능한 바코드가 있을 시 인박스 기준으로 출고 되는 상품(SKU)으로 오인지 될 수 있습니다.`,
+          image: "assets/images/barcode-6.png"
         }
       };
 

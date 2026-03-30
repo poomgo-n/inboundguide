@@ -562,6 +562,7 @@
       border-color:var(--brand-strong);
     }
 
+    /* modal */
     .packaging-modal,
     .barcode-modal,
     .booking-modal{
@@ -592,52 +593,138 @@
       top:50%;
       left:50%;
       transform:translate(-50%,-50%);
-      width:min(920px, calc(100vw - 32px));
+      width:min(980px, calc(100vw - 32px));
       max-height:calc(100vh - 48px);
-      overflow:auto;
+      overflow:hidden;
       background:#fff;
-      border-radius:24px;
-      padding:28px;
+      border-radius:28px;
       box-shadow:0 24px 80px rgba(15,23,42,.22);
+      display:flex;
+      flex-direction:column;
     }
 
     .packaging-modal-close,
     .barcode-modal-close,
     .booking-modal-close{
       position:absolute;
-      top:16px;
-      right:16px;
-      width:40px;
-      height:40px;
+      top:18px;
+      right:18px;
+      width:42px;
+      height:42px;
       border-radius:12px;
       border:1px solid var(--line);
       background:#fff;
       font-size:24px;
       line-height:1;
       color:#374151;
+      z-index:2;
+    }
+
+    .modal-scroll{
+      overflow-y:auto;
+      padding:28px;
     }
 
     .packaging-modal-header,
     .barcode-modal-header,
     .booking-modal-header{
       margin-bottom:18px;
+      padding-right:56px;
     }
 
     .packaging-modal-header h3,
     .barcode-modal-header h3,
     .booking-modal-header h3{
       margin:0 0 8px;
-      font-size:26px;
-      line-height:1.3;
+      font-size:28px;
+      line-height:1.35;
+      color:#111827;
+      letter-spacing:-0.03em;
+    }
+
+    .modal-subtext{
+      color:var(--sub);
+      font-size:14px;
+      line-height:1.7;
+    }
+
+    .modal-section{
+      border:1px solid var(--line);
+      border-radius:20px;
+      background:#fff;
+      padding:18px 20px;
+      margin-top:16px;
+    }
+
+    .modal-section-title{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      margin:0 0 12px;
+      font-size:16px;
+      font-weight:800;
       color:#111827;
     }
 
-    .packaging-modal-body,
-    .barcode-modal-body,
-    .booking-modal-body{
+    .modal-section-title .emoji{
+      font-size:18px;
+      line-height:1;
+    }
+
+    .modal-rich-text{
+      color:#374151;
+      font-size:15px;
+      line-height:1.85;
+    }
+
+    .modal-rich-text p{
+      margin:0 0 12px;
+    }
+
+    .modal-rich-text p:last-child{
+      margin-bottom:0;
+    }
+
+    .modal-bullet-list{
+      list-style:none;
+      margin:0;
+      padding:0;
+      display:grid;
+      gap:10px;
+    }
+
+    .modal-bullet-list li{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      color:#374151;
       font-size:15px;
       line-height:1.8;
-      color:var(--sub);
+    }
+
+    .modal-bullet-dot{
+      width:22px;
+      height:22px;
+      border-radius:999px;
+      flex:0 0 auto;
+      display:grid;
+      place-items:center;
+      background:var(--brand-soft);
+      color:var(--brand);
+      font-size:12px;
+      font-weight:800;
+      margin-top:2px;
+    }
+
+    .modal-note{
+      margin-top:16px;
+      padding:14px 16px;
+      border-radius:16px;
+      background:#f8fbff;
+      border:1px solid #d9e7ff;
+      color:#1f2937;
+      font-size:14px;
+      line-height:1.75;
     }
 
     .packaging-modal-image-wrap,
@@ -646,7 +733,7 @@
       border-radius:20px;
       overflow:hidden;
       background:#fff;
-      margin-top:18px;
+      margin-top:16px;
     }
 
     .packaging-modal-image-wrap img,
@@ -657,32 +744,32 @@
     }
 
     .detail-table-wrap{
-      margin:16px 0;
+      margin:14px 0 0;
       overflow:auto;
+      border-radius:16px;
+      border:1px solid #e8ebf0;
     }
 
     .detail-table{
       width:100%;
       border-collapse:collapse;
-      border-radius:14px;
-      overflow:hidden;
       background:#fff;
-      box-shadow:0 0 0 1px #E8EBF0 inset;
+      min-width:620px;
     }
 
     .detail-table th,
     .detail-table td{
       padding:14px 12px;
-      border:1px solid #E8EBF0;
+      border:1px solid #e8ebf0;
       text-align:left;
       font-size:14px;
-      line-height:1.6;
+      line-height:1.7;
       vertical-align:top;
       white-space:normal;
     }
 
     .detail-table th{
-      background:#F8F9FA;
+      background:#f8f9fa;
       font-weight:800;
       color:#111111;
     }
@@ -787,8 +874,12 @@
       .packaging-modal-dialog,
       .barcode-modal-dialog,
       .booking-modal-dialog{
+        width:min(100vw - 20px, 980px);
+        max-height:calc(100vh - 20px);
+        border-radius:22px;
+      }
+      .modal-scroll{
         padding:20px;
-        border-radius:20px;
       }
       .packaging-modal-header h3,
       .barcode-modal-header h3,
@@ -806,11 +897,11 @@
   <div class="mobile-top">
     <div class="mobile-top-inner">
       <div class="mobile-title" id="goHomeMobile" style="cursor:pointer;">
-  <img src="./Primary Logo.png" alt="품고 로고" class="logo-img">
-  <div>
-    <strong>품고 입고 가이드</strong>
-  </div>
-</div>
+        <img src="./Primary Logo.png" alt="품고 로고" class="logo-img">
+        <div>
+          <strong>품고 입고 가이드</strong>
+        </div>
+      </div>
       <button class="mobile-menu" id="mobileMenuOpen">☰</button>
     </div>
   </div>
@@ -829,11 +920,11 @@
   <div class="layout">
     <aside class="sidebar">
       <div class="logo" id="goHomeDesktop" style="cursor:pointer;">
-  <img src="./Primary Logo.png" alt="품고 로고" class="logo-img">
-  <div class="logo-text">
-    <strong>품고 입고 가이드</strong>
-  </div>
-</div>
+        <img src="./Primary Logo.png" alt="품고 로고" class="logo-img">
+        <div class="logo-text">
+          <strong>품고 입고 가이드</strong>
+        </div>
+      </div>
       <div class="nav-list" id="sideNavList"></div>
     </aside>
 
@@ -1108,21 +1199,21 @@
                 <button class="barcode-detail-btn" data-barcode="5">상세보기</button>
               </div>
 
-             <div class="barcode-item">
+              <div class="barcode-item">
                 <div class="barcode-title-wrap">
                   <div class="barcode-no">06</div>
                   <div class="barcode-copy"><strong>낱개 출고 상품(SKU) 바코드 기준</strong></div>
                 </div>
                 <button class="barcode-detail-btn" data-barcode="6">상세보기</button>
-              </div>              
+              </div>
 
-                <div class="barcode-item">
+              <div class="barcode-item">
                 <div class="barcode-title-wrap">
                   <div class="barcode-no">07</div>
                   <div class="barcode-copy"><strong>등록된 바코드 또는 상품(SKU)의 바코드와 스캔되는 바코드가 일치하는지 확인 후 입고해주세요.</strong></div>
                 </div>
                 <button class="barcode-detail-btn" data-barcode="7">상세보기</button>
-              </div>     
+              </div>
             </div>
           </section>
 
@@ -1186,19 +1277,21 @@
           <section class="panel" id="panel-cost">
             <div class="panel-head">
               <div>
-  <div class="badge">부가 비용</div>
-  <h2>추가 비용 발생 기준</h2>
-  <p class="desc">
-    기본 입고 기준을 벗어나는 경우 별도 비용이 발생하며,
-    <a href="https://sell.smartstore.naver.com/#/center-notice/detail/100018493" 
-       target="_blank" 
-       rel="noopener noreferrer"
-       style="color:#0040d1; font-weight:600; text-decoration:underline;">
-       N배송 직계약 부가비용 정책 안내
-    </a>
-    에서도 확인 하실 수 있습니다.
-  </p>
-</div>
+                <div class="badge">부가 비용</div>
+                <h2>추가 비용 발생 기준</h2>
+                <p class="desc">
+                  기본 입고 기준을 벗어나는 경우 별도 비용이 발생하며,
+                  <a href="https://sell.smartstore.naver.com/#/center-notice/detail/100018493" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    style="color:#0040d1; font-weight:600; text-decoration:underline;">
+                    N배송 직계약 부가비용 정책 안내
+                  </a>
+                  에서도 확인 하실 수 있습니다.
+                </p>
+              </div>
+            </div>
+
             <div class="info-card">
               <h3>부가 비용 기준표</h3>
               <table class="cost-table">
@@ -1218,7 +1311,7 @@
                     <td>Unit</td>
                   </tr>
                   <tr>
-                    <td>긴급 입고 <br>비용</td>
+                    <td>긴급 입고 비용</td>
                     <td>100원</td>
                     <td>입고 예약 기한 초과 되어 당일 입고가 필요한 경우<br>임의 긴급 입고는 불가하며, 사전에 품고와 협의 후 가능합니다.</td>
                     <td>Unit</td>
@@ -1260,33 +1353,33 @@
                     <td>Unit</td>
                   </tr>
                   <tr>
-                    <td>팔레트 미적재 입고 ( 높이 160cm 미만)</td>
+                    <td>팔레트 미적재 입고 (높이 160cm 미만)</td>
                     <td>1,000원</td>
-                    <td>차량 입고 시 PLT에 미적재된 상태로 박스 형태로 입고되며,PLT 적재 작업 시 160cm 미만인 경우</td>
+                    <td>차량 입고 시 PLT에 미적재된 상태로 박스 형태로 입고되며, PLT 적재 작업 시 160cm 미만인 경우</td>
                     <td>BOX</td>
                   </tr>
                   <tr>
-                    <td>팔레트 미적재 입고 ( 높이 160cm 초과)</td>
+                    <td>팔레트 미적재 입고 (높이 160cm 초과)</td>
                     <td>2,000원</td>
-                    <td>차량 입고 시 PLT에 미적재된 상태로 박스 형태로 입고되며,PLT 적재 작업 시 160cm 초과인 경우</td>
+                    <td>차량 입고 시 PLT에 미적재된 상태로 박스 형태로 입고되며, PLT 적재 작업 시 160cm 초과인 경우</td>
                     <td>BOX</td>
                   </tr>
                   <tr>
                     <td>폐기 비용</td>
                     <td>2,000</td>
-                    <td>입고된 제품이 불량 또는 파손된 상태로 입고되어 폐기 진행 하는 경우<br></td>
+                    <td>입고된 제품이 불량 또는 파손된 상태로 입고되어 폐기 진행 하는 경우</td>
                     <td>KG</td>
                   </tr>
                   <tr>
                     <td>컨테이너 입고</td>
                     <td>10,000</td>
-                    <td>컨테이너 입고 시<br>40HQ 컨테이너는 40PT로 적용</bt></td>
+                    <td>컨테이너 입고 시<br>40HQ 컨테이너는 40PT로 적용</td>
                     <td>Pt</td>
                   </tr>
                   <tr>
-                    <td>규정 외 팔레트 입고 </td>
+                    <td>규정 외 팔레트 입고</td>
                     <td>10,000</td>
-                    <td>AJ/KPP 규정 팔레트가 아닌 일회용,나무 팔레트 입고로 인해 규정 팔레트 이적 작업 시 </bt></td>
+                    <td>AJ/KPP 규정 팔레트가 아닌 일회용, 나무 팔레트 입고로 인해 규정 팔레트 이적 작업 시</td>
                     <td>PLT</td>
                   </tr>
                 </tbody>
@@ -1365,13 +1458,19 @@
     <div class="packaging-modal-backdrop" id="packagingModalBackdrop"></div>
     <div class="packaging-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="packagingModalTitle">
       <button class="packaging-modal-close" id="packagingModalClose" aria-label="닫기">×</button>
-      <div class="packaging-modal-header">
-        <div class="badge">포장 기준 상세</div>
-        <h3 id="packagingModalTitle">제목</h3>
-        <div class="packaging-modal-body" id="packagingModalDesc">설명</div>
-      </div>
-      <div class="packaging-modal-image-wrap">
-        <img id="packagingModalImage" src="" alt="포장 기준 상세 이미지" />
+      <div class="modal-scroll">
+        <div class="packaging-modal-header">
+          <div class="badge">포장 기준 상세</div>
+          <h3 id="packagingModalTitle">제목</h3>
+          <div class="modal-subtext">입고 전 아래 기준을 꼭 확인해주세요.</div>
+        </div>
+        <div class="modal-section">
+          <div class="modal-section-title"><span class="emoji">📌</span><span>상세 내용</span></div>
+          <div class="modal-rich-text" id="packagingModalDesc">설명</div>
+        </div>
+        <div class="packaging-modal-image-wrap">
+          <img id="packagingModalImage" src="" alt="포장 기준 상세 이미지" />
+        </div>
       </div>
     </div>
   </div>
@@ -1380,13 +1479,19 @@
     <div class="barcode-modal-backdrop" id="barcodeModalBackdrop"></div>
     <div class="barcode-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="barcodeModalTitle">
       <button class="barcode-modal-close" id="barcodeModalClose" aria-label="닫기">×</button>
-      <div class="barcode-modal-header">
-        <div class="badge">바코드 기준 상세</div>
-        <h3 id="barcodeModalTitle">제목</h3>
-        <div class="barcode-modal-body" id="barcodeModalDesc">설명</div>
-      </div>
-      <div class="barcode-modal-image-wrap">
-        <img id="barcodeModalImage" src="" alt="바코드 기준 상세 이미지" />
+      <div class="modal-scroll">
+        <div class="barcode-modal-header">
+          <div class="badge">바코드 기준 상세</div>
+          <h3 id="barcodeModalTitle">제목</h3>
+          <div class="modal-subtext">스캔 오류 및 추가 비용 방지를 위해 확인해주세요.</div>
+        </div>
+        <div class="modal-section">
+          <div class="modal-section-title"><span class="emoji">🏷️</span><span>상세 내용</span></div>
+          <div class="modal-rich-text" id="barcodeModalDesc">설명</div>
+        </div>
+        <div class="barcode-modal-image-wrap">
+          <img id="barcodeModalImage" src="" alt="바코드 기준 상세 이미지" />
+        </div>
       </div>
     </div>
   </div>
@@ -1395,61 +1500,67 @@
     <div class="booking-modal-backdrop" id="bookingModalBackdrop"></div>
     <div class="booking-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="bookingModalTitle">
       <button class="booking-modal-close" id="bookingModalClose" aria-label="닫기">×</button>
-      <div class="booking-modal-header">
-        <div class="badge">입고 예약 상세</div>
-        <h3 id="bookingModalTitle">제목</h3>
-        <div class="booking-modal-body" id="bookingModalDesc">설명</div>
+      <div class="modal-scroll">
+        <div class="booking-modal-header">
+          <div class="badge">입고 예약 상세</div>
+          <h3 id="bookingModalTitle">제목</h3>
+          <div class="modal-subtext">예약 전 필수 확인 사항입니다.</div>
+        </div>
+        <div class="modal-section">
+          <div class="modal-section-title"><span class="emoji">📝</span><span>유의사항</span></div>
+          <div class="modal-rich-text" id="bookingModalDesc">설명</div>
+        </div>
       </div>
     </div>
   </div>
 
   <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const navItems = [
-      { id: "center", title: "센터 정보", panel: "panel-center" },
-      { id: "pack", title: "포장 기준", panel: "panel-pack" },
-      { id: "barcode", title: "바코드 기준", panel: "panel-barcode" },
-      { id: "booking", title: "입고 예약", panel: "panel-booking" },
-      { id: "cost", title: "부가 비용", panel: "panel-cost" },
-      { id: "faq", title: "자주하는 질문", panel: "panel-faq" }
-    ];
+    document.addEventListener("DOMContentLoaded", () => {
+      const navItems = [
+        { id: "center", title: "센터 정보", panel: "panel-center" },
+        { id: "pack", title: "포장 기준", panel: "panel-pack" },
+        { id: "barcode", title: "바코드 기준", panel: "panel-barcode" },
+        { id: "booking", title: "입고 예약", panel: "panel-booking" },
+        { id: "cost", title: "부가 비용", panel: "panel-cost" },
+        { id: "faq", title: "자주하는 질문", panel: "panel-faq" }
+      ];
 
-    const packagingDetailMap = {
-      1: {
-        title: "1박스에는 1개의 상품(SKU)만 구성해주세요.",
-        desc: `하나의 박스에는 동일한 상품(SKU)만 담아 입고해야 하며,
+      const packagingDetailMap = {
+        1: {
+          title: "1박스에는 1개의 상품(SKU)만 구성해주세요.",
+          desc: `하나의 박스에는 동일한 상품(SKU)만 담아 입고해야 하며,
 단일 상품(SKU) 기준을 지키지 않을 경우 입고가 제한될 수 있습니다.`,
-        image: "assets/images/pack-1.png"
-      },
-      2: {
-        title: "박스 내부는 수량 확인이 가능하도록 정형화하여 포장해주세요.",
-        desc: `박스 내에는 육안으로 수량 확인이 가능해야 합니다.
+          image: "assets/images/pack-1.png"
+        },
+        2: {
+          title: "박스 내부는 수량 확인이 가능하도록 정형화하여 포장해주세요.",
+          desc: `박스 내에는 육안으로 수량 확인이 가능해야 합니다.
 육안으로 수량 확인이 불가한 경우 벌크 입고로 간주됩니다.
 벌크 입고는 실셈 여부에 따라 재고 관리 방식이 달라집니다.`,
-        image: "assets/images/pack-2.png"
-      },
-      3: {
-        title: "동일 상품(SKU)이라도 소비기한 또는 제조 LOT가 다르면 분리 포장해주세요.",
-        desc: `동일 상품(SKU)이라도 소비기한 또는 제조 LOT가 다를 경우 분리 포장이 필요합니다.
+          image: "assets/images/pack-2.png"
+        },
+        3: {
+          title: "동일 상품(SKU)이라도 소비기한 또는 제조 LOT가 다르면 분리 포장해주세요.",
+          desc: `동일 상품(SKU)이라도 소비기한 또는 제조 LOT가 다를 경우 분리 포장이 필요합니다.
 
 [[table]]
 구성 | 입고 가능 여부 | 입고 방법
 동일 SKU 소비기한/LOT 동일 | 가능 | 단일 박스 입고
 동일 SKU 소비기한/LOT 상이 | 혼합 구성 불가 | 소비기한/LOT별 박스 분리 포장 후 입고
 [[/table]]`,
-        image: "assets/images/pack-3.png"
-      },
-      4: {
-        title: "완카톤 수량이 아닌 잔량 박스 입고의 경우, 실셈 비용이 발생합니다.",
-        desc: `📦 잔량 박스란?
+          image: "assets/images/pack-3.png"
+        },
+        4: {
+          title: "완카톤 수량이 아닌 잔량 박스 입고의 경우, 실셈 비용이 발생합니다.",
+          desc: `📦 잔량 박스란?
 품고 전산 내 등록된 박스 입수량보다 실제 입고된 박스 내 수량이 적은 경우를 의미합니다.
 
 예) 등록 박스 입수량: 30 / 실제 입고 수량: 30 미만`,
-        image: "assets/images/pack-4.png"
-      },
-      5: {
-        title: "출고 단위에 맞는 포장 기준을 준수해주세요.",
-        desc: `출고 단위에 따라 입고 방식이 달라집니다.
+          image: "assets/images/pack-4.png"
+        },
+        5: {
+          title: "출고 단위에 맞는 포장 기준을 준수해주세요.",
+          desc: `출고 단위에 따라 입고 방식이 달라집니다.
 
 [[table]]
 단위 | 입고 방법
@@ -1457,11 +1568,11 @@
 세트 단위 출고 | 세트로 구성된 상품(SKU)은 세트로 포장된 상태로 입고되어야 합니다.
 송장 단위 출고 | 상품(SKU)에 송장을 바로 부착하여 출고하는 경우 박스 입수량 1개 단위로 입고되어야 합니다.
 [[/table]]`,
-        image: "assets/images/pack-5.png"
-      },
-      6: {
-        title: "아웃박스에는 필수 정보를 기재해주세요.",
-        desc: `아웃박스 표기 기준입니다.
+          image: "assets/images/pack-5.png"
+        },
+        6: {
+          title: "아웃박스에는 필수 정보를 기재해주세요.",
+          desc: `아웃박스 표기 기준입니다.
 
 [[table]]
 단위 | SKU명 | 박스 입수량 | 바코드 표기 | 제조 LOT | 소비기한
@@ -1469,393 +1580,468 @@
 세트 단위 출고 | ● | ● | 숫자 표기 | ● | ●
 송장 단위 출고 | ● |  | 스캔 가능한 바코드(라벨/인쇄) | ● | ●
 [[/table]]`,
-        image: "assets/images/pack-6.png"
-      }
-    };
-
-    const barcodeDetailMap = {
-      1: {
-        title: "모든 상품(SKU)에는 바코드가 반드시 부착 또는 인쇄된 채로 입고해주세요.",
-        desc: `입고되는 모든 상품에는 식별 가능한 바코드가 반드시 있어야 합니다.
-상품(SKU)에 바코드가 인쇄 또는 미부착된 경우 별도의 바코드 부착 비용이 발생됩니다.`,
-        image: "assets/images/barcode-1.png"
-      },
-      2: {
-        title: "바코드 미검수 상품(SKU)의 경우 별도 부착 없이 입고 가능합니다.",
-        desc: `바코드 검수가 필요하지 않은 상품(SKU)의 경우 바코드가 인쇄 또는 미부착되어있더라도 입고가 가능합니다.<br>
-단, 재고 관리 비대상으로 운영되며 재고 loss 또는 과출고, 출고 누락이 발생하더라도 품고에서 책임지지 않습니다.`,
-        image: "assets/images/barcode-2.png"
-      },
-      3: {
-        title: "흰색 바탕에 검은색 바코드로 입고해주세요.",
-        desc: `흰색 바탕에 검은색 바코드로 입고되어야 합니다.<br>
-배경색과 바코드 색상 대비가 낮아 스캔이 불가한 경우 추가 작업 비용이 발생할 수 있습니다.`,
-        image: "assets/images/barcode-3.png"
-      },
-      4: {
-        title: "1개의 상품(SKU)에는 1개의 바코드만 있어야합니다.",
-        desc: `1개의 상품(SKU)에 여러 개의 스캔 가능한 바코드가 있을 경우 덧방 작업을 진행 후 입고해야 하며,<br>
-이는 출고 작업 시 작업 오류가 발생될 수 있는 사항으로, 덧방 없이 입고될 경우 덧방 비용이 추가로 발생될 수 있습니다.`,
-        image: "assets/images/barcode-4.png"
-      },
-      5: {
-        title: "단수 출고 상품(SKU) 바코드 기준",
-        desc: `📦 단수 출고 상품(SKU)란?
-상품(SKU) 자체에 송장을 부착하여 출고하는 상품입니다.<br><br>
-① 박스째 출고하는 단수 상품(SKU)의 경우 박스 외부에 스캔 가능한 바코드가 부착 또는 인쇄되어 있어야 합니다.<br>
-② 폴리백, 안전봉투 형태로 구성된 단수 상품(SKU)의 경우 아웃박스를 사용하여 입고해야 합니다.<br>
-단, 아웃박스 외부에는 스캔 가능한 바코드가 없어야 하며, 상품(SKU)명 / 바코드 넘버 / 박스 입수량이 반드시 명시되어야 합니다.`,
-        image: "assets/images/barcode-5.png"
-      },
-      6: {
-        title: "낱개 출고 상품(SKU) 바코드 기준",
-        desc: `낱개 출고 상품(SKU)의 경우 카톤박스 내 인박스로 구성되어 있을 경우, 인박스에는 스캔 가능한 바코드가 없어야 합니다.<br>
-인박스에 스캔 가능한 바코드가 있을 시 인박스 기준으로 출고되는 상품(SKU)으로 오인지 될 수 있습니다.`,
-        image: "assets/images/barcode-6.png"
-      },
-      7: {
-        title: "등록된 바코드 또는 상품(SKU)의 바코드와 스캔되는 바코드가 일치하는지 확인 후 입고해주세요.",
-        desc: `실물 바코드와 실제 스캐너로 스캔되는 바코드가 일치해야 합니다.<br>
-불일치 시 덧방 등의 추가 작업이 발생될 수 있습니다.`,
-        image: "assets/images/barcode-7.png"
-      }
-    };
-
-    const bookingDetailMap = {
-      delivery: {
-        title: "택배 입고 유의사항",
-        desc: `• 초도 입고 예정 상품의 패킹리스트를 먼저 제출해주세요.<br><br> 
-• 택배 입고 예약은 영업일 기준 D-2 18시 이전까지 예약 가능하며, D-2 18시 이전이라도 입고 예약 마감으로 입고 예약이 불가합니다.<br>        
-• 입고 지연이 발생되지 않도록 택배 입고 예약 시 송장번호를 필히 입력해야하며, 발번 전 예약하는 경우 입고 이전에 추가 업데이트를 진행해야합니다.<br><br>         
-• 일 최대 10박스까지만 입고가 가능합니다.<br>→ 10박스 초과하여 택배 입고 시 초과 수량은 추가 비용이 발생합니다.(부가 비용 참고)<br>
-• 10박스를 초과하여 입고가 필요한 경우 택배가 아닌 차량으로 입고해야합니다.<br>
-• 박스 형태로만 입고 가능하며, 1박스에는 1개의 상품(SKU)로만 구성되어야합니다.<br>
-• 모든 박스에는 입고증 첫장이 동봉되어 있어야합니다.<br>.<br>
-• 동일 상품(SKU)이더라도 입고 ID가 다를 경우 1개의 박스로 구성하여 입고해야합니다.<br>→미준수 시 실셈 추가 비용이 발생합니다.(부가 비용 참고)<br>
-• 입고 예약일자보다 택배가 먼저 도착하더라도 예약한 입고일자에 맞춰 검수가 진행됩니다.<br>→입고일 이전 검수 희망 시 긴급 입고 비용이 발생합니다.(부가 비용 참고)<br>
-• 일부 송장이 도착하지 않을 경우, 모든 택배가 센터에 도착 한 후 입고 검수가 진행됩니다.<br>
-• 파손 우려가 있는 상품(SKU)은 반드시 내부 완충을 하여 배송중 파손이 발생하지 않도록 포장해야합니다.`
-      },
-      truck: {
-        title: "차량 입고 유의사항",
-        desc: `• 초도 입고 예정 상품의 패킹리스트를 먼저 제출해주세요.<br>
-• 차량 입고 예약은 영업일 기준 D-1 18시 이전까지 예약 가능하며, D-1 18시 이전이라도 입고 예약 마감으로 입고 예약이 불가합니다.<br>.<br>
-• 모든 팔레트에는 입고증 첫장과 팔레트 정보가 부착되어있어야합니다.<br><br>
-• 1PLT-1SKU를 준수하여 입고해야하며, 불가피하게 혼적을 해야하는 경우 상품(SKU) 간 혼재 방지를 위해 판지 구분 적재 부탁드립니다. <br>
- ★혼적으로 입고 시 유의사항★<br>
- 검수 시 1PLT-1SKU로 분리 작업이 진행됩니다. 
- 동일 상품(SKU)인경우 여러 팔레트 혼적이 아닌 한개의 팔레트에 적재 후 입고해주세요<br>
- 단,소비기한/제조LOT가 다를 경우 팔레트 분리하여 적재 후 입고되어야 합니다.<br>
- 동일 상품(SKU)이라도, 입고일이 다를 경우 팔레트 합적작업은 제공하지 않습니다.<br>
-  → 이로 인해, 여러개의 보관공간을 사용하게 되므로 보관료가 상승될 수 있습니다.<br>
- 브랜드사의 보관료 절감을 위해 1PLT-1SKU=완PLT 형태로 정책에 맞춰 입고 될 수 있도록 협조 부탁드립니다.<br>.<br>
-• 잔량 박스가 있을 경우, 팔레트 최상단 적재해야하며,육안으로 박스 외부에 잔량 박스 표기가 되어있어야합니다.<br>
-• 팔레트 적재 시 교대열 또는 벽돌형으로 적재하여 입고해주세요.<br>
-• 잔량 팔레트로 입고하는 경우, 최상단 겉면을 비워 입고해주세요.<br> (예시) 완 PLT 박스 수량 72박스 → 71박스 입고 시 최상단 중앙 비움이 아닌 겉면 비움으로 적재 후 입고<br> 
-→ 최상단 비움 적재로 입고 시 외관상 박스 수량 오인이 발생할 수 있습니다.<br>
-• 팔레트 이동전표는 기사님을 통해 품고로 전달되어야하며,이동 전표 미발행 시 입고 불가합니다.<br> KPP - 266569 , AJ - P262612-9<br>.<br>
-• 팔레트 포함 높이 160cm을 초과하는 경우 박스 당 이적 추가 비용이 발생합니다.(부가 비용 참고)<br> 
-• 표준 팔레트가 아닌, 나무 또는 일회용 팔레트로 입고 시 표준 팔레트 이적이 진행되며, 팔레트 당  추가 비용이 발생합니다.(부가 비용 참고)<br> 
-• 팔레트 미적재 상태로 차량 입고 시 박스 당 추가 비용이 발생합니다.(부가 비용 참고)<br>
-• 상품(SKU) 파손 방지를 위해 팔레트 랩핑은 단단하게 작업 후 입고해주세요.<br>→ 파손품이 발견될 경우 입고 수량에서 제외되며, 요청에 따라 반출 또는 폐기로 진행합니다.`
-      }
-    };
-
-    const sideNavList = document.getElementById("sideNavList");
-    const mobileNavList = document.getElementById("mobileNavList");
-    const contentArea = document.getElementById("contentArea");
-    const heroSection = document.getElementById("heroSection");
-
-    const mobileDrawer = document.getElementById("mobileDrawer");
-    const mobileMenuOpen = document.getElementById("mobileMenuOpen");
-    const mobileMenuClose = document.getElementById("mobileMenuClose");
-    const drawerBg = document.getElementById("drawerBg");
-
-    const packagingModal = document.getElementById("packagingModal");
-    const packagingModalBackdrop = document.getElementById("packagingModalBackdrop");
-    const packagingModalClose = document.getElementById("packagingModalClose");
-    const packagingModalTitle = document.getElementById("packagingModalTitle");
-    const packagingModalDesc = document.getElementById("packagingModalDesc");
-    const packagingModalImage = document.getElementById("packagingModalImage");
-
-    const barcodeModal = document.getElementById("barcodeModal");
-    const barcodeModalBackdrop = document.getElementById("barcodeModalBackdrop");
-    const barcodeModalClose = document.getElementById("barcodeModalClose");
-    const barcodeModalTitle = document.getElementById("barcodeModalTitle");
-    const barcodeModalDesc = document.getElementById("barcodeModalDesc");
-    const barcodeModalImage = document.getElementById("barcodeModalImage");
-
-    const bookingModal = document.getElementById("bookingModal");
-    const bookingModalBackdrop = document.getElementById("bookingModalBackdrop");
-    const bookingModalClose = document.getElementById("bookingModalClose");
-    const bookingModalTitle = document.getElementById("bookingModalTitle");
-    const bookingModalDesc = document.getElementById("bookingModalDesc");
-
-    const goHomeDesktop = document.getElementById("goHomeDesktop");
-    const goHomeMobile = document.getElementById("goHomeMobile");
-
-    function renderNav(target) {
-      if (!target) return;
-      target.innerHTML = "";
-
-      navItems.forEach((item, idx) => {
-        const button = document.createElement("button");
-        button.type = "button";
-        button.className = "nav-btn";
-        button.dataset.target = item.panel;
-        button.innerHTML = `
-          <div class="nav-row">
-            <div class="nav-num">${idx + 1}</div>
-            <div class="nav-copy">
-              <strong>${item.title}</strong>
-            </div>
-          </div>
-        `;
-        target.appendChild(button);
-      });
-    }
-
-    function showHome() {
-      heroSection.classList.remove("hidden");
-      contentArea.classList.remove("show");
-
-      document.querySelectorAll(".panel").forEach(panel => {
-        panel.classList.remove("active");
-      });
-
-      document.querySelectorAll(".nav-btn").forEach(btn => {
-        btn.classList.remove("active");
-      });
-
-      closeDrawer();
-    }
-
-    function setActivePanel(panelId) {
-      heroSection.classList.add("hidden");
-      contentArea.classList.add("show");
-
-      document.querySelectorAll(".panel").forEach(panel => {
-        const isActive = panel.id === panelId;
-        panel.classList.toggle("active", isActive);
-        if (isActive) panel.scrollTop = 0;
-      });
-
-      document.querySelectorAll(".nav-btn").forEach(btn => {
-        btn.classList.toggle("active", btn.dataset.target === panelId);
-      });
-    }
-
-    function openDrawer() {
-      if (!mobileDrawer) return;
-      mobileDrawer.classList.add("show");
-      document.body.style.overflow = "hidden";
-    }
-
-    function closeDrawer() {
-      if (!mobileDrawer) return;
-      mobileDrawer.classList.remove("show");
-      document.body.style.overflow = "";
-    }
-
-    function downloadFile(fileName) {
-      const link = document.createElement("a");
-      link.href = `./${fileName}`;
-      link.download = fileName;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
-
-    function renderDetailContent(text) {
-      const tableRegex = /\[\[table\]\]([\s\S]*?)\[\[\/table\]\]/g;
-      let result = "";
-      let lastIndex = 0;
-      let match;
-
-      while ((match = tableRegex.exec(text)) !== null) {
-        const beforeText = text.slice(lastIndex, match.index).trim();
-        const tableContent = match[1];
-
-        if (beforeText) {
-          result += `<div style="line-height:1.8;">${beforeText.replace(/\n/g, "<br>")}</div>`;
+          image: "assets/images/pack-6.png"
         }
+      };
 
-        const rows = tableContent
-          .trim()
+      const barcodeDetailMap = {
+        1: {
+          title: "모든 상품(SKU)에는 바코드가 반드시 부착 또는 인쇄된 채로 입고해주세요.",
+          desc: `입고되는 모든 상품에는 식별 가능한 바코드가 반드시 있어야 합니다.
+상품(SKU)에 바코드가 인쇄 또는 미부착된 경우 별도의 바코드 부착 비용이 발생됩니다.`,
+          image: "assets/images/barcode-1.png"
+        },
+        2: {
+          title: "바코드 미검수 상품(SKU)의 경우 별도 부착 없이 입고 가능합니다.",
+          desc: `바코드 검수가 필요하지 않은 상품(SKU)의 경우 바코드가 인쇄 또는 미부착되어있더라도 입고가 가능합니다.
+단, 재고 관리 비대상으로 운영되며 재고 loss 또는 과출고, 출고 누락이 발생하더라도 품고에서 책임지지 않습니다.`,
+          image: "assets/images/barcode-2.png"
+        },
+        3: {
+          title: "흰색 바탕에 검은색 바코드로 입고해주세요.",
+          desc: `흰색 바탕에 검은색 바코드로 입고되어야 합니다.
+배경색과 바코드 색상 대비가 낮아 스캔이 불가한 경우 추가 작업 비용이 발생할 수 있습니다.`,
+          image: "assets/images/barcode-3.png"
+        },
+        4: {
+          title: "1개의 상품(SKU)에는 1개의 바코드만 있어야합니다.",
+          desc: `1개의 상품(SKU)에 여러 개의 스캔 가능한 바코드가 있을 경우 덧방 작업을 진행 후 입고해야 하며,
+이는 출고 작업 시 작업 오류가 발생될 수 있는 사항으로, 덧방 없이 입고될 경우 덧방 비용이 추가로 발생될 수 있습니다.`,
+          image: "assets/images/barcode-4.png"
+        },
+        5: {
+          title: "단수 출고 상품(SKU) 바코드 기준",
+          desc: `📦 단수 출고 상품(SKU)란?
+상품(SKU) 자체에 송장을 부착하여 출고하는 상품입니다.
+
+① 박스째 출고하는 단수 상품(SKU)의 경우 박스 외부에 스캔 가능한 바코드가 부착 또는 인쇄되어 있어야 합니다.
+② 폴리백, 안전봉투 형태로 구성된 단수 상품(SKU)의 경우 아웃박스를 사용하여 입고해야 합니다.
+단, 아웃박스 외부에는 스캔 가능한 바코드가 없어야 하며, 상품(SKU)명 / 바코드 넘버 / 박스 입수량이 반드시 명시되어야 합니다.`,
+          image: "assets/images/barcode-5.png"
+        },
+        6: {
+          title: "낱개 출고 상품(SKU) 바코드 기준",
+          desc: `낱개 출고 상품(SKU)의 경우 카톤박스 내 인박스로 구성되어 있을 경우, 인박스에는 스캔 가능한 바코드가 없어야 합니다.
+인박스에 스캔 가능한 바코드가 있을 시 인박스 기준으로 출고되는 상품(SKU)으로 오인지 될 수 있습니다.`,
+          image: "assets/images/barcode-6.png"
+        },
+        7: {
+          title: "등록된 바코드 또는 상품(SKU)의 바코드와 스캔되는 바코드가 일치하는지 확인 후 입고해주세요.",
+          desc: `실물 바코드와 실제 스캐너로 스캔되는 바코드가 일치해야 합니다.
+불일치 시 덧방 등의 추가 작업이 발생될 수 있습니다.`,
+          image: "assets/images/barcode-7.png"
+        }
+      };
+
+      const bookingDetailMap = {
+        delivery: {
+          title: "택배 입고 유의사항",
+          desc: `• 초도 입고 예정 상품의 패킹리스트를 먼저 제출해주세요.
+
+• 택배 입고 예약은 영업일 기준 D-2 18시 이전까지 예약 가능하며, D-2 18시 이전이라도 입고 예약 마감으로 입고 예약이 불가합니다.
+
+• 입고 지연이 발생되지 않도록 택배 입고 예약 시 송장번호를 필히 입력해야하며, 발번 전 예약하는 경우 입고 이전에 추가 업데이트를 진행해야합니다.
+
+• 일 최대 10박스까지만 입고가 가능합니다.
+→ 10박스 초과하여 택배 입고 시 초과 수량은 추가 비용이 발생합니다. (부가 비용 참고)
+
+• 10박스를 초과하여 입고가 필요한 경우 택배가 아닌 차량으로 입고해야합니다.
+
+• 박스 형태로만 입고 가능하며, 1박스에는 1개의 상품(SKU)로만 구성되어야합니다.
+
+• 모든 박스에는 입고증 첫장이 동봉되어 있어야합니다.
+
+• 동일 상품(SKU)이더라도 입고 ID가 다를 경우 1개의 박스로 구성하여 입고해야합니다.
+→ 미준수 시 실셈 추가 비용이 발생합니다. (부가 비용 참고)
+
+• 입고 예약일자보다 택배가 먼저 도착하더라도 예약한 입고일자에 맞춰 검수가 진행됩니다.
+→ 입고일 이전 검수 희망 시 긴급 입고 비용이 발생합니다. (부가 비용 참고)
+
+• 일부 송장이 도착하지 않을 경우, 모든 택배가 센터에 도착한 후 입고 검수가 진행됩니다.
+
+• 파손 우려가 있는 상품(SKU)은 반드시 내부 완충을 하여 배송중 파손이 발생하지 않도록 포장해야합니다.`
+        },
+        truck: {
+          title: "차량 입고 유의사항",
+          desc: `• 초도 입고 예정 상품의 패킹리스트를 먼저 제출해주세요.
+
+• 차량 입고 예약은 영업일 기준 D-1 18시 이전까지 예약 가능하며, D-1 18시 이전이라도 입고 예약 마감으로 입고 예약이 불가합니다.
+
+• 모든 팔레트에는 입고증 첫장과 팔레트 정보가 부착되어있어야합니다.
+
+• 1PLT-1SKU를 준수하여 입고해야하며, 불가피하게 혼적을 해야하는 경우 상품(SKU) 간 혼재 방지를 위해 판지 구분 적재 부탁드립니다.
+
+★ 혼적으로 입고 시 유의사항 ★
+검수 시 1PLT-1SKU로 분리 작업이 진행됩니다.
+동일 상품(SKU)이더라도 입고일이 다를 경우 팔레트 합적작업은 제공하지 않습니다.
+→ 이로 인해 여러 개의 보관공간을 사용하게 되므로 보관료가 상승될 수 있습니다.
+브랜드사의 보관료 절감을 위해 1PLT-1SKU = 완PLT 형태로 입고해주세요.
+
+• 잔량 박스가 있을 경우, 팔레트 최상단 적재해야하며 육안으로 박스 외부에 잔량 박스 표기가 되어있어야합니다.
+
+• 팔레트 적재 시 교대열 또는 벽돌형으로 적재하여 입고해주세요.
+
+• 잔량 팔레트로 입고하는 경우, 최상단 겉면을 비워 입고해주세요.
+(예시) 완 PLT 박스 수량 72박스 → 71박스 입고 시 최상단 중앙 비움이 아닌 겉면 비움으로 적재 후 입고
+→ 최상단 비움 적재로 입고 시 외관상 박스 수량 오인이 발생할 수 있습니다.
+
+• 팔레트 이동전표는 기사님을 통해 품고로 전달되어야하며, 이동 전표 미발행 시 입고 불가합니다.
+KPP - 266569 / AJ - P262612-9
+
+• 팔레트 포함 높이 160cm을 초과하는 경우 박스 당 이적 추가 비용이 발생합니다. (부가 비용 참고)
+
+• 표준 팔레트가 아닌, 나무 또는 일회용 팔레트로 입고 시 표준 팔레트 이적이 진행되며, 팔레트 당 추가 비용이 발생합니다. (부가 비용 참고)
+
+• 팔레트 미적재 상태로 차량 입고 시 박스 당 추가 비용이 발생합니다. (부가 비용 참고)
+
+• 상품(SKU) 파손 방지를 위해 팔레트 랩핑은 단단하게 작업 후 입고해주세요.
+→ 파손품이 발견될 경우 입고 수량에서 제외되며, 요청에 따라 반출 또는 폐기로 진행합니다.`
+        }
+      };
+
+      const sideNavList = document.getElementById("sideNavList");
+      const mobileNavList = document.getElementById("mobileNavList");
+      const contentArea = document.getElementById("contentArea");
+      const heroSection = document.getElementById("heroSection");
+
+      const mobileDrawer = document.getElementById("mobileDrawer");
+      const mobileMenuOpen = document.getElementById("mobileMenuOpen");
+      const mobileMenuClose = document.getElementById("mobileMenuClose");
+      const drawerBg = document.getElementById("drawerBg");
+
+      const packagingModal = document.getElementById("packagingModal");
+      const packagingModalBackdrop = document.getElementById("packagingModalBackdrop");
+      const packagingModalClose = document.getElementById("packagingModalClose");
+      const packagingModalTitle = document.getElementById("packagingModalTitle");
+      const packagingModalDesc = document.getElementById("packagingModalDesc");
+      const packagingModalImage = document.getElementById("packagingModalImage");
+
+      const barcodeModal = document.getElementById("barcodeModal");
+      const barcodeModalBackdrop = document.getElementById("barcodeModalBackdrop");
+      const barcodeModalClose = document.getElementById("barcodeModalClose");
+      const barcodeModalTitle = document.getElementById("barcodeModalTitle");
+      const barcodeModalDesc = document.getElementById("barcodeModalDesc");
+      const barcodeModalImage = document.getElementById("barcodeModalImage");
+
+      const bookingModal = document.getElementById("bookingModal");
+      const bookingModalBackdrop = document.getElementById("bookingModalBackdrop");
+      const bookingModalClose = document.getElementById("bookingModalClose");
+      const bookingModalTitle = document.getElementById("bookingModalTitle");
+      const bookingModalDesc = document.getElementById("bookingModalDesc");
+
+      const goHomeDesktop = document.getElementById("goHomeDesktop");
+      const goHomeMobile = document.getElementById("goHomeMobile");
+
+      function renderNav(target) {
+        if (!target) return;
+        target.innerHTML = "";
+
+        navItems.forEach((item, idx) => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "nav-btn";
+          button.dataset.target = item.panel;
+          button.innerHTML = `
+            <div class="nav-row">
+              <div class="nav-num">${idx + 1}</div>
+              <div class="nav-copy">
+                <strong>${item.title}</strong>
+              </div>
+            </div>
+          `;
+          target.appendChild(button);
+        });
+      }
+
+      function showHome() {
+        heroSection.classList.remove("hidden");
+        contentArea.classList.remove("show");
+
+        document.querySelectorAll(".panel").forEach(panel => {
+          panel.classList.remove("active");
+        });
+
+        document.querySelectorAll(".nav-btn").forEach(btn => {
+          btn.classList.remove("active");
+        });
+
+        closeDrawer();
+      }
+
+      function setActivePanel(panelId) {
+        heroSection.classList.add("hidden");
+        contentArea.classList.add("show");
+
+        document.querySelectorAll(".panel").forEach(panel => {
+          const isActive = panel.id === panelId;
+          panel.classList.toggle("active", isActive);
+          if (isActive) panel.scrollTop = 0;
+        });
+
+        document.querySelectorAll(".nav-btn").forEach(btn => {
+          btn.classList.toggle("active", btn.dataset.target === panelId);
+        });
+      }
+
+      function openDrawer() {
+        if (!mobileDrawer) return;
+        mobileDrawer.classList.add("show");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeDrawer() {
+        if (!mobileDrawer) return;
+        mobileDrawer.classList.remove("show");
+        document.body.style.overflow = "";
+      }
+
+      function downloadFile(fileName) {
+        const link = document.createElement("a");
+        link.href = `./${fileName}`;
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+
+      function escapeHtml(str) {
+        return str
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;");
+      }
+
+      function renderBulletText(text) {
+        const lines = text
           .split("\n")
-          .map(row => row.trim())
+          .map(line => line.trim())
           .filter(Boolean);
 
-        if (rows.length) {
-          const headers = rows[0].split("|").map(cell => cell.trim());
-          const bodyRows = rows.slice(1);
+        if (!lines.length) return "";
 
-          const thead = `
-            <thead>
-              <tr>
-                ${headers.map(header => `<th>${header}</th>`).join("")}
-              </tr>
-            </thead>
-          `;
+        return `
+          <ul class="modal-bullet-list">
+            ${lines.map(line => {
+              const clean = line.startsWith("•") ? line.slice(1).trim() : line;
+              return `
+                <li>
+                  <span class="modal-bullet-dot">•</span>
+                  <span>${clean.replace(/→/g, "<br>→ ")}</span>
+                </li>
+              `;
+            }).join("")}
+          </ul>
+        `;
+      }
 
-          const tbody = `
-            <tbody>
-              ${bodyRows.map(row => {
-                const cols = row.split("|").map(cell => cell.trim());
-                return `
-                  <tr>
-                    ${cols.map(col => `<td>${col}</td>`).join("")}
-                  </tr>
-                `;
-              }).join("")}
-            </tbody>
-          `;
+      function renderDetailContent(text, mode = "default") {
+        const tableRegex = /\[\[table\]\]([\s\S]*?)\[\[\/table\]\]/g;
+        const hasTable = tableRegex.test(text);
+        tableRegex.lastIndex = 0;
 
-          result += `
-            <div class="detail-table-wrap">
-              <table class="detail-table">
-                ${thead}
-                ${tbody}
-              </table>
-            </div>
-          `;
+        if (mode === "bullet" && !hasTable) {
+          return renderBulletText(text);
         }
 
-        lastIndex = match.index + match[0].length;
-      }
+        let result = "";
+        let lastIndex = 0;
+        let match;
 
-      const afterText = text.slice(lastIndex).trim();
-      if (afterText) {
-        result += `<div style="line-height:1.8;">${afterText.replace(/\n/g, "<br>")}</div>`;
-      }
+        while ((match = tableRegex.exec(text)) !== null) {
+          const beforeText = text.slice(lastIndex, match.index).trim();
+          const tableContent = match[1];
 
-      if (!result) {
-        return text.trim().replace(/\n/g, "<br>");
-      }
+          if (beforeText) {
+            if (mode === "bullet") {
+              result += renderBulletText(beforeText);
+            } else {
+              result += `<p>${beforeText.replace(/\n/g, "<br>")}</p>`;
+            }
+          }
 
-      return result;
-    }
+          const rows = tableContent
+            .trim()
+            .split("\n")
+            .map(row => row.trim())
+            .filter(Boolean);
 
-    function openPackagingModal(id) {
-      const item = packagingDetailMap[id];
-      if (!item) return;
-      packagingModalTitle.textContent = item.title;
-      packagingModalDesc.innerHTML = renderDetailContent(item.desc);
-      packagingModalImage.src = item.image;
-      packagingModalImage.alt = item.title;
-      packagingModal.classList.add("show");
-      document.body.style.overflow = "hidden";
-    }
+          if (rows.length) {
+            const headers = rows[0].split("|").map(cell => cell.trim());
+            const bodyRows = rows.slice(1);
 
-    function closePackagingModal() {
-      packagingModal.classList.remove("show");
-      document.body.style.overflow = "";
-    }
+            const thead = `
+              <thead>
+                <tr>
+                  ${headers.map(header => `<th>${escapeHtml(header)}</th>`).join("")}
+                </tr>
+              </thead>
+            `;
 
-    function openBarcodeModal(id) {
-      const item = barcodeDetailMap[id];
-      if (!item) return;
-      barcodeModalTitle.textContent = item.title;
-      barcodeModalDesc.innerHTML = renderDetailContent(item.desc);
-      barcodeModalImage.src = item.image;
-      barcodeModalImage.alt = item.title;
-      barcodeModal.classList.add("show");
-      document.body.style.overflow = "hidden";
-    }
+            const tbody = `
+              <tbody>
+                ${bodyRows.map(row => {
+                  const cols = row.split("|").map(cell => cell.trim());
+                  return `
+                    <tr>
+                      ${cols.map(col => `<td>${col}</td>`).join("")}
+                    </tr>
+                  `;
+                }).join("")}
+              </tbody>
+            `;
 
-    function closeBarcodeModal() {
-      barcodeModal.classList.remove("show");
-      document.body.style.overflow = "";
-    }
+            result += `
+              <div class="detail-table-wrap">
+                <table class="detail-table">
+                  ${thead}
+                  ${tbody}
+                </table>
+              </div>
+            `;
+          }
 
-    function openBookingModal(id) {
-      const item = bookingDetailMap[id];
-      if (!item) return;
-      bookingModalTitle.textContent = item.title;
-      bookingModalDesc.innerHTML = item.desc;
-      bookingModal.classList.add("show");
-      document.body.style.overflow = "hidden";
-    }
-
-    function closeBookingModal() {
-      bookingModal.classList.remove("show");
-      document.body.style.overflow = "";
-    }
-
-    renderNav(sideNavList);
-    renderNav(mobileNavList);
-
-    if (mobileMenuOpen) mobileMenuOpen.addEventListener("click", openDrawer);
-    if (mobileMenuClose) mobileMenuClose.addEventListener("click", closeDrawer);
-    if (drawerBg) drawerBg.addEventListener("click", closeDrawer);
-
-    if (goHomeDesktop) goHomeDesktop.addEventListener("click", showHome);
-    if (goHomeMobile) goHomeMobile.addEventListener("click", showHome);
-
-    if (packagingModalClose) packagingModalClose.addEventListener("click", closePackagingModal);
-    if (packagingModalBackdrop) packagingModalBackdrop.addEventListener("click", closePackagingModal);
-
-    if (barcodeModalClose) barcodeModalClose.addEventListener("click", closeBarcodeModal);
-    if (barcodeModalBackdrop) barcodeModalBackdrop.addEventListener("click", closeBarcodeModal);
-
-    if (bookingModalClose) bookingModalClose.addEventListener("click", closeBookingModal);
-    if (bookingModalBackdrop) bookingModalBackdrop.addEventListener("click", closeBookingModal);
-
-    const downloadDeliveryBtn = document.getElementById("downloadDeliveryBtn");
-    if (downloadDeliveryBtn) {
-      downloadDeliveryBtn.addEventListener("click", () => downloadFile("poomgoinboundlist_delivery.xlsx"));
-    }
-
-    const downloadTruckBtn = document.getElementById("downloadTruckBtn");
-    if (downloadTruckBtn) {
-      downloadTruckBtn.addEventListener("click", () => downloadFile("poomgoinboundlist_truck.xlsx"));
-    }
-
-    document.addEventListener("click", (e) => {
-      const navBtn = e.target.closest(".nav-btn");
-      if (navBtn) {
-        const targetId = navBtn.dataset.target;
-        setActivePanel(targetId);
-        if (navBtn.closest("#mobileNavList")) closeDrawer();
-        return;
-      }
-
-      const packagingBtn = e.target.closest(".detail-btn");
-      if (packagingBtn) {
-        openPackagingModal(packagingBtn.dataset.packaging);
-        return;
-      }
-
-      const barcodeBtn = e.target.closest(".barcode-detail-btn");
-      if (barcodeBtn) {
-        openBarcodeModal(barcodeBtn.dataset.barcode);
-        return;
-      }
-
-      const bookingBtn = e.target.closest(".booking-detail-btn");
-      if (bookingBtn) {
-        openBookingModal(bookingBtn.dataset.booking);
-        return;
-      }
-
-      const faqQuestion = e.target.closest(".faq-question");
-      if (faqQuestion) {
-        const faqItem = faqQuestion.closest(".faq-item");
-        faqItem.classList.toggle("open");
-
-        const icon = faqQuestion.querySelector(".faq-icon");
-        if (icon) {
-          icon.textContent = faqItem.classList.contains("open") ? "－" : "＋";
+          lastIndex = match.index + match[0].length;
         }
-      }
-    });
 
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && packagingModal.classList.contains("show")) closePackagingModal();
-      if (e.key === "Escape" && barcodeModal.classList.contains("show")) closeBarcodeModal();
-      if (e.key === "Escape" && bookingModal.classList.contains("show")) closeBookingModal();
+        const afterText = text.slice(lastIndex).trim();
+        if (afterText) {
+          if (mode === "bullet") {
+            result += renderBulletText(afterText);
+          } else {
+            result += `<p>${afterText.replace(/\n/g, "<br>")}</p>`;
+          }
+        }
+
+        if (!result) {
+          return `<p>${text.trim().replace(/\n/g, "<br>")}</p>`;
+        }
+
+        return result;
+      }
+
+      function openPackagingModal(id) {
+        const item = packagingDetailMap[id];
+        if (!item) return;
+
+        packagingModalTitle.textContent = item.title;
+        packagingModalDesc.innerHTML = renderDetailContent(item.desc);
+        packagingModalImage.src = item.image;
+        packagingModalImage.alt = item.title;
+        packagingModal.classList.add("show");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closePackagingModal() {
+        packagingModal.classList.remove("show");
+        document.body.style.overflow = "";
+      }
+
+      function openBarcodeModal(id) {
+        const item = barcodeDetailMap[id];
+        if (!item) return;
+
+        barcodeModalTitle.textContent = item.title;
+        barcodeModalDesc.innerHTML = renderDetailContent(item.desc);
+        barcodeModalImage.src = item.image;
+        barcodeModalImage.alt = item.title;
+        barcodeModal.classList.add("show");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeBarcodeModal() {
+        barcodeModal.classList.remove("show");
+        document.body.style.overflow = "";
+      }
+
+      function openBookingModal(id) {
+        const item = bookingDetailMap[id];
+        if (!item) return;
+
+        bookingModalTitle.textContent = item.title;
+        bookingModalDesc.innerHTML = renderDetailContent(item.desc, "bullet");
+        bookingModal.classList.add("show");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeBookingModal() {
+        bookingModal.classList.remove("show");
+        document.body.style.overflow = "";
+      }
+
+      renderNav(sideNavList);
+      renderNav(mobileNavList);
+
+      if (mobileMenuOpen) mobileMenuOpen.addEventListener("click", openDrawer);
+      if (mobileMenuClose) mobileMenuClose.addEventListener("click", closeDrawer);
+      if (drawerBg) drawerBg.addEventListener("click", closeDrawer);
+
+      if (goHomeDesktop) goHomeDesktop.addEventListener("click", showHome);
+      if (goHomeMobile) goHomeMobile.addEventListener("click", showHome);
+
+      if (packagingModalClose) packagingModalClose.addEventListener("click", closePackagingModal);
+      if (packagingModalBackdrop) packagingModalBackdrop.addEventListener("click", closePackagingModal);
+
+      if (barcodeModalClose) barcodeModalClose.addEventListener("click", closeBarcodeModal);
+      if (barcodeModalBackdrop) barcodeModalBackdrop.addEventListener("click", closeBarcodeModal);
+
+      if (bookingModalClose) bookingModalClose.addEventListener("click", closeBookingModal);
+      if (bookingModalBackdrop) bookingModalBackdrop.addEventListener("click", closeBookingModal);
+
+      const downloadDeliveryBtn = document.getElementById("downloadDeliveryBtn");
+      if (downloadDeliveryBtn) {
+        downloadDeliveryBtn.addEventListener("click", () => downloadFile("poomgoinboundlist_delivery.xlsx"));
+      }
+
+      const downloadTruckBtn = document.getElementById("downloadTruckBtn");
+      if (downloadTruckBtn) {
+        downloadTruckBtn.addEventListener("click", () => downloadFile("poomgoinboundlist_truck.xlsx"));
+      }
+
+      document.addEventListener("click", (e) => {
+        const navBtn = e.target.closest(".nav-btn");
+        if (navBtn) {
+          const targetId = navBtn.dataset.target;
+          setActivePanel(targetId);
+          if (navBtn.closest("#mobileNavList")) closeDrawer();
+          return;
+        }
+
+        const packagingBtn = e.target.closest(".detail-btn");
+        if (packagingBtn) {
+          openPackagingModal(packagingBtn.dataset.packaging);
+          return;
+        }
+
+        const barcodeBtn = e.target.closest(".barcode-detail-btn");
+        if (barcodeBtn) {
+          openBarcodeModal(barcodeBtn.dataset.barcode);
+          return;
+        }
+
+        const bookingBtn = e.target.closest(".booking-detail-btn");
+        if (bookingBtn) {
+          openBookingModal(bookingBtn.dataset.booking);
+          return;
+        }
+
+        const faqQuestion = e.target.closest(".faq-question");
+        if (faqQuestion) {
+          const faqItem = faqQuestion.closest(".faq-item");
+          faqItem.classList.toggle("open");
+
+          const icon = faqQuestion.querySelector(".faq-icon");
+          if (icon) {
+            icon.textContent = faqItem.classList.contains("open") ? "－" : "＋";
+          }
+        }
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && packagingModal.classList.contains("show")) closePackagingModal();
+        if (e.key === "Escape" && barcodeModal.classList.contains("show")) closeBarcodeModal();
+        if (e.key === "Escape" && bookingModal.classList.contains("show")) closeBookingModal();
+      });
     });
-  });
-</script>
+  </script>
 </body>
 </html>

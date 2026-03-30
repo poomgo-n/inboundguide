@@ -651,73 +651,145 @@
       color:var(--brand);
     }
 
-    .booking-block-list{
+    /* booking modal readability */
+    .booking-layout{
       display:grid;
-      gap:12px;
+      gap:14px;
     }
 
-    .booking-item-card{
-      border:1px solid var(--line);
+    .booking-row{
+      border:1px solid #e7edf7;
       border-radius:18px;
       background:#fff;
       padding:16px 18px;
     }
 
-    .booking-item-main{
+    .booking-main{
       display:flex;
-      gap:10px;
       align-items:flex-start;
-      color:#1f2937;
-      font-size:15px;
-      line-height:1.8;
+      gap:12px;
     }
 
-    .booking-item-dot{
+    .booking-dot{
       width:24px;
       height:24px;
-      flex:0 0 auto;
       border-radius:999px;
-      display:grid;
-      place-items:center;
       background:var(--brand-soft);
       color:var(--brand);
+      display:grid;
+      place-items:center;
       font-size:12px;
       font-weight:900;
+      flex:0 0 auto;
       margin-top:2px;
     }
 
-    .booking-item-sub{
-      margin:10px 0 0 34px;
-      padding:10px 12px;
-      border-radius:14px;
-      background:#f8fbff;
-      border:1px solid #d9e7ff;
-      color:#4b5563;
-      font-size:14px;
+    .booking-text{
+      flex:1 1 auto;
+      min-width:0;
+      color:#1f2937;
+      font-size:15px;
       line-height:1.75;
     }
 
+    .booking-sub{
+      margin:10px 0 0 36px;
+      font-size:13px;
+      line-height:1.7;
+      color:#6b7280;
+      padding-left:12px;
+      border-left:2px solid #dbe7ff;
+    }
+
+    .booking-tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-bottom:8px;
+    }
+
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      height:26px;
+      padding:0 10px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:800;
+      white-space:nowrap;
+    }
+
+    .tag.required{
+      background:#eef4ff;
+      color:#0040d1;
+    }
+
+    .tag.warning{
+      background:#fff4e8;
+      color:#b95d00;
+    }
+
+    .tag.danger{
+      background:#fff1f0;
+      color:#d92d20;
+    }
+
+    .tag.cost{
+      background:#fff7ed;
+      color:#c2410c;
+    }
+
     .booking-highlight{
-      margin-bottom:14px;
-      padding:18px;
-      border-radius:18px;
-      background:#fff8f1;
       border:1px solid #ffd8ae;
+      background:#fff8f1;
+      border-radius:20px;
+      padding:18px;
+      margin-bottom:6px;
+    }
+
+    .booking-highlight-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:14px;
     }
 
     .booking-highlight-title{
       display:flex;
       align-items:center;
       gap:8px;
-      margin:0 0 12px;
-      font-size:16px;
+      font-size:17px;
       font-weight:900;
       color:#9a4d00;
+      line-height:1.4;
     }
 
-    .booking-highlight .booking-item-card{
+    .booking-highlight-copy{
+      display:grid;
+      gap:10px;
+    }
+
+    .booking-highlight-item{
       background:#fff;
-      border-color:#ffe4c7;
+      border:1px solid #ffe4c7;
+      border-radius:16px;
+      padding:14px 16px;
+    }
+
+    .booking-highlight-item strong{
+      display:block;
+      margin-bottom:4px;
+      font-size:14px;
+      color:#7c3f00;
+      line-height:1.6;
+    }
+
+    .booking-highlight-item span{
+      display:block;
+      font-size:14px;
+      line-height:1.7;
+      color:#4b5563;
     }
 
     .packaging-modal-image-wrap,
@@ -878,8 +950,13 @@
       .booking-modal-header h3{
         font-size:22px;
       }
-      .booking-item-sub{
+      .booking-sub{
         margin-left:0;
+        padding-left:10px;
+      }
+      .booking-highlight-head{
+        flex-direction:column;
+        align-items:flex-start;
       }
     }
 
@@ -1277,9 +1354,9 @@
                 <p class="desc">
                   기본 입고 기준을 벗어나는 경우 별도 비용이 발생하며,
                   <a href="https://sell.smartstore.naver.com/#/center-notice/detail/100018493"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style="color:#0040d1; font-weight:600; text-decoration:underline;">
+                     target="_blank"
+                     rel="noopener noreferrer"
+                     style="color:#0040d1; font-weight:600; text-decoration:underline;">
                     N배송 직계약 부가비용 정책 안내
                   </a>
                   에서도 확인 하실 수 있습니다.
@@ -1631,77 +1708,139 @@
       const bookingDetailMap = {
         delivery: {
           title: "택배 입고 유의사항",
-          desc: `
-• 초도 입고 예정 상품의 패킹리스트를 먼저 제출해주세요.
-
-• 택배 입고 예약은 **영업일 기준 D-2 18시 이전까지** 예약 가능합니다.
-→ 단, **D-2 18시 이전이라도 입고 예약 마감 시 예약이 불가**합니다.
-
-• 입고 지연이 발생되지 않도록 **택배 입고 예약 시 송장번호를 필히 입력**해야 합니다.
-→ 발번 전 예약한 경우에는 **입고 이전에 송장번호 업데이트**가 필요합니다.
-
-• **일 최대 10박스까지만 입고 가능**합니다.
-→ **10박스 초과 시 추가 비용**이 발생합니다. (부가 비용 참고)
-
-• **10박스를 초과하여 입고가 필요한 경우 차량 입고**로 진행해야 합니다.
-
-• 박스 형태로만 입고 가능하며, **1박스에는 1개의 상품(SKU)** 로만 구성되어야 합니다.
-
-• **모든 박스에는 입고증 첫 장이 동봉**되어 있어야 합니다.
-
-• 동일 상품(SKU)이더라도 **입고 ID가 다를 경우 1개의 박스로 혼합 구성 불가**합니다.
-→ 미준수 시 **실셈 추가 비용**이 발생합니다. (부가 비용 참고)
-
-• 입고 예약일자보다 택배가 먼저 도착하더라도 **예약한 입고일자에 맞춰 검수**가 진행됩니다.
-→ 입고일 이전 검수 희망 시 **긴급 입고 비용**이 발생합니다. (부가 비용 참고)
-
-• 일부 송장이 도착하지 않을 경우, **모든 택배 도착 후 일괄 검수**가 진행됩니다.
-
-• 파손 우려가 있는 상품(SKU)은 반드시 **내부 완충 포장**을 해주셔야 합니다.
-→ 배송 중 파손이 발생하지 않도록 포장 상태를 반드시 확인해주세요.
-          `
+          type: "booking",
+          items: [
+            {
+              text: "초도 입고 예정 상품의 패킹리스트를 먼저 제출해주세요.",
+              tags: ["필수"]
+            },
+            {
+              text: "택배 입고 예약은 영업일 기준 D-2 18시 이전까지 예약 가능합니다.",
+              sub: "단, D-2 18시 이전이라도 입고 예약 마감 시 예약이 불가합니다.",
+              tags: ["필수", "입고 불가"]
+            },
+            {
+              text: "입고 지연이 발생되지 않도록 택배 입고 예약 시 송장번호를 필히 입력해야 합니다.",
+              sub: "발번 전 예약한 경우에는 입고 이전에 송장번호 업데이트가 필요합니다.",
+              tags: ["필수"]
+            },
+            {
+              text: "일 최대 10박스까지만 입고 가능합니다.",
+              sub: "10박스 초과 시 추가 비용이 발생합니다. (부가 비용 참고)",
+              tags: ["주의", "추가 비용"]
+            },
+            {
+              text: "10박스를 초과하여 입고가 필요한 경우 차량 입고로 진행해야 합니다.",
+              tags: ["주의"]
+            },
+            {
+              text: "박스 형태로만 입고 가능하며, 1박스에는 1개의 상품(SKU)로만 구성되어야 합니다.",
+              tags: ["필수"]
+            },
+            {
+              text: "모든 박스에는 입고증 첫 장이 동봉되어 있어야 합니다.",
+              tags: ["필수"]
+            },
+            {
+              text: "동일 상품(SKU)이더라도 입고 ID가 다를 경우 1개의 박스로 혼합 구성 불가합니다.",
+              sub: "미준수 시 실셈 추가 비용이 발생합니다. (부가 비용 참고)",
+              tags: ["주의", "추가 비용"]
+            },
+            {
+              text: "입고 예약일자보다 택배가 먼저 도착하더라도 예약한 입고일자에 맞춰 검수가 진행됩니다.",
+              sub: "입고일 이전 검수 희망 시 긴급 입고 비용이 발생합니다. (부가 비용 참고)",
+              tags: ["주의", "추가 비용"]
+            },
+            {
+              text: "일부 송장이 도착하지 않을 경우, 모든 택배 도착 후 일괄 검수가 진행됩니다.",
+              tags: []
+            },
+            {
+              text: "파손 우려가 있는 상품(SKU)은 반드시 내부 완충 포장을 해주셔야 합니다.",
+              sub: "배송 중 파손이 발생하지 않도록 포장 상태를 반드시 확인해주세요.",
+              tags: ["필수"]
+            }
+          ]
         },
         truck: {
           title: "차량 입고 유의사항",
-          desc: `
-• 초도 입고 예정 상품의 패킹리스트를 먼저 제출해주세요.
-
-• 차량 입고 예약은 **영업일 기준 D-1 18시 이전까지** 예약 가능합니다.
-→ 단, **D-1 18시 이전이라도 입고 예약 마감 시 예약이 불가**합니다.
-
-• **모든 팔레트에는 입고증 첫 장과 팔레트 정보가 부착**되어 있어야 합니다.
-
-[[highlight]]
-★ 혼적으로 입고 시 유의사항
-• 1PLT-1SKU를 준수하여 입고해야 하며, 불가피하게 혼적이 필요한 경우 **상품(SKU) 간 혼재 방지를 위해 판지 구분 적재**가 필요합니다.
-• 검수 시 **1PLT-1SKU 기준으로 분리 작업**이 진행됩니다.
-• 동일 상품(SKU)이더라도 **입고일이 다를 경우 팔레트 합적 작업은 제공되지 않습니다.**
-→ 이로 인해 **여러 개의 보관공간을 사용하게 되어 보관료가 상승**될 수 있습니다.
-• 브랜드사의 보관료 절감을 위해 **1PLT-1SKU = 완PLT 형태로 입고**해주세요.
-[[/highlight]]
-
-• 잔량 박스가 있을 경우, **팔레트 최상단 적재**가 필요합니다.
-→ 육안으로 박스 외부에 **잔량 박스 표기**가 되어 있어야 합니다.
-
-• 팔레트 적재 시 **교대열 또는 벽돌형 적재**로 입고해주세요.
-
-• 잔량 팔레트로 입고하는 경우, **최상단 겉면을 비워 입고**해주세요.
-→ 예시: 완 PLT 박스 수량 72박스 → 71박스 입고 시 **최상단 중앙 비움이 아닌 겉면 비움**으로 적재
-→ 최상단 비움 적재로 입고 시 **외관상 박스 수량 오인**이 발생할 수 있습니다.
-
-• 팔레트 이동전표는 기사님을 통해 품고로 전달되어야 하며, **이동 전표 미발행 시 입고 불가**합니다.
-→ KPP - 266569 / AJ - P262612-9
-
-• **팔레트 포함 높이 160cm 초과 시 박스 당 이적 추가 비용**이 발생합니다. (부가 비용 참고)
-
-• **표준 팔레트가 아닌 나무 또는 일회용 팔레트 입고 시 표준 팔레트 이적**이 진행됩니다.
-→ 팔레트 당 추가 비용이 발생합니다. (부가 비용 참고)
-
-• **팔레트 미적재 상태로 차량 입고 시 박스 당 추가 비용**이 발생합니다. (부가 비용 참고)
-
-• 상품(SKU) 파손 방지를 위해 **팔레트 랩핑은 단단하게 작업** 후 입고해주세요.
-→ 파손품이 발견될 경우 **입고 수량에서 제외**되며, 요청에 따라 **반출 또는 폐기**로 진행합니다.
-          `
+          type: "booking",
+          highlight: {
+            title: "혼적 입고 시 필독",
+            badge: "필독",
+            items: [
+              {
+                strong: "1PLT-1SKU를 준수하여 입고해야 하며, 불가피하게 혼적이 필요한 경우 상품(SKU) 간 혼재 방지를 위해 판지 구분 적재가 필요합니다.",
+                desc: "혼적 자체가 필요한 경우에도 SKU 간 구분이 명확하게 보이도록 적재해야 합니다."
+              },
+              {
+                strong: "검수 시 1PLT-1SKU 기준으로 분리 작업이 진행됩니다.",
+                desc: "입고 단계에서 혼적 상태 그대로 운영되지 않습니다."
+              },
+              {
+                strong: "동일 상품(SKU)이더라도 입고일이 다를 경우 팔레트 합적 작업은 제공되지 않습니다.",
+                desc: "이로 인해 여러 개의 보관공간을 사용하게 되어 보관료가 상승될 수 있습니다."
+              },
+              {
+                strong: "브랜드사의 보관료 절감을 위해 1PLT-1SKU = 완PLT 형태로 입고해주세요.",
+                desc: "가장 권장되는 입고 형태입니다."
+              }
+            ]
+          },
+          items: [
+            {
+              text: "초도 입고 예정 상품의 패킹리스트를 먼저 제출해주세요.",
+              tags: ["필수"]
+            },
+            {
+              text: "차량 입고 예약은 영업일 기준 D-1 18시 이전까지 예약 가능합니다.",
+              sub: "단, D-1 18시 이전이라도 입고 예약 마감 시 예약이 불가합니다.",
+              tags: ["필수", "입고 불가"]
+            },
+            {
+              text: "모든 팔레트에는 입고증 첫 장과 팔레트 정보가 부착되어 있어야 합니다.",
+              tags: ["필수"]
+            },
+            {
+              text: "잔량 박스가 있을 경우, 팔레트 최상단 적재가 필요합니다.",
+              sub: "육안으로 박스 외부에 잔량 박스 표기가 되어 있어야 합니다.",
+              tags: ["주의"]
+            },
+            {
+              text: "팔레트 적재 시 교대열 또는 벽돌형 적재로 입고해주세요.",
+              tags: ["필수"]
+            },
+            {
+              text: "잔량 팔레트로 입고하는 경우, 최상단 겉면을 비워 입고해주세요.",
+              sub: "예시: 완 PLT 박스 수량 72박스 → 71박스 입고 시 최상단 중앙 비움이 아닌 겉면 비움으로 적재해야 하며, 최상단 비움 적재로 입고 시 외관상 박스 수량 오인이 발생할 수 있습니다.",
+              tags: ["주의"]
+            },
+            {
+              text: "팔레트 이동전표는 기사님을 통해 품고로 전달되어야 하며, 이동 전표 미발행 시 입고 불가합니다.",
+              sub: "KPP - 266569 / AJ - P262612-9",
+              tags: ["필수", "입고 불가"]
+            },
+            {
+              text: "팔레트 포함 높이 160cm 초과 시 박스 당 이적 추가 비용이 발생합니다.",
+              sub: "(부가 비용 참고)",
+              tags: ["주의", "추가 비용"]
+            },
+            {
+              text: "표준 팔레트가 아닌 나무 또는 일회용 팔레트 입고 시 표준 팔레트 이적이 진행됩니다.",
+              sub: "팔레트 당 추가 비용이 발생합니다. (부가 비용 참고)",
+              tags: ["주의", "추가 비용"]
+            },
+            {
+              text: "팔레트 미적재 상태로 차량 입고 시 박스 당 추가 비용이 발생합니다.",
+              sub: "(부가 비용 참고)",
+              tags: ["주의", "추가 비용"]
+            },
+            {
+              text: "상품(SKU) 파손 방지를 위해 팔레트 랩핑은 단단하게 작업 후 입고해주세요.",
+              sub: "파손품이 발견될 경우 입고 수량에서 제외되며, 요청에 따라 반출 또는 폐기로 진행합니다.",
+              tags: ["필수", "주의"]
+            }
+          ]
         }
       };
 
@@ -1891,99 +2030,66 @@
         return result;
       }
 
-      function buildBookingCardBlock(rawText) {
-        const lines = rawText
-          .split("\n")
-          .map(line => line.trim())
-          .filter(Boolean);
+      function getTagClass(tag) {
+        if (tag === "필수") return "required";
+        if (tag === "주의") return "warning";
+        if (tag === "입고 불가") return "danger";
+        if (tag === "추가 비용") return "cost";
+        return "required";
+      }
 
-        const items = [];
-        let current = null;
-
-        lines.forEach(line => {
-          if (line.startsWith("•")) {
-            if (current) items.push(current);
-            current = {
-              main: line.replace(/^•\s*/, "").trim(),
-              subs: []
-            };
-            return;
-          }
-
-          if (line.startsWith("→")) {
-            if (current) {
-              current.subs.push(line.replace(/^→\s*/, "").trim());
-            }
-            return;
-          }
-
-          if (current) {
-            current.subs.push(line);
-          }
-        });
-
-        if (current) items.push(current);
-
+      function renderBookingTags(tags = []) {
+        if (!tags.length) return "";
         return `
-          <div class="booking-block-list">
+          <div class="booking-tags">
+            ${tags.map(tag => `<span class="tag ${getTagClass(tag)}">${tag}</span>`).join("")}
+          </div>
+        `;
+      }
+
+      function renderBookingItems(items = []) {
+        return `
+          <div class="booking-layout">
             ${items.map(item => `
-              <div class="booking-item-card">
-                <div class="booking-item-main">
-                  <span class="booking-item-dot">•</span>
-                  <div>${applyInlineEmphasis(item.main)}</div>
+              <div class="booking-row">
+                ${renderBookingTags(item.tags || [])}
+                <div class="booking-main">
+                  <span class="booking-dot">•</span>
+                  <div class="booking-text">${applyInlineEmphasis(item.text)}</div>
                 </div>
-                ${item.subs.map(sub => `
-                  <div class="booking-item-sub">${applyInlineEmphasis(sub)}</div>
-                `).join("")}
+                ${item.sub ? `<div class="booking-sub">${applyInlineEmphasis(item.sub)}</div>` : ""}
               </div>
             `).join("")}
           </div>
         `;
       }
 
-      function renderBookingContent(text) {
-        const highlightRegex = /\[\[highlight\]\]([\s\S]*?)\[\[\/highlight\]\]/g;
-        let result = "";
-        let lastIndex = 0;
-        let match;
+      function renderBookingContent(data) {
+        if (!data || data.type !== "booking") return "";
 
-        while ((match = highlightRegex.exec(text)) !== null) {
-          const beforeText = text.slice(lastIndex, match.index).trim();
-          const highlightText = match[1].trim();
+        let html = "";
 
-          if (beforeText) {
-            result += buildBookingCardBlock(beforeText);
-          }
-
-          const highlightLines = highlightText
-            .split("\n")
-            .map(line => line.trim())
-            .filter(Boolean);
-
-          let highlightTitle = "필독";
-          let contentText = highlightText;
-
-          if (highlightLines.length && (highlightLines[0].startsWith("★") || highlightLines[0].startsWith("☆"))) {
-            highlightTitle = highlightLines[0].replace(/^[★☆]\s*/, "").trim();
-            contentText = highlightLines.slice(1).join("\n");
-          }
-
-          result += `
+        if (data.highlight) {
+          html += `
             <div class="booking-highlight">
-              <div class="booking-highlight-title">⚠️ ${applyInlineEmphasis(highlightTitle)}</div>
-              ${buildBookingCardBlock(contentText)}
+              <div class="booking-highlight-head">
+                <div class="booking-highlight-title">⚠️ ${data.highlight.title}</div>
+                <span class="tag warning">${data.highlight.badge || "필독"}</span>
+              </div>
+              <div class="booking-highlight-copy">
+                ${(data.highlight.items || []).map(item => `
+                  <div class="booking-highlight-item">
+                    <strong>${applyInlineEmphasis(item.strong)}</strong>
+                    ${item.desc ? `<span>${applyInlineEmphasis(item.desc)}</span>` : ""}
+                  </div>
+                `).join("")}
+              </div>
             </div>
           `;
-
-          lastIndex = match.index + match[0].length;
         }
 
-        const afterText = text.slice(lastIndex).trim();
-        if (afterText) {
-          result += buildBookingCardBlock(afterText);
-        }
-
-        return result;
+        html += renderBookingItems(data.items || []);
+        return html;
       }
 
       function openPackagingModal(id) {
@@ -2025,7 +2131,7 @@
         if (!item) return;
 
         bookingModalTitle.textContent = item.title;
-        bookingModalDesc.innerHTML = renderBookingContent(item.desc);
+        bookingModalDesc.innerHTML = renderBookingContent(item);
         bookingModal.classList.add("show");
         document.body.style.overflow = "hidden";
       }

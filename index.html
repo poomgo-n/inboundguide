@@ -648,11 +648,21 @@
                       <div class="booking-row-icon">🧱</div>
                       <div class="booking-row-copy">
                         <div class="booking-row-title">팔레트 라벨 출력</div>
-                        <div class="booking-row-desc">팔레트 라벨은 다음 단계에서 규칙 확정 후 연결할 수 있도록 버튼만 먼저 넣어두었습니다.</div>
+                        <div class="booking-row-desc">차량 양식의 파레트넘버 기준으로 팔레트 라벨 PDF를 생성합니다.</div>
                       </div>
                     </div>
                     <div class="booking-row-right">
-                      <button class="booking-action-btn" id="pltLabelPrepareBtn">준비중</button>
+                      <div class="booking-row-stack">
+                        <input type="file" id="truckPltLabelFile" accept=".xlsx,.xls" hidden>
+                        <button class="upload-trigger-btn primary" data-upload-target="truckPltLabelFile">파일 선택</button>
+                        <div class="booking-status-box">
+                          <div class="booking-status-copy">
+                            <strong id="truckPltLabelFileName">선택된 파일 없음</strong>
+                            <span>차량 양식 전용 / PDF 자동 다운로드</span>
+                          </div>
+                          <span class="booking-status-pill" id="truckPltLabelStatus">대기중</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1087,6 +1097,7 @@
         const map = new Map();
 
         for (let rowNo = 17; rowNo <= 500; rowNo++) {
+          const palletNo = readCell(sheet, `C${rowNo}`);
           const skuName = readCell(sheet, `D${rowNo}`);
           const barcode = readCell(sheet, `E${rowNo}`);
           const cartonQty = readCell(sheet, `F${rowNo}`);
@@ -1095,12 +1106,45 @@
           const expiry = cleanOptionalValue(readCell(sheet, `I${rowNo}`));
           const lot = cleanOptionalValue(readCell(sheet, `J${rowNo}`));
 
-          if (!skuName && !barcode && !cartonQty && !boxCount && !totalQty) continue;
+          if (!palletNo && !skuName && !barcode && !cartonQty && !boxCount && !totalQty) continue;
           if (!skuName) continue;
 
-          const item = { skuName, barcode, cartonQty, boxCount, totalQty, expiry, lot };
+          const item = { palletNo, skuName, barcode, cartonQty, boxCount, totalQty, expiry, lot };
           const key = [item.skuName, item.barcode, item.expiry, item.lot].join("||");
           if (!map.has(key)) map.set(key, item);
+        }
+
+        return Array.from(map.values());
+      }
+
+      function parseTruckPalletRows(sheet) {
+        const map = new Map();
+
+        for (let rowNo = 17; rowNo <= 500; rowNo++) {
+          const palletNo = readCell(sheet, `C${rowNo}`);
+          const skuName = readCell(sheet, `D${rowNo}`);
+          const barcode = readCell(sheet, `E${rowNo}`);
+          const cartonQty = readCell(sheet, `F${rowNo}`);
+          const boxCount = readCell(sheet, `G${rowNo}`);
+          const totalQty = readCell(sheet, `H${rowNo}`);
+
+          if (!palletNo && !skuName && !barcode && !cartonQty && !boxCount && !totalQty) continue;
+          if (!palletNo) continue;
+
+          const key = palletNo;
+          if (!map.has(key)) {
+            map.set(key, {
+              palletNo,
+              items: []
+            });
+          }
+
+          map.get(key).items.push({
+            skuName: skuName || "-",
+            barcode: barcode || "-",
+            cartonQty: cartonQty || "-",
+            totalQty: totalQty || "-"
+          });
         }
 
         return Array.from(map.values());
@@ -1254,14 +1298,78 @@
         doc.save(`차량_아웃박스라벨_${new Date().getTime()}.pdf`);
       }
 
+      function createTruckPalletCanvas(group) {
+        const canvas = document.createElement("canvas");
+        canvas.width = 700;
+        canvas.height = 420;
+
+        const ctx = canvas.getContext("2d");
+        const w = canvas.width;
+        const h = canvas.height;
+
+        ctx.fillStyle = "#ffffff";
+        ctx.fillRect(0, 0, w, h);
+
+        ctx.strokeStyle = "#dbe4f0";
+        ctx.lineWidth = 3;
+        roundRect(ctx, 10, 10, w - 20, h - 20, 18);
+        ctx.stroke();
+
+        ctx.fillStyle = "#111827";
+        ctx.textBaseline = "top";
+
+        drawEllipsisText(ctx, `NO. ${group.palletNo || "-"}`, 24, 22, 650, 42, 30, true);
+        drawEllipsisText(ctx, `SKU 정보`, 24, 82, 650, 24, 20, true);
+
+        const startY = 118;
+        const rowHeight = 72;
+        const maxRows = 4;
+        const items = group.items.slice(0, maxRows);
+
+        items.forEach((item, idx) => {
+          const y = startY + idx * rowHeight;
+          ctx.strokeStyle = "#e6edf7";
+          ctx.lineWidth = 2;
+          roundRect(ctx, 24, y, 652, 56, 12);
+          ctx.stroke();
+
+          drawEllipsisText(ctx, item.skuName || "-", 40, y + 8, 230, 20, 15, true);
+          drawEllipsisText(ctx, `바코드 : ${item.barcode || "-"}`, 40, y + 30, 230, 14, 11, false);
+          drawEllipsisText(ctx, `박스 수량 : ${item.cartonQty || "-"}`, 300, y + 12, 150, 16, 12, false);
+          drawEllipsisText(ctx, `총 수량 : ${item.totalQty || "-"}`, 480, y + 12, 150, 16, 12, false);
+        });
+
+        if (group.items.length > maxRows) {
+          drawEllipsisText(ctx, `외 ${group.items.length - maxRows}개 SKU`, 24, 396, 650, 16, 13, false);
+        }
+
+        return canvas;
+      }
+
+      function generateTruckPalletLabelPdf(groups) {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: [100, 70] });
+
+        groups.forEach((group, index) => {
+          if (index > 0) doc.addPage([70, 100], "portrait");
+          const canvas = createTruckPalletCanvas(group);
+          const imageData = canvas.toDataURL("image/png");
+          doc.addImage(imageData, "PNG", 0, 0, 70, 100);
+        });
+
+        doc.save(`차량_팔레트라벨_${new Date().getTime()}.pdf`);
+      }
+
       function setFileStatus(type, fileName, statusText) {
         const nameMap = {
           delivery: document.getElementById("deliveryLabelFileName"),
-          truckOutbox: document.getElementById("truckOutboxLabelFileName")
+          truckOutbox: document.getElementById("truckOutboxLabelFileName"),
+          truckPlt: document.getElementById("truckPltLabelFileName")
         };
         const statusMap = {
           delivery: document.getElementById("deliveryLabelStatus"),
-          truckOutbox: document.getElementById("truckOutboxLabelStatus")
+          truckOutbox: document.getElementById("truckOutboxLabelStatus"),
+          truckPlt: document.getElementById("truckPltLabelStatus")
         };
         if (nameMap[type]) nameMap[type].textContent = fileName || "선택된 파일 없음";
         if (statusMap[type]) statusMap[type].textContent = statusText || "대기중";
@@ -1287,6 +1395,17 @@
         if (!items.length) throw new Error("차량 양식에서 라벨 생성 대상 데이터를 찾지 못했습니다.");
         generateTruckOutboxLabelPdf(items);
         setFileStatus("truckOutbox", file.name, `완료 ${items.length}건`);
+      }
+
+      async function handleTruckPalletFile(file) {
+        setFileStatus("truckPlt", file.name, "처리중");
+        const buffer = await file.arrayBuffer();
+        const workbook = XLSX.read(buffer, { type: "array" });
+        const sheet = getSheetByNameContains(workbook, "차량");
+        const groups = parseTruckPalletRows(sheet);
+        if (!groups.length) throw new Error("차량 양식에서 팔레트 라벨 생성 대상 데이터를 찾지 못했습니다.");
+        generateTruckPalletLabelPdf(groups);
+        setFileStatus("truckPlt", file.name, `완료 ${groups.length}건`);
       }
 
       renderNav(sideNavList);
@@ -1350,10 +1469,20 @@
         });
       }
 
-      const pltLabelPrepareBtn = document.getElementById("pltLabelPrepareBtn");
-      if (pltLabelPrepareBtn) {
-        pltLabelPrepareBtn.addEventListener("click", () => {
-          alert("팔레트 라벨은 다음 단계에서 규칙 확정 후 연결하면 됩니다. 지금은 차량 아웃박스 라벨까지만 동작하도록 넣어둔 상태입니다.");
+      const truckPltLabelFile = document.getElementById("truckPltLabelFile");
+      if (truckPltLabelFile) {
+        truckPltLabelFile.addEventListener("change", async (e) => {
+          const file = e.target.files?.[0];
+          if (!file) return;
+          try {
+            await handleTruckPalletFile(file);
+          } catch (error) {
+            console.error(error);
+            setFileStatus("truckPlt", file.name, "오류");
+            alert(error.message || "차량 팔레트 라벨 생성 중 오류가 발생했습니다.");
+          } finally {
+            e.target.value = "";
+          }
         });
       }
 

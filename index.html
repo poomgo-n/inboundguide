@@ -1351,67 +1351,83 @@
         doc.save(`차량_아웃박스라벨_${new Date().getTime()}.pdf`);
       }
 
-      function createTruckPalletCanvas(group) {
-        const canvas = document.createElement("canvas");
-        canvas.width = 700;
-        canvas.height = 420;
+   /* === A4 팔레트 라벨 + 기존 기능 포함 최종 코드 핵심 부분만 정리 === */
 
-        const ctx = canvas.getContext("2d");
-        const w = canvas.width;
-        const h = canvas.height;
+function createTruckPalletCanvas(group) {
+  const canvas = document.createElement("canvas");
+  canvas.width = 1240; // A4 비율 대응
+  canvas.height = 1754;
 
-        ctx.fillStyle = "#ffffff";
-        ctx.fillRect(0, 0, w, h);
+  const ctx = canvas.getContext("2d");
 
-        ctx.strokeStyle = "#dbe4f0";
-        ctx.lineWidth = 3;
-        roundRect(ctx, 10, 10, w - 20, h - 20, 18);
-        ctx.stroke();
+  ctx.fillStyle = "#fff";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        ctx.fillStyle = "#111827";
-        ctx.textBaseline = "top";
+  ctx.fillStyle = "#111";
+  ctx.textBaseline = "top";
 
-        drawEllipsisText(ctx, `NO. ${group.palletNo || "-"}`, 24, 22, 650, 42, 30, true);
-        drawEllipsisText(ctx, `SKU 정보`, 24, 82, 650, 24, 20, true);
+  // 타이틀
+  ctx.font = "bold 60px Arial";
+  ctx.fillText("PALLET LABEL", 80, 80);
 
-        const startY = 118;
-        const rowHeight = 72;
-        const maxRows = 4;
-        const items = group.items.slice(0, maxRows);
+  // NO.
+  ctx.font = "bold 120px Arial";
+  ctx.fillText(`NO. ${group.palletNo}`, 80, 200);
 
-        items.forEach((item, idx) => {
-          const y = startY + idx * rowHeight;
-          ctx.strokeStyle = "#e6edf7";
-          ctx.lineWidth = 2;
-          roundRect(ctx, 24, y, 652, 56, 12);
-          ctx.stroke();
+  // SKU 헤더
+  ctx.font = "bold 40px Arial";
+  ctx.fillText("SKU 정보", 80, 360);
 
-          drawEllipsisText(ctx, item.skuName || "-", 40, y + 8, 230, 20, 15, true);
-          drawEllipsisText(ctx, `바코드 : ${item.barcode || "-"}`, 40, y + 30, 230, 14, 11, false);
-          drawEllipsisText(ctx, `박스 수량 : ${item.cartonQty || "-"}`, 300, y + 12, 150, 16, 12, false);
-          drawEllipsisText(ctx, `총 수량 : ${item.totalQty || "-"}`, 480, y + 12, 150, 16, 12, false);
-        });
+  const startY = 420;
+  const rowHeight = 90;
 
-        if (group.items.length > maxRows) {
-          drawEllipsisText(ctx, `외 ${group.items.length - maxRows}개 SKU`, 24, 396, 650, 16, 13, false);
-        }
+  // 테이블 헤더
+  ctx.font = "bold 30px Arial";
+  ctx.strokeRect(80, startY, 1080, 60);
+  ctx.fillText("SKU명", 100, startY + 15);
+  ctx.fillText("바코드", 400, startY + 15);
+  ctx.fillText("박스수량", 700, startY + 15);
+  ctx.fillText("총수량", 950, startY + 15);
 
-        return canvas;
-      }
+  // 데이터
+  ctx.font = "28px Arial";
+  group.items.forEach((item, idx) => {
+    const y = startY + 60 + idx * rowHeight;
 
-      function generateTruckPalletLabelPdf(groups) {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: [100, 70] });
+    ctx.strokeRect(80, y, 1080, rowHeight);
 
-        groups.forEach((group, index) => {
-          if (index > 0) doc.addPage([70, 100], "portrait");
-          const canvas = createTruckPalletCanvas(group);
-          const imageData = canvas.toDataURL("image/png");
-          doc.addImage(imageData, "PNG", 0, 0, 70, 100);
-        });
+    ctx.fillText(item.skuName, 100, y + 20);
+    ctx.fillText(item.barcode, 400, y + 20);
+    ctx.fillText(item.cartonQty, 700, y + 20);
+    ctx.fillText(item.totalQty, 950, y + 20);
+  });
 
-        doc.save(`차량_팔레트라벨_${new Date().getTime()}.pdf`);
-      }
+  return canvas;
+}
+
+function generateTruckPalletLabelPdf(groups) {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF("p", "mm", "a4");
+
+  groups.forEach((group, index) => {
+    if (index > 0) doc.addPage();
+
+    const canvas = createTruckPalletCanvas(group);
+    const img = canvas.toDataURL("image/png");
+
+    doc.addImage(img, "PNG", 0, 0, 210, 297);
+  });
+
+  doc.save(`팔레트라벨_${Date.now()}.pdf`);
+}
+
+/* 핵심 변경사항
+1. A4 사이즈 적용
+2. NO 크게 강조
+3. SKU 표 형태 + border 적용
+4. 한 페이지 = 한 팔레트
+*/
+
 
       function setFileStatus(type, fileName, statusText) {
         const nameMap = {

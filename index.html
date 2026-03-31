@@ -1027,44 +1027,86 @@
 
       function normalizeValue(value) {
         if (value === undefined || value === null) return "";
+        if (value instanceof Date && !isNaN(value)) {
+          const y = value.getFullYear();
+          const m = String(value.getMonth() + 1).padStart(2, "0");
+          const d = String(value.getDate()).padStart(2, "0");
+          return `${y}-${m}-${d}`;
+        }
+        return String(value).trim();
+      }
+
+      function normalizeSheetValue(value) {
+        if (value === undefined || value === null || value === "") return "";
+        if (typeof value === "number") return String(value);
+        if (Object.prototype.toString.call(value) === "[object Date]" && !isNaN(value)) {
+          const y = value.getFullYear();
+          const m = String(value.getMonth() + 1).padStart(2, "0");
+          const d = String(value.getDate()).padStart(2, "0");
+          return `${y}-${m}-${d}`;
+        }
         return String(value).trim();
       }
 
       function cleanOptionalValue(value) {
-        const text = normalizeValue(value);
+        const text = normalizeSheetValue(value);
         return text ? text : "관리안함";
       }
 
-      function hasMeaningfulValue(rowArray, indexes) {
-        return indexes.some(idx => normalizeValue(rowArray[idx] || "") !== "");
+      function readCell(sheet, address) {
+        const cell = sheet[address];
+        if (!cell) return "";
+        if (cell.w !== undefined && cell.w !== null && String(cell.w).trim() !== "") {
+          return String(cell.w).trim();
+        }
+        return normalizeSheetValue(cell.v);
       }
 
       function parseDeliveryRows(sheet) {
-        const rows = XLSX.utils.sheet_to_json(sheet, { header: 1, raw: false, defval: "" });
-        const startIndex = 15;
         const map = new Map();
 
-        for (let i = startIndex; i < rows.length; i++) {
-          const row = rows[i] || [];
-          if (!hasMeaningfulValue(row, [3,4,5,6,7])) continue;
-          const skuName = normalizeValue(row[3]);
+        for (let rowNo = 16; rowNo <= 500; rowNo++) {
+          const skuName = readCell(sheet, `D${rowNo}`);
+          const barcode = readCell(sheet, `E${rowNo}`);
+          const quantity = readCell(sheet, `F${rowNo}`);
+          const expiry = cleanOptionalValue(readCell(sheet, `G${rowNo}`));
+          const lot = cleanOptionalValue(readCell(sheet, `H${rowNo}`));
+
+          if (!skuName && !barcode && !quantity) continue;
           if (!skuName) continue;
 
-          const item = {
-            skuName,
-            barcode: normalizeValue(row[4]),
-            quantity: normalizeValue(row[5]),
-            expiry: cleanOptionalValue(row[6]),
-            lot: cleanOptionalValue(row[7])
-          };
-
+          const item = { skuName, barcode, quantity, expiry, lot };
           const key = [item.skuName, item.barcode, item.expiry, item.lot].join("||");
           if (!map.has(key)) map.set(key, item);
         }
+
         return Array.from(map.values());
       }
 
       function parseTruckRows(sheet) {
+        const map = new Map();
+
+        for (let rowNo = 17; rowNo <= 500; rowNo++) {
+          const skuName = readCell(sheet, `D${rowNo}`);
+          const barcode = readCell(sheet, `E${rowNo}`);
+          const cartonQty = readCell(sheet, `F${rowNo}`);
+          const boxCount = readCell(sheet, `G${rowNo}`);
+          const totalQty = readCell(sheet, `H${rowNo}`);
+          const expiry = cleanOptionalValue(readCell(sheet, `I${rowNo}`));
+          const lot = cleanOptionalValue(readCell(sheet, `J${rowNo}`));
+
+          if (!skuName && !barcode && !cartonQty && !boxCount && !totalQty) continue;
+          if (!skuName) continue;
+
+          const item = { skuName, barcode, cartonQty, boxCount, totalQty, expiry, lot };
+          const key = [item.skuName, item.barcode, item.expiry, item.lot].join("||");
+          if (!map.has(key)) map.set(key, item);
+        }
+
+        return Array.from(map.values());
+      }
+
+      function getSheetByNameContains(sheet) {
         const rows = XLSX.utils.sheet_to_json(sheet, { header: 1, raw: false, defval: "" });
         const startIndex = 16;
         const map = new Map();

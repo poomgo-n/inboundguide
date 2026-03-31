@@ -669,19 +669,6 @@
       gap:12px;
     }
 
-    .booking-dot{
-      width:24px;
-      height:24px;
-      border-radius:999px;
-      background:var(--brand-soft);
-      color:var(--brand);
-      display:grid;
-      place-items:center;
-      font-size:12px;
-      font-weight:900;
-      flex:0 0 auto;
-      margin-top:2px;
-    }
 
     .booking-content{
       flex:1 1 auto;
@@ -702,14 +689,14 @@
   line-height:1.75;
 }
 
-    .booking-sub{
-      margin:10px 0 0 36px;
-      font-size:13px;
-      line-height:1.7;
-      color:#6b7280;
-      padding-left:12px;
-      border-left:2px solid #dbe7ff;
-    }
+.booking-sub{
+  margin:10px 0 0 0;
+  font-size:13px;
+  line-height:1.7;
+  color:#6b7280;
+  padding-left:12px;
+  border-left:2px solid #dbe7ff;
+}
 
 .booking-tags{
   display:inline-flex;
@@ -2047,7 +2034,6 @@
             ${items.map(item => `
               <div class="booking-row">
                 <div class="booking-main">
-                  <span class="booking-dot">•</span>
                   <div class="booking-content">
                     <div class="booking-headline">
   ${renderBookingTags(item.tags || [])}

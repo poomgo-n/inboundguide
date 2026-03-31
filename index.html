@@ -688,20 +688,19 @@
       min-width:0;
     }
 
-    .booking-headline{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:12px;
-    }
+.booking-headline{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+}
 
-    .booking-text{
-      flex:1 1 auto;
-      min-width:0;
-      color:#1f2937;
-      font-size:15px;
-      line-height:1.75;
-    }
+.booking-text{
+  flex:1 1 auto;
+  min-width:0;
+  color:#1f2937;
+  font-size:15px;
+  line-height:1.75;
+}
 
     .booking-sub{
       margin:10px 0 0 36px;
@@ -712,12 +711,12 @@
       border-left:2px solid #dbe7ff;
     }
 
-    .booking-tags{
-      display:inline-flex;
-      flex-wrap:wrap;
-      gap:6px;
-      flex:0 0 auto;
-    }
+.booking-tags{
+  display:inline-flex;
+  flex-wrap:wrap;
+  gap:6px;
+  flex:0 0 auto;
+}
 
     .tag{
       display:inline-flex;
@@ -2051,9 +2050,9 @@
                   <span class="booking-dot">•</span>
                   <div class="booking-content">
                     <div class="booking-headline">
-                      <div class="booking-text">${applyInlineEmphasis(item.text)}</div>
-                      ${renderBookingTags(item.tags || [])}
-                    </div>
+  ${renderBookingTags(item.tags || [])}
+  <div class="booking-text">${applyInlineEmphasis(item.text)}</div>
+</div>
                   </div>
                 </div>
                 ${item.sub ? `<div class="booking-sub">${applyInlineEmphasis(item.sub)}</div>` : ""}

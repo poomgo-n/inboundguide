@@ -1353,6 +1353,8 @@
 
    /* === A4 팔레트 라벨 + 기존 기능 포함 최종 코드 핵심 부분만 정리 === */
 
+/* === A4 팔레트 라벨 + 기존 기능 포함 최종 코드 핵심 부분만 정리 === */
+
 function createTruckPalletCanvas(group) {
   const canvas = document.createElement("canvas");
   canvas.width = 1240; // A4 비율 대응
@@ -1366,19 +1368,15 @@ function createTruckPalletCanvas(group) {
   ctx.fillStyle = "#111";
   ctx.textBaseline = "top";
 
-  // 타이틀
-  ctx.font = "bold 60px Arial";
-  ctx.fillText("PALLET LABEL", 80, 80);
-
-  // NO.
-  ctx.font = "bold 120px Arial";
-  ctx.fillText(`NO. ${group.palletNo}`, 80, 200);
+    // NO.
+  ctx.font = "bold 100px Arial";
+  ctx.fillText(`NO. ${group.palletNo}`, 80, 120);
 
   // SKU 헤더
   ctx.font = "bold 40px Arial";
   ctx.fillText("SKU 정보", 80, 360);
 
-  const startY = 420;
+  const startY = 300;
   const rowHeight = 90;
 
   // 테이블 헤더
@@ -1420,13 +1418,6 @@ function generateTruckPalletLabelPdf(groups) {
 
   doc.save(`팔레트라벨_${Date.now()}.pdf`);
 }
-
-/* 핵심 변경사항
-1. A4 사이즈 적용
-2. NO 크게 강조
-3. SKU 표 형태 + border 적용
-4. 한 페이지 = 한 팔레트
-*/
 
 
       function setFileStatus(type, fileName, statusText) {

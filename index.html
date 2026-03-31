@@ -1095,6 +1095,7 @@
 
       function parseTruckRows(sheet) {
         const map = new Map();
+        let foundFromUserRows = false;
 
         for (let rowNo = 17; rowNo <= 500; rowNo++) {
           const palletNo = readCell(sheet, `C${rowNo}`);
@@ -1109,9 +1110,30 @@
           if (!palletNo && !skuName && !barcode && !cartonQty && !boxCount && !totalQty) continue;
           if (!skuName) continue;
 
+          foundFromUserRows = true;
           const item = { palletNo, skuName, barcode, cartonQty, boxCount, totalQty, expiry, lot };
           const key = [item.skuName, item.barcode, item.expiry, item.lot].join("||");
           if (!map.has(key)) map.set(key, item);
+        }
+
+        if (!foundFromUserRows) {
+          for (let rowNo = 13; rowNo <= 16; rowNo++) {
+            const palletNo = readCell(sheet, `C${rowNo}`);
+            const skuName = readCell(sheet, `D${rowNo}`);
+            const barcode = readCell(sheet, `E${rowNo}`);
+            const cartonQty = readCell(sheet, `F${rowNo}`);
+            const boxCount = readCell(sheet, `G${rowNo}`);
+            const totalQty = readCell(sheet, `H${rowNo}`);
+            const expiry = cleanOptionalValue(readCell(sheet, `I${rowNo}`));
+            const lot = cleanOptionalValue(readCell(sheet, `J${rowNo}`));
+
+            if (!palletNo && !skuName && !barcode && !cartonQty && !boxCount && !totalQty) continue;
+            if (!skuName) continue;
+
+            const item = { palletNo, skuName, barcode, cartonQty, boxCount, totalQty, expiry, lot };
+            const key = [item.skuName, item.barcode, item.expiry, item.lot].join("||");
+            if (!map.has(key)) map.set(key, item);
+          }
         }
 
         return Array.from(map.values());
@@ -1119,6 +1141,7 @@
 
       function parseTruckPalletRows(sheet) {
         const map = new Map();
+        let foundFromUserRows = false;
 
         for (let rowNo = 17; rowNo <= 500; rowNo++) {
           const palletNo = readCell(sheet, `C${rowNo}`);
@@ -1131,6 +1154,7 @@
           if (!palletNo && !skuName && !barcode && !cartonQty && !boxCount && !totalQty) continue;
           if (!palletNo) continue;
 
+          foundFromUserRows = true;
           const key = palletNo;
           if (!map.has(key)) {
             map.set(key, {
@@ -1145,6 +1169,35 @@
             cartonQty: cartonQty || "-",
             totalQty: totalQty || "-"
           });
+        }
+
+        if (!foundFromUserRows) {
+          for (let rowNo = 13; rowNo <= 16; rowNo++) {
+            const palletNo = readCell(sheet, `C${rowNo}`);
+            const skuName = readCell(sheet, `D${rowNo}`);
+            const barcode = readCell(sheet, `E${rowNo}`);
+            const cartonQty = readCell(sheet, `F${rowNo}`);
+            const boxCount = readCell(sheet, `G${rowNo}`);
+            const totalQty = readCell(sheet, `H${rowNo}`);
+
+            if (!palletNo && !skuName && !barcode && !cartonQty && !boxCount && !totalQty) continue;
+            if (!palletNo) continue;
+
+            const key = palletNo;
+            if (!map.has(key)) {
+              map.set(key, {
+                palletNo,
+                items: []
+              });
+            }
+
+            map.get(key).items.push({
+              skuName: skuName || "-",
+              barcode: barcode || "-",
+              cartonQty: cartonQty || boxCount || "-",
+              totalQty: totalQty || "-"
+            });
+          }
         }
 
         return Array.from(map.values());

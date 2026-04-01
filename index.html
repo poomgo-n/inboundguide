@@ -142,7 +142,7 @@
 
     .detail-btn,.barcode-detail-btn,.booking-action-btn,.download-btn,.upload-trigger-btn{
       flex:0 0 auto;
-      min-height:44px;
+      min-height:42px;
       padding:0 16px;
       border-radius:12px;
       background:#fff;
@@ -192,7 +192,7 @@
     }
 
     .booking-card-head{
-      padding:24px 20px 20px;
+      padding:24px 20px 18px;
       border-bottom:1px solid var(--line);
       background:#fbfdff;
       text-align:center;
@@ -204,7 +204,7 @@
 
     .booking-card-head h3{
       margin:0;
-      font-size:28px;
+      font-size:30px;
       line-height:1.3;
       letter-spacing:-.02em;
       text-align:center;
@@ -229,10 +229,10 @@
       border:1px solid #e7edf7;
       border-radius:18px;
       background:#fff;
-      padding:18px;
+      padding:16px;
       display:flex;
-      flex-direction:column;
-      align-items:flex-start;
+      align-items:center;
+      justify-content:space-between;
       gap:14px;
       min-height:96px;
     }
@@ -272,29 +272,27 @@
     .booking-row-desc{
       color:var(--sub);
       font-size:14px;
-      line-height:1.7;
+      line-height:1.68;
     }
 
     .booking-row-right{
       flex:0 0 auto;
       display:flex;
-      align-items:flex-start;
-      justify-content:flex-start;
-      width:100%;
+      align-items:center;
+      justify-content:flex-end;
     }
 
     .booking-row-stack{
       display:flex;
       flex-direction:column;
-      align-items:flex-start;
+      align-items:flex-end;
       gap:10px;
-      width:100%;
-      max-width:100%;
+      width:min(250px, 100%);
     }
 
     .booking-status-box{
       display:flex;
-      align-items:flex-start;
+      align-items:center;
       justify-content:space-between;
       gap:12px;
       width:100%;
@@ -302,10 +300,61 @@
       border-radius:16px;
       background:#f8fbff;
       border:1px solid #dbe7ff;
+      white-space:nowrap;
     }
 
-    .booking-status-copy strong{display:block;font-size:14px;line-height:1.5;color:#111827}
-    .booking-status-copy span{display:block;margin-top:2px;font-size:13px;line-height:1.6;color:var(--sub)}
+    .booking-row-card.label-output-row{
+      flex-direction:column;
+      align-items:stretch;
+    }
+    .booking-row-card.label-output-row .booking-row-left{
+      width:100%;
+      display:grid;
+      grid-template-columns:auto minmax(0,1fr);
+      align-items:start;
+      column-gap:12px;
+      row-gap:8px;
+    }
+    .booking-row-card.label-output-row .booking-row-copy{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) auto auto;
+      grid-template-areas:
+        "title button status"
+        "desc desc desc";
+      align-items:center;
+      column-gap:12px;
+      row-gap:8px;
+      width:100%;
+    }
+    .booking-row-card.label-output-row .booking-row-title{
+      grid-area:title;
+      margin-bottom:0;
+    }
+    .booking-row-card.label-output-row .booking-row-desc{
+      grid-area:desc;
+    }
+    .booking-row-card.label-output-row .booking-row-right{
+      display:contents;
+      width:auto;
+    }
+    .booking-row-card.label-output-row .booking-row-stack{
+      display:contents;
+      width:auto;
+      max-width:none;
+    }
+    .booking-row-card.label-output-row .upload-trigger-btn{
+      grid-area:button;
+      align-self:center;
+      justify-self:start;
+    }
+    .booking-row-card.label-output-row .booking-status-box{
+      grid-area:status;
+      width:auto;
+      min-width:260px;
+      padding:12px 14px;
+    }
+    .booking-status-copy strong{display:block;font-size:15px;line-height:1.5;color:#111827}
+    .booking-status-copy span{display:block;margin-top:3px;font-size:14px;line-height:1.6;color:var(--sub)}
     .booking-status-pill{display:inline-flex;align-items:center;padding:8px 12px;border-radius:999px;background:#eefbf3;color:#167c4b;font-size:12px;font-weight:900}
 
     .booking-layout{display:grid;gap:14px}
@@ -385,7 +434,7 @@
   <div class="mobile-top">
     <div class="mobile-top-inner">
       <div class="mobile-title" id="goHomeMobile" style="cursor:pointer;">
-        <img src="assets/images/Primary Logo.png" alt="품고 로고" class="logo-img">
+        <img src="./Primary Logo.png" alt="품고 로고" class="logo-img">
         <div><strong>품고 입고 가이드</strong></div>
       </div>
       <button class="mobile-menu" id="mobileMenuOpen">☰</button>
@@ -406,7 +455,7 @@
   <div class="layout">
     <aside class="sidebar">
       <div class="logo" id="goHomeDesktop" style="cursor:pointer;">
-        <img src="assets/images/Primary Logo.png" alt="품고 로고" class="logo-img">
+        <img src="./Primary Logo.png" alt="품고 로고" class="logo-img">
         <div class="logo-text"><strong>품고 입고 가이드</strong></div>
       </div>
       <div class="nav-list" id="sideNavList"></div>
@@ -475,7 +524,7 @@
 
                 <div style="display:flex;flex-direction:column;gap:14px;">
                   <div style="padding:2px 2px 0 2px;font-size:15px;font-weight:800;color:#111111;display:flex;align-items:center;gap:8px;"><span style="font-size:14px;">📸</span><span>센터 외관 이미지</span></div>
-                  <div style="background:#ffffff;border:1px solid #E8EBF0;border-radius:20px;padding:12px;box-shadow:0 4px 14px rgba(17,24,39,.04);"><img src="assets/images/center-front.png" alt="센터 외관 이미지" style="width:100%;height:420px;object-fit:cover;border-radius:16px;display:block;"></div>
+                  <div style="background:#ffffff;border:1px solid #E8EBF0;border-radius:20px;padding:12px;box-shadow:0 4px 14px rgba(17,24,39,.04);"><img src="./center-front.png" alt="센터 외관 이미지" style="width:100%;height:420px;object-fit:cover;border-radius:16px;display:block;"></div>
                   <div style="font-size:13px;line-height:1.7;color:#6B7280;padding:0 4px;">실제 입고 시 센터 외관 및 진입 위치를 확인 후 안내에 따라 이동해주세요.</div>
                   <div style="background:#F4F8FF;border:1px solid #D9E7FF;border-radius:16px;padding:16px 18px;font-size:14px;line-height:1.8;color:#1F2937;"><div style="font-weight:800;margin-bottom:6px;">✅ 입고 위치 안내</div>하차 장소는 센터 진입 후 <span style="font-weight:800;">바로 왼쪽</span>으로 입차 후 직원의 안내에 따라 도크 배정이 진행됩니다.</div>
                 </div>
@@ -557,7 +606,7 @@
                     </div>
                   </div>
 
-                  <div class="booking-row-card">
+                  <div class="booking-row-card label-output-row">
                     <div class="booking-row-left">
                       <div class="booking-row-icon">🏷️</div>
                       <div class="booking-row-copy">
@@ -614,7 +663,7 @@
                     </div>
                   </div>
 
-                  <div class="booking-row-card">
+                  <div class="booking-row-card label-output-row">
                     <div class="booking-row-left">
                       <div class="booking-row-icon">📦</div>
                       <div class="booking-row-copy">
@@ -637,7 +686,7 @@
                     </div>
                   </div>
 
-                  <div class="booking-row-card">
+                  <div class="booking-row-card label-output-row">
                     <div class="booking-row-left">
                       <div class="booking-row-icon">🧱</div>
                       <div class="booking-row-copy">
@@ -760,7 +809,7 @@
       ];
 
       function getImagePath(fileName) {
-        return `assets/images/${fileName}`;
+        return `./assets/images/${fileName}`;
       }
 
       const packagingDetailMap = {
@@ -983,7 +1032,14 @@
         imgEl.style.display = "block";
         fallbackEl.classList.remove("show");
         imgEl.alt = alt;
+        imgEl.dataset.retry = "0";
         imgEl.onerror = function () {
+          const retried = this.dataset.retry === "1";
+          if (!retried) {
+            this.dataset.retry = "1";
+            if (src.startsWith("assets/images/")) { this.src = "./" + src.split("/").pop(); return; }
+            if (src.startsWith("./")) { this.src = "assets/images/" + src.replace("./", ""); return; }
+          }
           this.style.display = "none";
           fallbackEl.classList.add("show");
         };
@@ -1392,11 +1448,11 @@ function createTruckPalletCanvas(group) {
     return { size, text: drawText };
   }
 
-  function drawFittedText(text, x, y, maxWidth, startSize, minSize, weight = "700", align = "left") {
+  function drawFittedText(text, x, y, maxWidth, startSize, minSize, weight = "700") {
     const fitted = fitSingleLine(text, maxWidth, startSize, minSize, weight);
     ctx.font = `${weight} ${fitted.size}px Pretendard, sans-serif`;
     ctx.fillStyle = "#111827";
-    ctx.textAlign = align;
+    ctx.textAlign = "left";
     ctx.textBaseline = "top";
     ctx.fillText(fitted.text, x, y);
   }
@@ -1412,8 +1468,8 @@ function createTruckPalletCanvas(group) {
 
   drawRoundedRect(40, 40, pageW - 80, pageH - 80, 36, null, "#111827", 8);
 
-  const palletNo = String(group?.palletNo || "-");
-  const items = Array.isArray(group?.items) ? group.items : [];
+  const palletNo = String((group && group.palletNo) || "-");
+  const items = Array.isArray(group && group.items) ? group.items : [];
 
   const topBoxY = marginY;
   const topBoxH = 720;
@@ -1425,10 +1481,7 @@ function createTruckPalletCanvas(group) {
   ctx.textBaseline = "top";
   ctx.fillText("NO.", marginX + 70, topBoxY + 82);
 
-  const noAreaX = marginX + 70;
-  const noAreaY = topBoxY + 180;
-  const noAreaW = contentW - 140;
-  drawFittedText(palletNo, noAreaX, noAreaY, noAreaW, 330, 170, "900");
+  drawFittedText(palletNo, marginX + 70, topBoxY + 180, contentW - 140, 330, 170, "900");
 
   const infoBoxY = topBoxY + topBoxH + 60;
   drawRoundedRect(marginX, infoBoxY, contentW, pageH - infoBoxY - marginY, 28, "#ffffff", "#d1d9e6", 4);
@@ -1445,43 +1498,41 @@ function createTruckPalletCanvas(group) {
   const maxRows = 15;
 
   const colWidths = [
-    Math.round(tableW * 0.36),  // SKU명
-    Math.round(tableW * 0.16),  // 바코드
-    Math.round(tableW * 0.12),  // 박스 입수량
-    Math.round(tableW * 0.12),  // 총 수량
-    Math.round(tableW * 0.12),  // 소비기한
+    Math.round(tableW * 0.36),
+    Math.round(tableW * 0.16),
+    Math.round(tableW * 0.12),
+    Math.round(tableW * 0.12),
+    Math.round(tableW * 0.12),
     tableW - (
       Math.round(tableW * 0.36) +
       Math.round(tableW * 0.16) +
       Math.round(tableW * 0.12) +
       Math.round(tableW * 0.12) +
       Math.round(tableW * 0.12)
-    ) // 제조 LOT
+    )
   ];
 
   const headers = ["SKU명", "바코드", "박스 입수량", "총 수량", "소비기한", "제조 LOT"];
-  let cursorX = tableX;
-
+  let x = tableX;
   headers.forEach((header, idx) => {
     const w = colWidths[idx];
     ctx.fillStyle = "#f3f6fb";
-    ctx.fillRect(cursorX, tableY, w, headerH);
+    ctx.fillRect(x, tableY, w, headerH);
     ctx.strokeStyle = "#cfd8e3";
     ctx.lineWidth = 2;
-    ctx.strokeRect(cursorX, tableY, w, headerH);
-
+    ctx.strokeRect(x, tableY, w, headerH);
     ctx.fillStyle = "#111827";
     ctx.font = "800 34px Pretendard, sans-serif";
     ctx.textAlign = "left";
     ctx.textBaseline = "middle";
-    ctx.fillText(header, cursorX + 18, tableY + (headerH / 2));
-    cursorX += w;
+    ctx.fillText(header, x + 18, tableY + (headerH / 2));
+    x += w;
   });
 
   const visibleItems = items.slice(0, maxRows);
   visibleItems.forEach((item, index) => {
     const y = tableY + headerH + (rowH * index);
-    let x = tableX;
+    let cx = tableX;
     const rowValues = [
       item.skuName || "-",
       item.barcode || "-",
@@ -1490,31 +1541,17 @@ function createTruckPalletCanvas(group) {
       item.expiry || "관리안함",
       item.lot || "관리안함"
     ];
-
     rowValues.forEach((value, colIdx) => {
       const w = colWidths[colIdx];
       ctx.fillStyle = "#ffffff";
-      ctx.fillRect(x, y, w, rowH);
+      ctx.fillRect(cx, y, w, rowH);
       ctx.strokeStyle = "#d7dee8";
       ctx.lineWidth = 2;
-      ctx.strokeRect(x, y, w, rowH);
-
-      const startSize = colIdx === 0 ? 30 : 28;
-      const minSize = colIdx === 0 ? 18 : 16;
-      drawCellText(value, x + 14, y + 18, w - 28, startSize, minSize, colIdx === 0 ? "700" : "500");
-      x += w;
+      ctx.strokeRect(cx, y, w, rowH);
+      drawCellText(value, cx + 14, y + 18, w - 28, colIdx === 0 ? 30 : 28, colIdx === 0 ? 18 : 16, colIdx === 0 ? "700" : "500");
+      cx += w;
     });
   });
-
-  if (!visibleItems.length) {
-    ctx.strokeStyle = "#d7dee8";
-    ctx.lineWidth = 2;
-    ctx.strokeRect(tableX, tableY + headerH, tableW, rowH);
-    ctx.fillStyle = "#6b7280";
-    ctx.font = "600 30px Pretendard, sans-serif";
-    ctx.textBaseline = "middle";
-    ctx.fillText("표시할 SKU 정보가 없습니다.", tableX + 18, tableY + headerH + (rowH / 2));
-  }
 
   if (items.length > maxRows) {
     ctx.fillStyle = "#6b7280";

@@ -533,7 +533,7 @@
                 <div class="booking-card-head">
                   <span class="booking-card-label">📦 택배 입고</span>
                   <h3>택배 입고</h3>
-                  <p>택배 입고 기준 확인, 패킹리스트 다운로드, 아웃박스 라벨 출력을 순서대로 진행해주세요.</p>
+                  <p>택배 입고 시, 유의사항을 필수로 확인해주시고, 패킹리스트 양식을 작성 후 품고로 전달해주세요.</p>
                 </div>
                 <div class="booking-card-body">
                   <div class="booking-row-card">
@@ -567,7 +567,7 @@
                       <div class="booking-row-icon">🏷️</div>
                       <div class="booking-row-copy">
                         <div class="booking-row-title">아웃박스 라벨 출력</div>
-                        <div class="booking-row-desc">작성한 택배 양식을 업로드하면 70×30 라벨 PDF를 생성합니다.</div>
+                        <div class="booking-row-desc">아웃박스에 부착할 라벨 양식이 필요하신 경우, 작성한 패킹리스트를 업로드하면 상품(SKU)별 라벨을 출력할 수 있어요.</div>
                       </div>
                     </div>
                     <div class="booking-row-right">
@@ -591,7 +591,7 @@
                 <div class="booking-card-head">
                   <span class="booking-card-label">🚚 차량 입고</span>
                   <h3>차량 입고</h3>
-                  <p>차량 입고 기준 확인, 패킹리스트 다운로드, 아웃박스 및 팔레트 라벨 출력을 순서대로 진행해주세요.</p>
+                  <p>차량 입고 시, 유의사항을 필수로 확인해주시고, 패킹리스트 양식을 작성 후 품고로 전달해주세요.</p>
                 </div>
                 <div class="booking-card-body">
                   <div class="booking-row-card">
@@ -625,7 +625,7 @@
                       <div class="booking-row-icon">📦</div>
                       <div class="booking-row-copy">
                         <div class="booking-row-title">아웃박스 라벨 출력</div>
-                        <div class="booking-row-desc">차량 양식 기준으로 SKU / LOT / 소비기한 조합별 라벨 PDF를 생성합니다.</div>
+                        <div class="booking-row-desc">아웃박스에 부착할 라벨 양식이 필요하신 경우, 작성한 패킹리스트를 업로드하면 상품(SKU)별 라벨을 출력할 수 있어요.</div>
                       </div>
                     </div>
                     <div class="booking-row-right">
@@ -648,7 +648,7 @@
                       <div class="booking-row-icon">🧱</div>
                       <div class="booking-row-copy">
                         <div class="booking-row-title">팔레트 라벨 출력</div>
-                        <div class="booking-row-desc">차량 양식의 파레트넘버 기준으로 팔레트 라벨 PDF를 생성합니다.</div>
+                        <div class="booking-row-desc">입고증과 함께 팔레트에 부착할 라벨을 출력할 수 있어요.</div>
                       </div>
                     </div>
                     <div class="booking-row-right">
@@ -1351,56 +1351,79 @@
         doc.save(`차량_아웃박스라벨_${new Date().getTime()}.pdf`);
       }
 
-   /* === A4 팔레트 라벨 + 기존 기능 포함 최종 코드 핵심 부분만 정리 === */
-
-/* === A4 팔레트 라벨 + 기존 기능 포함 최종 코드 핵심 부분만 정리 === */
-
 function createTruckPalletCanvas(group) {
-  const canvas = document.createElement("canvas");
-  canvas.width = 1240; // A4 비율 대응
-  canvas.height = 1754;
-
-  const ctx = canvas.getContext("2d");
-
-  ctx.fillStyle = "#fff";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  ctx.fillStyle = "#111";
-  ctx.textBaseline = "top";
-
-    // NO.
-  ctx.font = "bold 100px Arial";
-  ctx.fillText(`NO. ${group.palletNo}`, 80, 120);
-
-  // SKU 헤더
-  ctx.font = "bold 40px Arial";
-  ctx.fillText("SKU 정보", 80, 360);
-
-  const startY = 300;
-  const rowHeight = 90;
-
-  // 테이블 헤더
-  ctx.font = "bold 30px Arial";
-  ctx.strokeRect(80, startY, 1080, 60);
-  ctx.fillText("SKU명", 100, startY + 15);
-  ctx.fillText("바코드", 400, startY + 15);
-  ctx.fillText("박스수량", 700, startY + 15);
-  ctx.fillText("총수량", 950, startY + 15);
-
-  // 데이터
-  ctx.font = "28px Arial";
-  group.items.forEach((item, idx) => {
-    const y = startY + 60 + idx * rowHeight;
-
-    ctx.strokeRect(80, y, 1080, rowHeight);
-
-    ctx.fillText(item.skuName, 100, y + 20);
-    ctx.fillText(item.barcode, 400, y + 20);
-    ctx.fillText(item.cartonQty, 700, y + 20);
-    ctx.fillText(item.totalQty, 950, y + 20);
+    drawCellText(item.expiry || "관리안함", colXs[4] + 14, y + 18, col5 - 28, 22, 13, "400");
+    drawCellText(item.lot || "관리안함", colXs[5] + 14, y + 18, col6 - 28, 22, 13, "400");
   });
 
+  if (items.length > maxRows) {
+    ctx.font = "400 22px Arial";
+    ctx.fillText(`외 ${items.length - maxRows}개 SKU`, marginX, canvas.height - 52);
+  }
+
   return canvas;
+}
+
+function parseTruckPalletRows(sheet) {
+  const map = new Map();
+  let foundFromUserRows = false;
+
+  for (let rowNo = 17; rowNo <= 500; rowNo++) {
+    const palletNo = readCell(sheet, `C${rowNo}`);
+    const skuName = readCell(sheet, `D${rowNo}`);
+    const barcode = readCell(sheet, `E${rowNo}`);
+    const cartonQty = readCell(sheet, `F${rowNo}`);
+    const totalQty = readCell(sheet, `H${rowNo}`);
+    const expiry = cleanOptionalValue(readCell(sheet, `I${rowNo}`));
+    const lot = cleanOptionalValue(readCell(sheet, `J${rowNo}`));
+
+    if (!palletNo && !skuName && !barcode && !cartonQty && !totalQty && !expiry && !lot) continue;
+    if (!palletNo) continue;
+
+    foundFromUserRows = true;
+    if (!map.has(palletNo)) {
+      map.set(palletNo, { palletNo, items: [] });
+    }
+
+    map.get(palletNo).items.push({
+      skuName: skuName || "-",
+      barcode: barcode || "-",
+      cartonQty: cartonQty || "-",
+      totalQty: totalQty || "-",
+      expiry: expiry || "관리안함",
+      lot: lot || "관리안함"
+    });
+  }
+
+  if (!foundFromUserRows) {
+    for (let rowNo = 13; rowNo <= 16; rowNo++) {
+      const palletNo = readCell(sheet, `C${rowNo}`);
+      const skuName = readCell(sheet, `D${rowNo}`);
+      const barcode = readCell(sheet, `E${rowNo}`);
+      const cartonQty = readCell(sheet, `F${rowNo}`);
+      const totalQty = readCell(sheet, `H${rowNo}`);
+      const expiry = cleanOptionalValue(readCell(sheet, `I${rowNo}`));
+      const lot = cleanOptionalValue(readCell(sheet, `J${rowNo}`));
+
+      if (!palletNo && !skuName && !barcode && !cartonQty && !totalQty && !expiry && !lot) continue;
+      if (!palletNo) continue;
+
+      if (!map.has(palletNo)) {
+        map.set(palletNo, { palletNo, items: [] });
+      }
+
+      map.get(palletNo).items.push({
+        skuName: skuName || "-",
+        barcode: barcode || "-",
+        cartonQty: cartonQty || "-",
+        totalQty: totalQty || "-",
+        expiry: expiry || "관리안함",
+        lot: lot || "관리안함"
+      });
+    }
+  }
+
+  return Array.from(map.values());
 }
 
 function generateTruckPalletLabelPdf(groups) {
@@ -1409,17 +1432,13 @@ function generateTruckPalletLabelPdf(groups) {
 
   groups.forEach((group, index) => {
     if (index > 0) doc.addPage();
-
     const canvas = createTruckPalletCanvas(group);
     const img = canvas.toDataURL("image/png");
-
     doc.addImage(img, "PNG", 0, 0, 210, 297);
   });
 
   doc.save(`팔레트라벨_${Date.now()}.pdf`);
 }
-
-
       function setFileStatus(type, fileName, statusText) {
         const nameMap = {
           delivery: document.getElementById("deliveryLabelFileName"),

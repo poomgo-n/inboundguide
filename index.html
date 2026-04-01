@@ -385,8 +385,8 @@
   <div class="mobile-top">
     <div class="mobile-top-inner">
       <div class="mobile-title" id="goHomeMobile" style="cursor:pointer;">
-        <img src="./Primary Logo.png" alt="품고 로고" class="logo-img">
-        <div><strong>품고 초도 입고 가이드</strong></div>
+        <img src="assets/images/Primary Logo.png" alt="품고 로고" class="logo-img">
+        <div><strong>품고 입고 가이드</strong></div>
       </div>
       <button class="mobile-menu" id="mobileMenuOpen">☰</button>
     </div>
@@ -406,7 +406,7 @@
   <div class="layout">
     <aside class="sidebar">
       <div class="logo" id="goHomeDesktop" style="cursor:pointer;">
-        <img src="./Primary Logo.png" alt="품고 로고" class="logo-img">
+        <img src="assets/images/Primary Logo.png" alt="품고 로고" class="logo-img">
         <div class="logo-text"><strong>품고 입고 가이드</strong></div>
       </div>
       <div class="nav-list" id="sideNavList"></div>
@@ -475,7 +475,7 @@
 
                 <div style="display:flex;flex-direction:column;gap:14px;">
                   <div style="padding:2px 2px 0 2px;font-size:15px;font-weight:800;color:#111111;display:flex;align-items:center;gap:8px;"><span style="font-size:14px;">📸</span><span>센터 외관 이미지</span></div>
-                  <div style="background:#ffffff;border:1px solid #E8EBF0;border-radius:20px;padding:12px;box-shadow:0 4px 14px rgba(17,24,39,.04);"><img src="./center-front.png" alt="센터 외관 이미지" style="width:100%;height:420px;object-fit:cover;border-radius:16px;display:block;"></div>
+                  <div style="background:#ffffff;border:1px solid #E8EBF0;border-radius:20px;padding:12px;box-shadow:0 4px 14px rgba(17,24,39,.04);"><img src="assets/images/center-front.png" alt="센터 외관 이미지" style="width:100%;height:420px;object-fit:cover;border-radius:16px;display:block;"></div>
                   <div style="font-size:13px;line-height:1.7;color:#6B7280;padding:0 4px;">실제 입고 시 센터 외관 및 진입 위치를 확인 후 안내에 따라 이동해주세요.</div>
                   <div style="background:#F4F8FF;border:1px solid #D9E7FF;border-radius:16px;padding:16px 18px;font-size:14px;line-height:1.8;color:#1F2937;"><div style="font-weight:800;margin-bottom:6px;">✅ 입고 위치 안내</div>하차 장소는 센터 진입 후 <span style="font-weight:800;">바로 왼쪽</span>으로 입차 후 직원의 안내에 따라 도크 배정이 진행됩니다.</div>
                 </div>
@@ -760,9 +760,7 @@
       ];
 
       function getImagePath(fileName) {
-        const currentPath = window.location.pathname || "";
-        const isInsideAssetsImages = currentPath.includes("/assets/images/");
-        return isInsideAssetsImages ? `./${fileName}` : `assets/images/${fileName}`;
+        return `assets/images/${fileName}`;
       }
 
       const packagingDetailMap = {
@@ -985,14 +983,7 @@
         imgEl.style.display = "block";
         fallbackEl.classList.remove("show");
         imgEl.alt = alt;
-        imgEl.dataset.retry = "0";
         imgEl.onerror = function () {
-          const retried = this.dataset.retry === "1";
-          if (!retried) {
-            this.dataset.retry = "1";
-            if (src.startsWith("assets/images/")) { this.src = "./" + src.split("/").pop(); return; }
-            if (src.startsWith("./")) { this.src = "assets/images/" + src.replace("./", ""); return; }
-          }
           this.style.display = "none";
           fallbackEl.classList.add("show");
         };

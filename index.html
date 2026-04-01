@@ -383,6 +383,48 @@
     .image-fallback{display:none;padding:28px 20px;text-align:center;color:#6b7280;font-size:14px;line-height:1.7;background:#fafbfc}
     .image-fallback.show{display:block}
 
+      .booking-row-card.label-output-row{
+  flex-direction:column;
+  align-items:flex-start;
+}
+
+.booking-row-card.label-output-row .booking-row-left{
+  width:100%;
+  align-items:flex-start;
+}
+
+.booking-row-card.label-output-row .booking-row-copy{
+  width:100%;
+}
+
+.booking-row-action-line{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  width:100%;
+  margin-top:10px;
+}
+
+.booking-row-action-line .upload-trigger-btn{
+  flex:0 0 auto;
+}
+
+.booking-row-action-line .booking-status-box{
+  flex:1 1 auto;
+  margin:0;
+  min-width:0;
+}
+
+.booking-row-card.label-output-row .booking-row-desc{
+  margin-top:10px;
+}
+
+@media (max-width:768px){
+  .booking-row-action-line{
+    flex-direction:column;
+    align-items:stretch;
+  }
+}
     .detail-table-wrap{margin:14px 0 0;overflow:auto;border-radius:16px;border:1px solid #e8ebf0}
     .detail-table{width:100%;border-collapse:collapse;background:#fff;min-width:620px}
     .detail-table th,.detail-table td{padding:14px 12px;border:1px solid #e8ebf0;text-align:left;font-size:14px;line-height:1.7;vertical-align:top;white-space:normal}
@@ -428,6 +470,39 @@
       .booking-status-box{flex-direction:column;align-items:flex-start}
     }
     @media (max-width:640px){.hero-alert-title{font-size:22px}}
+      .booking-row-card.label-output-row{
+  align-items:flex-start;
+}
+
+.booking-row-card.label-output-row .booking-row-left{
+  width:100%;
+  align-items:flex-start;
+}
+
+.booking-row-card.label-output-row .booking-row-copy{
+  width:100%;
+}
+
+.booking-row-action-line{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin:10px 0 8px;
+  width:100%;
+}
+
+.booking-row-action-line .upload-trigger-btn{
+  flex:0 0 auto;
+}
+
+.booking-row-action-line .booking-status-box{
+  flex:1 1 auto;
+  margin:0;
+}
+
+.booking-row-card.label-output-row .booking-row-desc{
+  margin-top:0;
+}
   </style>
 </head>
 <body>
@@ -606,28 +681,32 @@
                     </div>
                   </div>
 
-                  <div class="booking-row-card label-output-row">
-                    <div class="booking-row-left">
-                      <div class="booking-row-icon">🏷️</div>
-                      <div class="booking-row-copy">
-                        <div class="booking-row-title">아웃박스 라벨 출력</div>
-                        <div class="booking-row-desc">아웃박스에 부착할 라벨 양식이 필요하신 경우, 작성한 패킹리스트를 업로드하면 상품(SKU)별 라벨을 출력할 수 있어요.</div>
-                      </div>
-                    </div>
-                    <div class="booking-row-right">
-                      <div class="booking-row-stack">
-                        <input type="file" id="deliveryLabelFile" accept=".xlsx,.xls" hidden>
-                        <button class="upload-trigger-btn primary" data-upload-target="deliveryLabelFile">파일 선택</button>
-                        <div class="booking-status-box">
-                          <div class="booking-status-copy">
-                            <strong id="deliveryLabelFileName">선택된 파일 없음</strong>
-                            <span>택배 양식 전용 / PDF 자동 다운로드</span>
-                          </div>
-                          <span class="booking-status-pill" id="deliveryLabelStatus">대기중</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+<div class="booking-row-card label-output-row">
+  <div class="booking-row-left">
+    <div class="booking-row-icon">🏷️</div>
+
+    <div class="booking-row-copy">
+      <div class="booking-row-title">아웃박스 라벨 출력</div>
+
+      <div class="booking-row-action-line">
+        <input type="file" id="deliveryLabelFile" accept=".xlsx,.xls" hidden>
+        <button class="upload-trigger-btn primary" data-upload-target="deliveryLabelFile">파일 선택</button>
+
+        <div class="booking-status-box">
+          <div class="booking-status-copy">
+            <strong id="deliveryLabelFileName">선택된 파일 없음</strong>
+            <span>택배 양식 전용 / PDF 자동 다운로드</span>
+          </div>
+          <span class="booking-status-pill" id="deliveryLabelStatus">대기중</span>
+        </div>
+      </div>
+
+      <div class="booking-row-desc">
+        아웃박스에 부착할 라벨 양식이 필요하신 경우, 작성한 패킹리스트를 업로드하면 상품(SKU)별 라벨을 출력할 수 있어요.
+      </div>
+    </div>
+  </div>
+</div>
                 </div>
               </article>
 
@@ -663,50 +742,55 @@
                     </div>
                   </div>
 
-                  <div class="booking-row-card label-output-row">
-                    <div class="booking-row-left">
-                      <div class="booking-row-icon">📦</div>
-                      <div class="booking-row-copy">
-                        <div class="booking-row-title">아웃박스 라벨 출력</div>
-                        <div class="booking-row-desc">아웃박스에 부착할 라벨 양식이 필요하신 경우, 작성한 패킹리스트를 업로드하면 상품(SKU)별 라벨을 출력할 수 있어요.</div>
-                      </div>
-                    </div>
-                    <div class="booking-row-right">
-                      <div class="booking-row-stack">
-                        <input type="file" id="truckOutboxLabelFile" accept=".xlsx,.xls" hidden>
-                        <button class="upload-trigger-btn primary" data-upload-target="truckOutboxLabelFile">파일 선택</button>
-                        <div class="booking-status-box">
-                          <div class="booking-status-copy">
-                            <strong id="truckOutboxLabelFileName">선택된 파일 없음</strong>
-                            <span>차량 양식 전용 / PDF 자동 다운로드</span>
-                          </div>
-                          <span class="booking-status-pill" id="truckOutboxLabelStatus">대기중</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+ <div class="booking-row-card label-output-row">
+  <div class="booking-row-left">
+    <div class="booking-row-icon">🏷️</div>
 
-                  <div class="booking-row-card label-output-row">
-                    <div class="booking-row-left">
-                      <div class="booking-row-icon">🧱</div>
-                      <div class="booking-row-copy">
-                        <div class="booking-row-title">팔레트 라벨 출력</div>
-                        <div class="booking-row-desc">입고증과 함께 팔레트에 부착할 라벨을 출력할 수 있어요.</div>
-                      </div>
-                    </div>
-                    <div class="booking-row-right">
-                      <div class="booking-row-stack">
-                        <input type="file" id="truckPltLabelFile" accept=".xlsx,.xls" hidden>
-                        <button class="upload-trigger-btn primary" data-upload-target="truckPltLabelFile">파일 선택</button>
-                        <div class="booking-status-box">
-                          <div class="booking-status-copy">
-                            <strong id="truckPltLabelFileName">선택된 파일 없음</strong>
-                            <span>차량 양식 전용 / PDF 자동 다운로드</span>
-                          </div>
-                          <span class="booking-status-pill" id="truckPltLabelStatus">대기중</span>
-                        </div>
-                      </div>
-                    </div>
+    <div class="booking-row-copy">
+      <div class="booking-row-title">아웃박스 라벨 출력</div>
+
+      <div class="booking-row-action-line">
+        <input type="file" id="deliveryLabelFile" accept=".xlsx,.xls" hidden>
+        <button class="upload-trigger-btn primary" data-upload-target="deliveryLabelFile">파일 선택</button>
+
+        <div class="booking-status-box">
+          <div class="booking-status-copy">
+            <strong id="deliveryLabelFileName">선택된 파일 없음</strong>
+            <span>택배 양식 전용 / PDF 자동 다운로드</span>
+          </div>
+          <span class="booking-status-pill" id="deliveryLabelStatus">대기중</span>
+        </div>
+      </div>
+
+      <div class="booking-row-desc">
+        아웃박스에 부착할 라벨 양식이 필요하신 경우, 작성한 패킹리스트를 업로드하면 상품(SKU)별 라벨을 출력할 수 있어요.
+      </div>
+    </div>
+  </div>
+</div>
+<div class="booking-row-card label-output-row">
+  <div class="booking-row-left">
+    <div class="booking-row-icon">🧱</div>
+    <div class="booking-row-copy">
+      <div class="booking-row-title">팔레트 라벨 출력</div>
+
+      <div class="booking-row-action-line">
+        <input type="file" id="truckPltLabelFile" accept=".xlsx,.xls" hidden>
+        <button class="upload-trigger-btn primary" data-upload-target="truckPltLabelFile">파일 선택</button>
+
+        <div class="booking-status-box">
+          <div class="booking-status-copy">
+            <strong id="truckPltLabelFileName">선택된 파일 없음</strong>
+            <span>차량 양식 전용 / PDF 자동 다운로드</span>
+          </div>
+          <span class="booking-status-pill" id="truckPltLabelStatus">대기중</span>
+        </div>
+      </div>
+
+      <div class="booking-row-desc">입고증과 함께 팔레트에 부착할 라벨을 출력할 수 있어요.</div>
+    </div>
+  </div>
+</div>
                   </div>
                 </div>
               </article>
